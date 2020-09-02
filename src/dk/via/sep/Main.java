@@ -6,6 +6,6 @@ public class Main {
         System.out.println("This is just a small test");
         System.out.println("this is a second test");
 
-        
+
     }
 }
