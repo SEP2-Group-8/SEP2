@@ -41,7 +41,7 @@ public class ViewHandler {
       }
       case "Register": {
         loader.setLocation(
-            getClass().getResource("../view/main/RegisterView.fxml")
+            getClass().getResource("../view/register/RegisterView.fxml")
         );
         root = loader.load();
         RegisterViewController registerViewController = loader.getController();
