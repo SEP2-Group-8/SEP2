@@ -3,6 +3,7 @@ package dk.via.sep.shared.transfer;
 import java.util.Objects;
 
 public class User {
+
     private int user_id;
 
     private String username;
@@ -29,6 +30,10 @@ public class User {
     public String getPassword() {
         return password;
     }
+    public int getUser_id() {
+        return user_id;
+    }
+
     @Override
     public boolean equals(Object obj)
     {
