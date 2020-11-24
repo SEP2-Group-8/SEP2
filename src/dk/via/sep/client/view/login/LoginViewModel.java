@@ -1,54 +1,69 @@
 package dk.via.sep.client.view.login;
 
-import dk.via.sep.client.model.ModelInterface;
+import dk.via.sep.client.model.userModel.UserModel;
+import dk.via.sep.shared.utils.Subject;
+import dk.via.sep.shared.utils.UserAction;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class LoginViewModel {
-  private final ModelInterface modelInterface;
-  private StringProperty username;
-  private StringProperty password;
-  private StringProperty error;
-  private PropertyChangeSupport support;
+public class LoginViewModel implements Subject {
+    private final UserModel userModel;
+    private final StringProperty username;
+    private final StringProperty password;
+    private final StringProperty error;
+    private final PropertyChangeSupport support;
 
-  public LoginViewModel(ModelInterface modelInterface) {
-    this.modelInterface = modelInterface;
-    username = new SimpleStringProperty();
-    password = new SimpleStringProperty();
-    error = new SimpleStringProperty();
-    error.setValue("");
-    support = new PropertyChangeSupport(this);
+    public LoginViewModel(UserModel userModel) {
+        this.userModel = userModel;
+        username = new SimpleStringProperty();
+        password = new SimpleStringProperty();
+        error = new SimpleStringProperty();
+        error.setValue("");
+        support = new PropertyChangeSupport(this);
 
-    //this.modelInterface.addListener(UserAction.LOGIN_SUCCESS.toString(), this::onLoginOK);
-    //this.modelInterface.addListener(UserAction.LOGIN_FAILED.toString(), this::onLoginFail);
-  }
+        this.userModel.addListener(UserAction.LOGIN_SUCCESS.toString(), this::onLoginOK);
+        this.userModel.addListener(UserAction.LOGIN_FAILED.toString(), this::onLoginFail);
+    }
 
-  public void login() {
-    modelInterface.login(username.getValue(), password.getValue());
-  }
+    public void login() {
+        userModel.login(username.getValue(), password.getValue());
+    }
 
-//  private void onLoginOK(PropertyChangeEvent event) {
-//    support.firePropertyChange(UserAction.LOGIN_SUCCESS.toString(), null, null);
-//  }
-//
-//  private void onLoginFail(PropertyChangeEvent event) {
-//    Platform.runLater(() ->{
-//      error.setValue("Username already taken.");
-//    });
-//    System.out.println("failed to login");
-//  }
+    private void onLoginOK(PropertyChangeEvent event) {
+        support.firePropertyChange(event);
+    }
 
-  public StringProperty getUsernameProperty() {
-    return username;
-  }
+    private void onLoginFail(PropertyChangeEvent event) {
+        Platform.runLater(() -> {
+            error.setValue("Username or password don't match.");
+        });
+        System.out.println("failed to login");
+    }
 
-  public StringProperty getPasswordProperty() {
-    return password;
-  }
+    public StringProperty getUsernameProperty() {
+        return username;
+    }
 
-  public StringProperty getErrorProperty() {
-    return error;
-  }
+    public StringProperty getPasswordProperty() {
+        return password;
+    }
+
+    public StringProperty getErrorProperty() {
+        return error;
+    }
+
+    @Override
+    public void addListener(String eventName, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(eventName, listener);
+    }
+
+    @Override
+    public void removeListener(String eventName, PropertyChangeListener listener) {
+        support.removePropertyChangeListener(eventName, listener);
+    }
 }

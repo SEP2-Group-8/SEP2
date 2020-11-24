@@ -1,20 +1,20 @@
 package dk.via.sep.client.core;
 
-import dk.via.sep.client.model.ModelInterface;
-import dk.via.sep.client.model.ModelManager;
+import dk.via.sep.client.model.userModel.UserModel;
+import dk.via.sep.client.model.userModel.UserModelManager;
 
 public class ModelFactory {
 
-  private final ClientFactory cf;
-  private ModelInterface modelInterface;
+    private final ClientFactory cf;
+    private UserModel userModel;
 
-  public ModelFactory(ClientFactory cf) {
-    this.cf = cf;
-  }
+    public ModelFactory(ClientFactory cf) {
+        this.cf = cf;
+    }
 
-  public ModelInterface getModelManager() {
-    if (modelInterface == null)
-      modelInterface = new ModelManager(cf.getClientNetwork());
-    return modelInterface;
-  }
+    public UserModel getModelManager() {
+        if (userModel == null)
+            userModel = new UserModelManager(cf.getUserClient());
+        return userModel;
+    }
 }

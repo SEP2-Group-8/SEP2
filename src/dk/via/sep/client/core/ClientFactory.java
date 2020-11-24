@@ -1,17 +1,16 @@
 package dk.via.sep.client.core;
 
-import dk.via.sep.client.networking.Client;
-import dk.via.sep.client.networking.ClientImpl;
+import dk.via.sep.client.networking.userClient.UserClient;
+import dk.via.sep.client.networking.userClient.UserClientImpl;
 
 public class ClientFactory {
 
-  private Client client;
+    private UserClient client;
 
-
-  public Client getClientNetwork() {
-    if (client == null) {
-      client = new ClientImpl();
+    public UserClient getUserClient() {
+        if (client == null) {
+            client = new UserClientImpl();
+        }
+        return client;
     }
-    return client;
-  }
 }

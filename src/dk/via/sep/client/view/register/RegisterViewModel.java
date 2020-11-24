@@ -1,9 +1,8 @@
 package dk.via.sep.client.view.register;
 
-import dk.via.sep.client.model.ModelInterface;
+import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -13,15 +12,15 @@ import java.beans.PropertyChangeSupport;
 
 public class RegisterViewModel implements Subject {
 
-    private StringProperty username;
-    private StringProperty password;
-    private StringProperty email;
-    private StringProperty confPassword;
-    private StringProperty error;
-    private ModelInterface model;
-    private PropertyChangeSupport support;
+    private final StringProperty username;
+    private final StringProperty password;
+    private final StringProperty email;
+    private final StringProperty confPassword;
+    private final StringProperty error;
+    private final UserModel model;
+    private final PropertyChangeSupport support;
 
-    public RegisterViewModel(ModelInterface model) {
+    public RegisterViewModel(UserModel model) {
         this.model = model;
         model.addListener(UserAction.REGISTER_FAILED.toString(), this::onRegisterFailed);
         model.addListener(UserAction.REGISTER_SUCCESS.toString(), this::onRegisterSuccess);
@@ -34,13 +33,12 @@ public class RegisterViewModel implements Subject {
     }
 
     private void onRegisterSuccess(PropertyChangeEvent propertyChangeEvent) {
-        UserAction action = (UserAction) propertyChangeEvent.getNewValue();
-        System.out.println("Action in modelManager: "+action.toString());
+        System.out.println("Action in modelManager: " + propertyChangeEvent.getPropertyName());
         support.firePropertyChange(propertyChangeEvent);
     }
 
     private void onRegisterFailed(PropertyChangeEvent evt) {
-            error.set("failed");
+        error.set("failed");
     }
 
     public void registerUser() {

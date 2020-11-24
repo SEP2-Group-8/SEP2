@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 public class Client extends Application {
 
-  @Override 
-  public void start(Stage stage) throws Exception {
-    ClientFactory clientFactory = new ClientFactory();
-    ModelFactory modelFactory = new ModelFactory(clientFactory);
-    ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
-    ViewHandler viewHandler = new ViewHandler(viewModelFactory);
-    viewHandler.start();
-  }
+    @Override
+    public void start(Stage stage) throws Exception {
+        ClientFactory clientFactory = new ClientFactory();
+        ModelFactory modelFactory = new ModelFactory(clientFactory);
+        ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
+        ViewHandler viewHandler = new ViewHandler(viewModelFactory);
+        viewHandler.start();
+    }
 }

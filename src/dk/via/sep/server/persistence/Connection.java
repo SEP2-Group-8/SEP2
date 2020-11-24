@@ -1,4 +1,4 @@
-package dk.via.sep.server;
+package dk.via.sep.server.persistence;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

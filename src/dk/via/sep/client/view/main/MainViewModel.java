@@ -1,11 +1,11 @@
 package dk.via.sep.client.view.main;
 
-import dk.via.sep.client.model.ModelInterface;
+import dk.via.sep.client.model.userModel.UserModel;
 
 public class MainViewModel {
-  private ModelInterface modelInterface;
+    private final UserModel userModel;
 
-  public MainViewModel(ModelInterface modelInterface) {
-    this.modelInterface = modelInterface;
-  }
+    public MainViewModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
 }

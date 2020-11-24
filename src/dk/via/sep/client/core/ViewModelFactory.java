@@ -6,34 +6,34 @@ import dk.via.sep.client.view.register.RegisterViewModel;
 
 public class ViewModelFactory {
 
-  private final ModelFactory mf;
+    private final ModelFactory mf;
 
-  private LoginViewModel loginViewModel;
-  private MainViewModel mainViewModel;
-  private RegisterViewModel registerViewModel;
+    private LoginViewModel loginViewModel;
+    private MainViewModel mainViewModel;
+    private RegisterViewModel registerViewModel;
 
 
-  public ViewModelFactory(ModelFactory mf) {
-    this.mf = mf;
-  }
+    public ViewModelFactory(ModelFactory mf) {
+        this.mf = mf;
+    }
 
-  public LoginViewModel getLoginViewModel() {
-    if (loginViewModel == null)
-      loginViewModel = new LoginViewModel(mf.getModelManager());
-    return loginViewModel;
-  }
+    public LoginViewModel getLoginViewModel() {
+        if (loginViewModel == null)
+            loginViewModel = new LoginViewModel(mf.getModelManager());
+        return loginViewModel;
+    }
 
-  public RegisterViewModel getRegisterViewModel() {
-    if (registerViewModel == null)
-      registerViewModel = new RegisterViewModel(mf.getModelManager());
-    return registerViewModel;
-  }
+    public RegisterViewModel getRegisterViewModel() {
+        if (registerViewModel == null)
+            registerViewModel = new RegisterViewModel(mf.getModelManager());
+        return registerViewModel;
+    }
 
-  public MainViewModel getMainViewModel() {
-    if (mainViewModel == null)
-      mainViewModel = new MainViewModel(mf.getModelManager());
-    return mainViewModel;
-  }
+    public MainViewModel getMainViewModel() {
+        if (mainViewModel == null)
+            mainViewModel = new MainViewModel(mf.getModelManager());
+        return mainViewModel;
+    }
 
 
 }

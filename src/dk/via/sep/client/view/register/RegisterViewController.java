@@ -43,7 +43,7 @@ public class RegisterViewController {
     }
 
     public void onBackButton() {
-        Platform.runLater( () ->{
+        Platform.runLater(() -> {
             try {
                 vh.openView("Login");
             } catch (IOException e) {

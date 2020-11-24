@@ -1,6 +1,7 @@
-package dk.via.sep.client.model;
+package dk.via.sep.client.model.userModel;
 
-import dk.via.sep.client.networking.Client;
+import dk.via.sep.client.model.user.LoggedUser;
+import dk.via.sep.client.networking.userClient.UserClient;
 import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.UserAction;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,19 +11,17 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements ModelInterface {
+public class UserModelManager implements UserModel {
 
-    private final Client client;
+    private final UserClient client;
     private final PropertyChangeSupport support;
-    private StringProperty username;
+    private final StringProperty username;
 
-    public ModelManager(Client client) {
+    public UserModelManager(UserClient client) {
         this.client = client;
         support = new PropertyChangeSupport(this);
         username = new SimpleStringProperty();
 
-        this.client.addListener(UserAction.LOGIN_SUCCESS.toString(), this::onReceiveRequest);
-        this.client.addListener(UserAction.LOGIN_FAILED.toString(), this::onReceiveRequest);
         this.client.addListener(UserAction.REGISTER_SUCCESS.toString(), this::onReceiveRequest);
         this.client.addListener(UserAction.REGISTER_FAILED.toString(), this::onReceiveRequest);
 
@@ -31,19 +30,21 @@ public class ModelManager implements ModelInterface {
 
     private void onReceiveRequest(PropertyChangeEvent propertyChangeEvent) {
         support.firePropertyChange(propertyChangeEvent);
-        UserAction action = (UserAction) propertyChangeEvent.getNewValue();
-        System.out.println("Action in modelManager: "+action.toString());
     }
 
     @Override
-    public void login(String value, String value1) {
-
+    public void login(String username, String password) {
+        User user = client.loginUser(username, password);
+        if (user != null) {
+            LoggedUser.getInstance().setUser(user);
+            support.firePropertyChange(UserAction.LOGIN_SUCCESS.toString(), null, null);
+        } else support.firePropertyChange(UserAction.LOGIN_FAILED.toString(), null, null);
     }
 
     @Override
     public void register(String un, String pw, String e_mail) {
-        User user = new User(e_mail,pw,un);
-        client.register(user);
+        User user = new User(e_mail, pw, un);
+        client.registerAccount(user);
     }
 
     @Override
