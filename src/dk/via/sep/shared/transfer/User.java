@@ -7,7 +7,7 @@ import java.util.UUID;
 public class User implements Serializable {
 
     private int user_id;
-
+    private boolean adminCon;
     private String username;
     private String email;
     private String password;
@@ -19,6 +19,7 @@ public class User implements Serializable {
         this.password = password;
         this.username = username;
         this.uuid = UUID.randomUUID();
+        adminCon = false;
     }
 
     public void setUser_id(int user_id) {
@@ -43,6 +44,15 @@ public class User implements Serializable {
 
     public UUID getUUID() {
         return uuid;
+    }
+
+    public void setAdminCon(boolean adminCon)
+    {
+        this.adminCon=adminCon;
+    }
+    public boolean getAdminCon()
+    {
+        return adminCon;
     }
 
     @Override
