@@ -82,33 +82,33 @@ public class AdminMainViewController {
     }
 
     public void onProfileButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+        /*Platform.runLater(() -> {
             try {
                 viewHandler.openView("AdminProfile");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onEventsButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+       /* Platform.runLater(() -> {
             try {
                 viewHandler.openView("AdminEvents");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onChatButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+       /* Platform.runLater(() -> {
             try {
                 viewHandler.openView("AdminChat");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onUsersButton(ActionEvent actionEvent) {

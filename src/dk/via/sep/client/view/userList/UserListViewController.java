@@ -54,33 +54,33 @@ public class UserListViewController {
     }
 
     public void onProfileButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+        /*Platform.runLater(() -> {
             try {
                 vh.openView("AdminProfile");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onEventsButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+       /* Platform.runLater(() -> {
             try {
                 vh.openView("AdminEvents");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onChatButton(ActionEvent actionEvent) {
-        Platform.runLater(() -> {
+       /* Platform.runLater(() -> {
             try {
                 vh.openView("AdminChat");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     public void onUsersButton(ActionEvent actionEvent) {
