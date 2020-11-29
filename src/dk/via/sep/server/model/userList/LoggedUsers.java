@@ -15,6 +15,7 @@ public class LoggedUsers {
     }
 
     public static LoggedUsers getInstance() {
+        //TODO add a lock
         if (loggedUsers == null) {
             loggedUsers = new LoggedUsers();
         }
@@ -35,5 +36,10 @@ public class LoggedUsers {
 
     public Map<UUID, UserClientCallback> getActiveUsers() {
         return activeUsers;
+    }
+
+    public void removeClient(UUID uuid) {
+        System.out.println("Removing client "+uuid);
+        activeUsers.remove(uuid);
     }
 }

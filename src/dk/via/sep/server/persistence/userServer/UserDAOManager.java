@@ -66,7 +66,7 @@ public class UserDAOManager extends Connection implements UserDAO {
         }
         return null;
     }
-/*
+
     @Override
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
@@ -121,5 +121,5 @@ public class UserDAOManager extends Connection implements UserDAO {
             throwables.printStackTrace();
         }
         return null;
-    }*/
+    }
 }

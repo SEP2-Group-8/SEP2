@@ -13,4 +13,6 @@ public interface userServerCallback extends Remote {
     User login(String username, String password) throws RemoteException;
 
     void registerClient(UserClientCallback client, UUID id) throws RemoteException;
+
+    void logOut(UUID uuid) throws RemoteException;
 }

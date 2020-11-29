@@ -48,6 +48,11 @@ public class UserModelManager implements UserModel {
     }
 
     @Override
+    public void logOut() {
+        client.logOut();
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
     }

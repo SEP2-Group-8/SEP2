@@ -1,5 +1,6 @@
 package dk.via.sep.client.networking.userClient;
 
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.Connection;
 import dk.via.sep.shared.networking.userServerRemote.UserClientCallback;
 import dk.via.sep.shared.networking.userServerRemote.userServerCallback;
@@ -51,6 +52,15 @@ public class UserClientImpl implements UserClient, UserClientCallback {
     public void registerAccount(User user) {
         try {
             server.registerNewAccount(this, user);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void logOut() {
+        try {
+            server.logOut(LoggedUser.getInstance().getUser().getUUID());
         } catch (RemoteException e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package dk.via.sep.client.view.register;
 import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -38,7 +39,9 @@ public class RegisterViewModel implements Subject {
     }
 
     private void onRegisterFailed(PropertyChangeEvent evt) {
-        error.set("failed");
+        Platform.runLater( () ->{
+            error.set("This username has already been taken.");
+        });
     }
 
     public void registerUser() {

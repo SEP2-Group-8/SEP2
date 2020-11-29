@@ -62,4 +62,10 @@ public class UserServerHandler implements UserServer {
     public void registerClient(UserClientCallback client, UUID id) throws RemoteException {
         LoggedUsers.getInstance().addClient(id, client);
     }
+
+    @Override
+    public void logOut(UUID uuid) throws RemoteException{
+        System.out.println("LogOut request");
+        LoggedUsers.getInstance().removeClient(uuid);
+    }
 }

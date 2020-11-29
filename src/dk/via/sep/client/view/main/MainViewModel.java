@@ -8,4 +8,8 @@ public class MainViewModel {
     public MainViewModel(UserModel userModel) {
         this.userModel = userModel;
     }
+
+    public void logOut() {
+        userModel.logOut();
+    }
 }

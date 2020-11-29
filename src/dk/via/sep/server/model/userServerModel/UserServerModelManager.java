@@ -12,21 +12,26 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class UserServerModelManager implements UserServerModel {
     private final PropertyChangeSupport support;
-    private final ArrayList<User> userList;
+    //private final ArrayList<User> userList;
     private UserDAO userDAO;
     private final Lock lock;
 
     public UserServerModelManager(UserDAO userDAO) {
         support = new PropertyChangeSupport(this);
-        userList = new ArrayList<>();
+        //userList = new ArrayList<>();
         this.userDAO = userDAO;
         lock = new ReentrantLock();
     }
 
     @Override
     public void addUser(User user) {
+        //works, but client errors out because it doesn't handle well the event, needs fixing
         boolean user_exists = false;
-        for (User user1 : userList) {
+        ArrayList<User> currentUsers = new ArrayList<>();
+
+        currentUsers = userDAO.getAllUsers();
+        System.out.println(currentUsers);
+        for (User user1 : currentUsers) {
             if (user.equals(user1)) {
                 user_exists = true;
                 break;
@@ -37,7 +42,7 @@ public class UserServerModelManager implements UserServerModel {
                 userDAO.addUser(user);
             }
             user.setUser_id(userDAO.getUser(user.getUsername(), user.getPassword()).getUser_id());
-            userList.add(user);
+            //userList.add(user);
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_SUCCESS);
         } else {
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_FAILED);
@@ -50,9 +55,9 @@ public class UserServerModelManager implements UserServerModel {
         synchronized (lock) {
             user = userDAO.getUser(username, password);
         }
-        if (user != null) {
-            userList.add(user);
-        }
+//        if (user != null) {
+//            userList.add(user);
+//        }
         return user;
     }
 

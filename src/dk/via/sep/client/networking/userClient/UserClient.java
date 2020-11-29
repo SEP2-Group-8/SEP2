@@ -9,4 +9,6 @@ public interface UserClient extends Subject {
     User loginUser(String username, String password);
 
     void registerAccount(User user);
+
+    void logOut();
 }
