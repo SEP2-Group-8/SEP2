@@ -46,7 +46,7 @@ public class UserListViewController {
     public void onHomeButton(ActionEvent actionEvent) {
         Platform.runLater(() -> {
             try {
-                vh.openView("AdminHome");
+                vh.openView("AdminMain");
             } catch (IOException e) {
                 e.printStackTrace();
             }

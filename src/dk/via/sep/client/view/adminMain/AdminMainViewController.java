@@ -74,7 +74,7 @@ public class AdminMainViewController {
     public void onHomeButton(ActionEvent actionEvent) {
         Platform.runLater(() -> {
             try {
-                viewHandler.openView("AdminHome");
+                viewHandler.openView("AdminMain");
             } catch (IOException e) {
                 e.printStackTrace();
             }
