@@ -28,6 +28,7 @@ public class LoginViewModel implements Subject {
 
         this.userModel.addListener(UserAction.LOGIN_SUCCESS.toString(), this::onLoginOK);
         this.userModel.addListener(UserAction.LOGIN_FAILED.toString(), this::onLoginFail);
+        this.userModel.addListener(UserAction.LOGIN_SUCCESS_ADMIN.toString(),this::onLoginOK);
     }
 
     public void login() {

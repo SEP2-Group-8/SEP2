@@ -1,8 +1,11 @@
 package dk.via.sep.client.core;
 
+
+import dk.via.sep.client.view.adminMain.AdminMainViewModel;
 import dk.via.sep.client.view.login.LoginViewModel;
 import dk.via.sep.client.view.main.MainViewModel;
 import dk.via.sep.client.view.register.RegisterViewModel;
+import dk.via.sep.client.view.userList.UserListViewModel;
 
 public class ViewModelFactory {
 
@@ -11,7 +14,8 @@ public class ViewModelFactory {
     private LoginViewModel loginViewModel;
     private MainViewModel mainViewModel;
     private RegisterViewModel registerViewModel;
-
+    private AdminMainViewModel adminMainViewModel;
+    private UserListViewModel userListViewModel;
 
     public ViewModelFactory(ModelFactory mf) {
         this.mf = mf;
@@ -34,6 +38,17 @@ public class ViewModelFactory {
             mainViewModel = new MainViewModel(mf.getModelManager());
         return mainViewModel;
     }
-
+    public AdminMainViewModel getAdminMainViewModel()
+    {
+        if(adminMainViewModel == null)
+            adminMainViewModel = new AdminMainViewModel(mf.getModelManager());
+        return adminMainViewModel;
+    }
+    public UserListViewModel getUserListViewModel()
+    {
+        if(userListViewModel == null)
+            userListViewModel = new UserListViewModel(mf.getModelManager());
+        return userListViewModel;
+    }
 
 }

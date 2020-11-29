@@ -10,6 +10,7 @@ import javafx.beans.property.StringProperty;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class UserModelManager implements UserModel {
 
@@ -52,6 +53,11 @@ public class UserModelManager implements UserModel {
     @Override
     public void logOut() {
         client.logOut();
+    }
+
+    @Override
+    public ArrayList<User> getUserList() {
+        return client.getUserList();
     }
 
     @Override

@@ -87,6 +87,7 @@ public class UserClientImpl implements UserClient, UserClientCallback {
         return null;
     }
 
+
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);

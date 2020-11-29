@@ -1,8 +1,10 @@
 package dk.via.sep.client.core;
 
+import dk.via.sep.client.view.adminMain.AdminMainViewController;
 import dk.via.sep.client.view.login.LoginViewController;
 import dk.via.sep.client.view.main.MainViewController;
 import dk.via.sep.client.view.register.RegisterViewController;
+import dk.via.sep.client.view.userList.UserListViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -57,6 +59,46 @@ public class ViewHandler {
                 MainViewController mainViewController = loader.getController();
                 mainViewController.init(vmf.getMainViewModel(), this);
                 stage.setTitle("VIA Football Club - Welcome");
+                break;
+            }
+            case "AdminMain":{
+                loader.setLocation(getClass().getResource("../view/adminMain/AdminMainView.fxml"));
+                root = loader.load();
+                AdminMainViewController mainAdminViewController = loader.getController();
+                mainAdminViewController.init(vmf.getAdminMainViewModel(),this);
+                stage.setTitle("VIA Football Club - Admin Home Page");
+                break;
+            }
+            case "UserList": {
+                loader.setLocation(getClass().getResource("../view/userList/UserListView.fxml"));
+                root = loader.load();
+                UserListViewController userListViewController = loader.getController();
+                userListViewController.init(vmf.getUserListViewModel(), this);
+                stage.setTitle("VIA Football Club - Admin User View Page");
+                break;
+            }
+            case "AdminProfile":{
+                loader.setLocation(getClass().getResource("../view/adminProfile/AdminProfileView.fxml"));
+                root = loader.load();
+                UserListViewController userListViewController = loader.getController();
+                userListViewController.init(vmf.getUserListViewModel(), this);
+                stage.setTitle("VIA Football Club - Admin Profile Page");
+                break;
+                }
+            case "AdminEvents":{
+                loader.setLocation(getClass().getResource("../view/adminEvents/AdminEventsView.fxml"));
+                root = loader.load();
+                UserListViewController userListViewController = loader.getController();
+                userListViewController.init(vmf.getUserListViewModel(), this);
+                stage.setTitle("VIA Football Club - Admin Events Page");
+                break;
+            }
+            case "AdminChat":{
+                loader.setLocation(getClass().getResource("../view/adminChat/AdminChatView.fxml"));
+                root = loader.load();
+                UserListViewController userListViewController = loader.getController();
+                userListViewController.init(vmf.getUserListViewModel(), this);
+                stage.setTitle("VIA Football Club - Admin Home Page");
                 break;
             }
         }

@@ -36,6 +36,7 @@ public class RegisterViewModel implements Subject {
     private void onRegisterSuccess(PropertyChangeEvent propertyChangeEvent) {
         System.out.println("Action in modelManager: " + propertyChangeEvent.getPropertyName());
         support.firePropertyChange(propertyChangeEvent);
+        error.set("OK");
     }
 
     private void onRegisterFailed(PropertyChangeEvent evt) {
@@ -71,7 +72,7 @@ public class RegisterViewModel implements Subject {
         }
         System.out.println(un + "\n" + pw + "\n" + e_mail);
         model.register(un, pw, e_mail);
-        clear();
+
     }
 
 

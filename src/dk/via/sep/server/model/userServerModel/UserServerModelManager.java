@@ -43,6 +43,7 @@ public class UserServerModelManager implements UserServerModel {
             user.setUser_id(userDAO.getUser(user.getUsername(), user.getPassword()).getUser_id());
             LoggedUsers.getInstance().addUser(user);
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_SUCCESS);
+            support.firePropertyChange(UserAction.USER_LIST.toString(),user.getUUID(), UserAction.USER_LIST);
         } else {
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_FAILED);
         }
