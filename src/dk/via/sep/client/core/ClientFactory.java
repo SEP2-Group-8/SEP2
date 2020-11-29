@@ -1,16 +1,28 @@
 package dk.via.sep.client.core;
 
+import dk.via.sep.client.networking.eventClient.EventClient;
+import dk.via.sep.client.networking.eventClient.EventClientImpl;
 import dk.via.sep.client.networking.userClient.UserClient;
 import dk.via.sep.client.networking.userClient.UserClientImpl;
 
 public class ClientFactory {
 
-    private UserClient client;
+    private UserClient userClient;
+    private EventClient eventClient;
 
     public UserClient getUserClient() {
-        if (client == null) {
-            client = new UserClientImpl();
+        if (userClient == null) {
+            userClient = new UserClientImpl();
         }
-        return client;
+        return userClient;
     }
+
+    public EventClient getEventClient() {
+        if (eventClient == null) {
+            eventClient = new EventClientImpl();
+        }
+        return eventClient;
+    }
+
+
 }

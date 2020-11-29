@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserClientImpl implements UserClient, UserClientCallback {
@@ -60,10 +61,30 @@ public class UserClientImpl implements UserClient, UserClientCallback {
     @Override
     public void logOut() {
         try {
-            server.logOut(LoggedUser.getInstance().getUser().getUUID());
+            server.logOut(LoggedUser.getInstance().getUser().getUUID(), LoggedUser.getInstance().getUser());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<User> getUserList() {
+        try {
+            return server.getUserList();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<User> getActiveUsers() {
+        try {
+            return server.getActiveUsers();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

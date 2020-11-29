@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserServerHandler implements UserServer {
@@ -64,8 +65,17 @@ public class UserServerHandler implements UserServer {
     }
 
     @Override
-    public void logOut(UUID uuid) throws RemoteException{
-        System.out.println("LogOut request");
-        LoggedUsers.getInstance().removeClient(uuid);
+    public void logOut(UUID uuid, User user) throws RemoteException{
+        userServerModel.logOut(uuid, user);
+    }
+
+    @Override
+    public ArrayList<User> getUserList() throws RemoteException {
+        return userServerModel.getUserList();
+    }
+
+    @Override
+    public ArrayList<User> getActiveUsers() throws RemoteException {
+        return userServerModel.getActiveUsers();
     }
 }

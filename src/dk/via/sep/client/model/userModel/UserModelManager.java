@@ -38,6 +38,8 @@ public class UserModelManager implements UserModel {
         if (user != null) {
             LoggedUser.getInstance().setUser(user);
             support.firePropertyChange(UserAction.LOGIN_SUCCESS.toString(), null, null);
+            System.out.println("User list: " + client.getUserList());
+            System.out.println("Active user list: " + client.getActiveUsers());
         } else support.firePropertyChange(UserAction.LOGIN_FAILED.toString(), null, null);
     }
 

@@ -82,6 +82,7 @@ public class UserDAOManager extends Connection implements UserDAO {
                 String email = resultSet.getString("email");
                 String password_name = resultSet.getString("password");
                 String username_name = resultSet.getString("username");
+                boolean adminCon = resultSet.getBoolean("admincondition");
                 User user = new User(email, password_name, username_name);
                 user.setUser_id(user_id);
                 users.add(user);

@@ -1,5 +1,6 @@
 package dk.via.sep.server.model.userServerModel;
 
+import dk.via.sep.server.model.userList.LoggedUsers;
 import dk.via.sep.server.persistence.userServer.UserDAO;
 import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.UserAction;
@@ -7,27 +8,25 @@ import dk.via.sep.shared.utils.UserAction;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class UserServerModelManager implements UserServerModel {
     private final PropertyChangeSupport support;
-    //private final ArrayList<User> userList;
     private UserDAO userDAO;
     private final Lock lock;
 
     public UserServerModelManager(UserDAO userDAO) {
         support = new PropertyChangeSupport(this);
-        //userList = new ArrayList<>();
         this.userDAO = userDAO;
         lock = new ReentrantLock();
     }
 
     @Override
     public void addUser(User user) {
-        //works, but client errors out because it doesn't handle well the event, needs fixing
         boolean user_exists = false;
-        ArrayList<User> currentUsers = new ArrayList<>();
+        ArrayList<User> currentUsers;
 
         currentUsers = userDAO.getAllUsers();
         System.out.println(currentUsers);
@@ -42,11 +41,28 @@ public class UserServerModelManager implements UserServerModel {
                 userDAO.addUser(user);
             }
             user.setUser_id(userDAO.getUser(user.getUsername(), user.getPassword()).getUser_id());
-            //userList.add(user);
+            LoggedUsers.getInstance().addUser(user);
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_SUCCESS);
         } else {
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_FAILED);
         }
+    }
+
+    @Override
+    public ArrayList<User> getUserList() {
+        return userDAO.getAllUsers();
+    }
+
+    @Override
+    public void logOut(UUID uuid, User user) {
+        LoggedUsers.getInstance().removeClient(uuid);
+        LoggedUsers.getInstance().removeUser(user);
+        System.out.println("Removed id: "+uuid+"\n Removed user: "+user.getUsername());
+    }
+
+    @Override
+    public ArrayList<User> getActiveUsers() {
+        return LoggedUsers.getInstance().getActiveUsers();
     }
 
     @Override
@@ -55,9 +71,9 @@ public class UserServerModelManager implements UserServerModel {
         synchronized (lock) {
             user = userDAO.getUser(username, password);
         }
-//        if (user != null) {
-//            userList.add(user);
-//        }
+        if (user != null) {
+            LoggedUsers.getInstance().addUser(user);
+        }
         return user;
     }
 

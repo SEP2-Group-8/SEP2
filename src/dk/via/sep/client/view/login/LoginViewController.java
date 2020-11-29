@@ -1,6 +1,7 @@
 package dk.via.sep.client.view.login;
 
 import dk.via.sep.client.core.ViewHandler;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.shared.utils.UserAction;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -36,6 +37,9 @@ public class LoginViewController {
     private void openMain(PropertyChangeEvent propertyChangeEvent) {
         Platform.runLater(() -> {
             try {
+//                if (LoggedUser.getInstance().getUser().getAdminCon())
+//                    vh.openView("AdminMainView");
+//                else vh.openView("UserMainView");
                 vh.openView("Main");
             } catch (IOException e) {
                 e.printStackTrace();

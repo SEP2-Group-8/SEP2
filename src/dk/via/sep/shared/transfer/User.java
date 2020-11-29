@@ -46,12 +46,11 @@ public class User implements Serializable {
         return uuid;
     }
 
-    public void setAdminCon(boolean adminCon)
-    {
-        this.adminCon=adminCon;
+    public void setAdminCon(boolean adminCon) {
+        this.adminCon = adminCon;
     }
-    public boolean getAdminCon()
-    {
+
+    public boolean getAdminCon() {
         return adminCon;
     }
 
@@ -65,6 +64,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User:" + username + "\n email:" + email;
+        return "User:" + username + "\n email:" + email + "\n is admin: " + adminCon;
     }
 }

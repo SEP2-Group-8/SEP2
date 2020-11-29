@@ -4,6 +4,7 @@ import dk.via.sep.shared.transfer.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public interface userServerCallback extends Remote {
@@ -14,5 +15,9 @@ public interface userServerCallback extends Remote {
 
     void registerClient(UserClientCallback client, UUID id) throws RemoteException;
 
-    void logOut(UUID uuid) throws RemoteException;
+    void logOut(UUID uuid, User user) throws RemoteException;
+
+    ArrayList<User> getUserList() throws RemoteException;
+
+    ArrayList<User> getActiveUsers() throws RemoteException;
 }
