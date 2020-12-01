@@ -1,5 +1,6 @@
 package dk.via.sep.client.model.userModel;
 
+import dk.via.sep.client.core.ClientFactory;
 import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.userClient.UserClient;
 import dk.via.sep.shared.transfer.User;
@@ -18,8 +19,8 @@ public class UserModelManager implements UserModel {
     private final PropertyChangeSupport support;
     private final StringProperty username;
 
-    public UserModelManager(UserClient client) {
-        this.client = client;
+    public UserModelManager() {
+        this.client = ClientFactory.getInstance().getUserClient();
         support = new PropertyChangeSupport(this);
         username = new SimpleStringProperty();
 

@@ -6,7 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-public class  Connection {
+public class Connection {
     private static ServerFactoryInterface serverFactory;
 
     public static ServerFactoryInterface getServerFactory() {

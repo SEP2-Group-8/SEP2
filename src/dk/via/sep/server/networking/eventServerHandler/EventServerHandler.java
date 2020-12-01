@@ -1,10 +1,11 @@
 package dk.via.sep.server.networking.eventServerHandler;
 
 import dk.via.sep.server.model.eventServerModel.EventServerModel;
-import dk.via.sep.shared.networking.eventServerRemote.EventServerCallback;
+import dk.via.sep.shared.transfer.Event;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class EventServerHandler implements EventServer {
 
@@ -20,6 +21,23 @@ public class EventServerHandler implements EventServer {
     }
 
 
+    @Override
+    public void createEvent(Event event) {
+        eventServerModel.createEvent(event);
+    }
 
+    @Override
+    public void removeEvent(Event event) {
+        eventServerModel.removeEvent(event);
+    }
 
+    @Override
+    public void editEvent(Event oldEvent, Event newEvent) {
+        eventServerModel.editEvent(oldEvent, newEvent);
+    }
+
+    @Override
+    public ArrayList<Event> getEventList() {
+        return eventServerModel.getEventList();
+    }
 }

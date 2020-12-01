@@ -8,8 +8,8 @@ import dk.via.sep.server.persistence.userServer.UserDAOManager;
 
 public class ServerDAOFactory {
 
-    private UserDAO userDAO;
-    private EventDAO eventDAO;
+    private final UserDAO userDAO;
+    private final EventDAO eventDAO;
 
     public ServerDAOFactory() {
         userDAO = new UserDAOManager();

@@ -1,7 +1,7 @@
 package dk.via.sep.server.networking.userServerHandler;
 
-import dk.via.sep.server.model.userServerModel.UserServerModel;
 import dk.via.sep.server.model.userList.LoggedUsers;
+import dk.via.sep.server.model.userServerModel.UserServerModel;
 import dk.via.sep.shared.networking.userServerRemote.UserClientCallback;
 import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.UserAction;
@@ -65,7 +65,7 @@ public class UserServerHandler implements UserServer {
     }
 
     @Override
-    public void logOut(UUID uuid, User user) throws RemoteException{
+    public void logOut(UUID uuid, User user) throws RemoteException {
         userServerModel.logOut(uuid, user);
     }
 

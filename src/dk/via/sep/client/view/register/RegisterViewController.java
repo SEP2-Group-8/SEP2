@@ -1,6 +1,8 @@
 package dk.via.sep.client.view.register;
 
 import dk.via.sep.client.core.ViewHandler;
+import dk.via.sep.client.core.ViewModelFactory;
+import dk.via.sep.client.view.ViewController;
 import dk.via.sep.shared.utils.UserAction;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,9 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.beans.PropertyChangeEvent;
-import java.io.IOException;
 
-public class RegisterViewController {
+public class RegisterViewController extends ViewController {
 
     @FXML
     private Label errorLabel;
@@ -27,9 +28,9 @@ public class RegisterViewController {
     private RegisterViewModel vm;
     private ViewHandler vh;
 
-    public void init(RegisterViewModel vm, ViewHandler vh) {
-        this.vm = vm;
-        this.vh = vh;
+    public void init() {
+        this.vm = ViewModelFactory.getInstance().getRegisterViewModel();
+        this.vh = ViewHandler.getInstance();
         usernameField.textProperty().bindBidirectional(vm.usernameProperty());
         passwordField.textProperty().bindBidirectional(vm.passwordProperty());
         confPasswordField.textProperty().bindBidirectional(vm.confPasswordProperty());
@@ -44,11 +45,8 @@ public class RegisterViewController {
 
     public void onBackButton() {
         Platform.runLater(() -> {
-            try {
-                vh.openView("Login");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            vm.clear();
+            vh.openLoginView();
         });
     }
 

@@ -1,110 +1,123 @@
 package dk.via.sep.client.core;
 
-import dk.via.sep.client.view.adminMain.AdminMainViewController;
-import dk.via.sep.client.view.login.LoginViewController;
-import dk.via.sep.client.view.main.MainViewController;
-import dk.via.sep.client.view.register.RegisterViewController;
-import dk.via.sep.client.view.userList.UserListViewController;
-import javafx.fxml.FXMLLoader;
+import dk.via.sep.client.view.ViewController;
+import dk.via.sep.client.view.ViewControllerFactory;
+import dk.via.sep.shared.utils.Views;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.stage.StageStyle;
 
 public class ViewHandler {
-    private final ViewModelFactory vmf;
     private Stage stage;
     private Scene scene;
+    private final String css;
+    private final String font;
+    private ViewController viewController;
+    private static ViewHandler viewHandler;
 
-    public ViewHandler(ViewModelFactory vmf) {
-        this.vmf = vmf;
+    private double xOffset;
+    private double yOffset;
+
+    private ViewHandler() {
+        xOffset = yOffset = 0;
+        css = this.getClass().getResource("../view/style/style.css").toExternalForm();
+        font = this.getClass().getResource("../view/style/fonts/Roboto-Light.ttf").toExternalForm();
     }
 
-    public void start() throws IOException {
-        stage = new Stage();
-        openView("Login");
-    }
-
-    public void openView(String view) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-
-        switch (view) {
-            case "Login": {
-                loader.setLocation(
-                        getClass().getResource("../view/login/LoginView.fxml")
-                );
-                root = loader.load();
-                LoginViewController loginViewController = loader.getController();
-                loginViewController.init(vmf.getLoginViewModel(), this);
-                stage.setTitle("Login");
-                break;
-            }
-            case "Register": {
-                loader.setLocation(
-                        getClass().getResource("../view/register/RegisterView.fxml")
-                );
-                root = loader.load();
-                RegisterViewController registerViewController = loader.getController();
-                registerViewController.init(vmf.getRegisterViewModel(), this);
-                stage.setTitle("Register");
-                break;
-            }
-            case "Main": {
-                loader.setLocation(
-                        getClass().getResource("../view/main/MainView.fxml")
-                );
-                root = loader.load();
-                MainViewController mainViewController = loader.getController();
-                mainViewController.init(vmf.getMainViewModel(), this);
-                stage.setTitle("VIA Football Club - Welcome");
-                break;
-            }
-            case "AdminMain":{
-                loader.setLocation(getClass().getResource("../view/adminMain/AdminMainView.fxml"));
-                root = loader.load();
-                AdminMainViewController mainAdminViewController = loader.getController();
-                mainAdminViewController.init(vmf.getAdminMainViewModel(),this);
-                stage.setTitle("VIA Football Club - Admin Home Page");
-                break;
-            }
-            case "UserList": {
-                loader.setLocation(getClass().getResource("../view/userList/UserListView.fxml"));
-                root = loader.load();
-                UserListViewController userListViewController = loader.getController();
-                userListViewController.init(vmf.getUserListViewModel(), this);
-                stage.setTitle("VIA Football Club - Admin User View Page");
-                break;
-            }
-            case "AdminProfile":{
-                loader.setLocation(getClass().getResource("../view/adminProfile/AdminProfileView.fxml"));
-                root = loader.load();
-                UserListViewController userListViewController = loader.getController();
-                userListViewController.init(vmf.getUserListViewModel(), this);
-                stage.setTitle("VIA Football Club - Admin Profile Page");
-                break;
-                }
-            case "AdminEvents":{
-                loader.setLocation(getClass().getResource("../view/adminEvents/AdminEventsView.fxml"));
-                root = loader.load();
-                UserListViewController userListViewController = loader.getController();
-                userListViewController.init(vmf.getUserListViewModel(), this);
-                stage.setTitle("VIA Football Club - Admin Events Page");
-                break;
-            }
-            case "AdminChat":{
-                loader.setLocation(getClass().getResource("../view/adminChat/AdminChatView.fxml"));
-                root = loader.load();
-                UserListViewController userListViewController = loader.getController();
-                userListViewController.init(vmf.getUserListViewModel(), this);
-                stage.setTitle("VIA Football Club - Admin Home Page");
-                break;
-            }
+    public static ViewHandler getInstance() {
+        if (viewHandler == null) {
+            viewHandler = new ViewHandler();
         }
-
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        return viewHandler;
     }
+
+    public void start() {
+        stage = new Stage();
+        if (stage.getScene() == null) stage.initStyle(StageStyle.TRANSPARENT);
+        openLoginView();
+    }
+
+    public void openLoginView() {
+        ViewControllerFactory.clearViews();
+        viewController = ViewControllerFactory.getViewController(Views.LOGIN);
+        showView(viewController, null);
+    }
+
+    public void openRegisterView(Pane pane) {
+        viewController = ViewControllerFactory.getViewController(Views.REGISTER);
+        showView(viewController, pane);
+    }
+
+    public void openMainView() {
+        viewController = ViewControllerFactory.getViewController(Views.USER_MAIN);
+        showView(viewController, null);
+    }
+
+    public void openMainAdminView() {
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_MAIN);
+        showView(viewController, null);
+    }
+
+    public void openUserListView() {
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_USERLIST);
+        showView(viewController, null);
+    }
+
+    private void showView(ViewController viewController, Pane pane) {
+        Platform.runLater(() -> {
+            if (pane == null) {
+                moveWindowEvents(viewController.getRoot());
+                if (scene == null) {
+                    scene = new Scene(viewController.getRoot());
+                }
+                scene.setRoot(viewController.getRoot());
+                //scene.setFill(Color.TRANSPARENT);
+                scene.getStylesheets().add(css);
+                Font.loadFont(font, 16);
+
+                if (stage == null) {
+                    stage = new Stage();
+                }
+                stage.setScene(scene);
+                Font.loadFonts(font, 16);
+                stage.show();
+            } else {
+                pane.getChildren().clear();
+                pane.getChildren().setAll(viewController.getRoot());
+            }
+        });
+    }
+
+    public void minimize() {
+        stage.setIconified(true);
+    }
+
+    public void resetViews() {
+        ViewControllerFactory.clearViews();
+    }
+
+    private void moveWindowEvents(Parent root)
+    {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+    }
+
 }

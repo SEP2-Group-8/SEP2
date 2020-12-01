@@ -1,5 +1,6 @@
 package dk.via.sep.client.view.register;
 
+import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
@@ -21,8 +22,8 @@ public class RegisterViewModel implements Subject {
     private final UserModel model;
     private final PropertyChangeSupport support;
 
-    public RegisterViewModel(UserModel model) {
-        this.model = model;
+    public RegisterViewModel() {
+        this.model = ModelFactory.getInstance().getUserModelManager();
         model.addListener(UserAction.REGISTER_FAILED.toString(), this::onRegisterFailed);
         model.addListener(UserAction.REGISTER_SUCCESS.toString(), this::onRegisterSuccess);
         username = new SimpleStringProperty();
@@ -40,7 +41,7 @@ public class RegisterViewModel implements Subject {
     }
 
     private void onRegisterFailed(PropertyChangeEvent evt) {
-        Platform.runLater( () ->{
+        Platform.runLater(() -> {
             error.set("This username has already been taken.");
         });
     }
@@ -99,12 +100,12 @@ public class RegisterViewModel implements Subject {
         return error;
     }
 
-    private void clear() {
+    public void clear() {
         username.set("");
         password.set("");
         confPassword.set("");
         email.set("");
-
+        errorProperty().setValue("");
     }
 
     @Override

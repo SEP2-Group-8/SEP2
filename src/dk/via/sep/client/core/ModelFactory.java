@@ -7,23 +7,26 @@ import dk.via.sep.client.model.userModel.UserModelManager;
 
 public class ModelFactory {
 
-    private final ClientFactory cf;
-    private UserModel userModel;
-    private EventModel eventModel;
+    private static ModelFactory modelFactory;
+    private final UserModel userModel;
+    private final EventModel eventModel;
 
-    public ModelFactory(ClientFactory cf) {
-        this.cf = cf;
+    private ModelFactory() {
+        userModel = new UserModelManager();
+        eventModel = new EventModelManager();
     }
 
-    public UserModel getModelManager() {
-        if (userModel == null)
-            userModel = new UserModelManager(cf.getUserClient());
+    public static ModelFactory getInstance() {
+        if (modelFactory == null)
+            modelFactory = new ModelFactory();
+        return modelFactory;
+    }
+
+    public UserModel getUserModelManager() {
         return userModel;
     }
 
-    public EventModel getEventModel(){
-        if(eventModel == null)
-            eventModel = new EventModelManager(cf.getEventClient());
+    public EventModel getEventModel() {
         return eventModel;
     }
 }

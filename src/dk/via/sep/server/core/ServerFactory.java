@@ -11,10 +11,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ServerFactory implements ServerFactoryInterface {
-    private ServerModelFactory serverModelFactory;
+    private final ServerModelFactory serverModelFactory;
     private UserServer userServer;
     private EventServer eventServer;
-    private Lock lock;
+    private final Lock lock;
 
     public ServerFactory(ServerModelFactory serverModelFactory) throws RemoteException {
         UnicastRemoteObject.exportObject(this, 0);

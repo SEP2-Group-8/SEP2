@@ -1,4 +1,6 @@
 package dk.via.sep.client.view.adminUserList;
 
-public class AdminUserListViewController {
+import dk.via.sep.client.view.ViewController;
+
+public class AdminUserListViewController extends ViewController {
 }
