@@ -7,8 +7,20 @@ import dk.via.sep.client.networking.userClient.UserClientImpl;
 
 public class ClientFactory {
 
+    private static ClientFactory clientFactory;
+
     private UserClient userClient;
     private EventClient eventClient;
+
+    private ClientFactory() {
+
+    }
+
+    public static ClientFactory getInstance() {
+        if (clientFactory == null)
+            clientFactory = new ClientFactory();
+        return clientFactory;
+    }
 
     public UserClient getUserClient() {
         if (userClient == null) {

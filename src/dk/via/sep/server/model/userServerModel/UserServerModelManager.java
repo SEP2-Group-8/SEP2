@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class UserServerModelManager implements UserServerModel {
     private final PropertyChangeSupport support;
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
     private final Lock lock;
 
     public UserServerModelManager(UserDAO userDAO) {
@@ -43,7 +43,7 @@ public class UserServerModelManager implements UserServerModel {
             user.setUser_id(userDAO.getUser(user.getUsername(), user.getPassword()).getUser_id());
             LoggedUsers.getInstance().addUser(user);
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_SUCCESS);
-            support.firePropertyChange(UserAction.USER_LIST.toString(),user.getUUID(), UserAction.USER_LIST);
+            support.firePropertyChange(UserAction.USER_LIST.toString(), user.getUUID(), UserAction.USER_LIST);
         } else {
             support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_FAILED);
         }
@@ -58,7 +58,7 @@ public class UserServerModelManager implements UserServerModel {
     public void logOut(UUID uuid, User user) {
         LoggedUsers.getInstance().removeClient(uuid);
         LoggedUsers.getInstance().removeUser(user);
-        System.out.println("Removed id: "+uuid+"\n Removed user: "+user.getUsername());
+        System.out.println("Removed id: " + uuid + "\n Removed user: " + user.getUsername());
     }
 
     @Override

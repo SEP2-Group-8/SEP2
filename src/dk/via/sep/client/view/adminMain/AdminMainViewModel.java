@@ -1,12 +1,13 @@
 package dk.via.sep.client.view.adminMain;
 
+import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.userModel.UserModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class AdminMainViewModel {
 
-    private UserModel modelManager;
+    private final UserModel modelManager;
 
     private final StringProperty firstEventName;
     private final StringProperty firstEventDesc;
@@ -25,26 +26,24 @@ public class AdminMainViewModel {
     private final StringProperty thirdEventDate;
 
 
-    public AdminMainViewModel(UserModel modelManager) {
-        this.modelManager = modelManager;
-        firstEventName= new SimpleStringProperty();
-        firstEventDesc= new SimpleStringProperty();
-        firstEventCreation= new SimpleStringProperty();
-        firstEventCity= new SimpleStringProperty();
-        firstEventDate= new SimpleStringProperty();
-        secondEventName= new SimpleStringProperty();
-        secondEventDesc= new SimpleStringProperty();
-        secondEventCreation= new SimpleStringProperty();
-        secondEventCity= new SimpleStringProperty();
-        secondEventDate= new SimpleStringProperty();
-        thirdEventName= new SimpleStringProperty();
-        thirdEventDesc= new SimpleStringProperty();
-        thirdEventCreation= new SimpleStringProperty();
-        thirdEventCity= new SimpleStringProperty();
-        thirdEventDate= new SimpleStringProperty();
-
+    public AdminMainViewModel() {
+        this.modelManager = ModelFactory.getInstance().getUserModelManager();
+        firstEventName = new SimpleStringProperty();
+        firstEventDesc = new SimpleStringProperty();
+        firstEventCreation = new SimpleStringProperty();
+        firstEventCity = new SimpleStringProperty();
+        firstEventDate = new SimpleStringProperty();
+        secondEventName = new SimpleStringProperty();
+        secondEventDesc = new SimpleStringProperty();
+        secondEventCreation = new SimpleStringProperty();
+        secondEventCity = new SimpleStringProperty();
+        secondEventDate = new SimpleStringProperty();
+        thirdEventName = new SimpleStringProperty();
+        thirdEventDesc = new SimpleStringProperty();
+        thirdEventCreation = new SimpleStringProperty();
+        thirdEventCity = new SimpleStringProperty();
+        thirdEventDate = new SimpleStringProperty();
     }
-
 
     public StringProperty firstEventNameProperty() {
         return firstEventName;
@@ -53,7 +52,6 @@ public class AdminMainViewModel {
     public StringProperty firstEventDescProperty() {
         return firstEventDesc;
     }
-
 
     public StringProperty firstEventCreationProperty() {
         return firstEventCreation;
@@ -103,9 +101,7 @@ public class AdminMainViewModel {
         return thirdEventCity;
     }
 
-
     public StringProperty thirdEventDateProperty() {
         return thirdEventDate;
     }
-
 }

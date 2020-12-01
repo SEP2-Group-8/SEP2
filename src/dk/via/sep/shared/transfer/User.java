@@ -8,11 +8,11 @@ public class User implements Serializable {
 
     private int user_id;
     private boolean adminCon;
-    private String username;
-    private String email;
-    private String password;
+    private final String username;
+    private final String email;
+    private final String password;
 
-    private UUID uuid;
+    private final UUID uuid;
 
     public User(String email, String password, String username) {
         this.email = email;

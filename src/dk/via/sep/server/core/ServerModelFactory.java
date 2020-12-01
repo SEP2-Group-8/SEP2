@@ -9,10 +9,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ServerModelFactory {
-    private ServerDAOFactory DAOFactory;
+    private final ServerDAOFactory DAOFactory;
     private UserServerModel userServerModel;
     private EventServerModel eventServerModel;
-    private Lock lock;
+    private final Lock lock;
 
     public ServerModelFactory(ServerDAOFactory DAOFactory) {
         this.DAOFactory = DAOFactory;
@@ -28,6 +28,7 @@ public class ServerModelFactory {
         }
         return userServerModel;
     }
+
     public EventServerModel getEventServerModel() {
         if (eventServerModel == null) {
             synchronized (lock) {

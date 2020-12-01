@@ -12,9 +12,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class LoggedUsers {
     private static LoggedUsers loggedUsers;
-    private Map<UUID, UserClientCallback> activeClients;
-    private ArrayList<User> activeUsers;
-    private static Lock lock = new ReentrantLock();
+    private final Map<UUID, UserClientCallback> activeClients;
+    private final ArrayList<User> activeUsers;
+    private static final Lock lock = new ReentrantLock();
 
     private LoggedUsers() {
         activeClients = new HashMap<>();

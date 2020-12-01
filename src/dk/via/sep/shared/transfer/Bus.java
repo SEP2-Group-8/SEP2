@@ -1,44 +1,40 @@
 package dk.via.sep.shared.transfer;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
 
 public class Bus implements Serializable {
-    
+    private final String seats;
+    private final String departTime;
+    private final String arriveTime;
+    private final String departLocation;
+    private final String arriveLocation;
 
-    public Bus(int noSeats, Date departingDate, Time departTime, Date arrivingDate, Time arriveTime, String departLocation, String arriveLocation) {
+    public Bus(String seats, String departTime, String arriveTime, String departLocation, String arriveLocation) {
+        this.seats = seats;
+        this.departTime = departTime;
+        this.arriveTime = arriveTime;
+        this.departLocation = departLocation;
+        this.arriveLocation = arriveLocation;
     }
 
-    public  int getSeats() {
-        return 1;
+    public String getSeats() {
+        return seats;
     }
 
-    public  Time getDepartTime() {
-        return null;
+    public String getDepartTime() {
+        return departTime;
     }
 
-    public  Time getArriveTime() {
-        return null;
+    public String getArriveTime() {
+        return arriveTime;
     }
 
-    public  String getDepartLocation(){
-        return null;
-
+    public String getDepartLocation() {
+        return departLocation;
     }
 
-    public  String getArriveLocation() {
-        return null;
+    public String getArriveLocation() {
+        return arriveLocation;
     }
 
-    public Date getDepartDate() {
-        return null;
-    }
-
-    public Date getArriveDate() {
-        return null;
-    }
-
-    public void setID(int busID) {
-    }
 }

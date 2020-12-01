@@ -1,14 +1,14 @@
 package dk.via.sep.client.view.adminMain;
 
 import dk.via.sep.client.core.ViewHandler;
+import dk.via.sep.client.core.ViewModelFactory;
+import dk.via.sep.client.view.ViewController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
-
-public class AdminMainViewController {
+public class AdminMainViewController extends ViewController {
 
     @FXML
     private Label firstEventNameLabel;
@@ -45,10 +45,9 @@ public class AdminMainViewController {
     private ViewHandler viewHandler;
     private AdminMainViewModel adminMainViewModel;
 
-    public void init(AdminMainViewModel adminMainViewModel,ViewHandler viewHandler)
-    {
-        this.viewHandler=viewHandler;
-        this.adminMainViewModel=adminMainViewModel;
+    public void init() {
+        this.viewHandler = ViewHandler.getInstance();
+        this.adminMainViewModel = ViewModelFactory.getInstance().getAdminMainViewModel();
 
         firstEventNameLabel.textProperty().bindBidirectional(adminMainViewModel.firstEventNameProperty());
         firstEventDescriptionLabel.textProperty().bindBidirectional(adminMainViewModel.firstEventDescProperty());
@@ -73,51 +72,25 @@ public class AdminMainViewController {
 
     public void onHomeButton(ActionEvent actionEvent) {
         Platform.runLater(() -> {
-            try {
-                viewHandler.openView("AdminMain");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            viewHandler.openMainAdminView();
         });
     }
 
     public void onProfileButton(ActionEvent actionEvent) {
-        /*Platform.runLater(() -> {
-            try {
-                viewHandler.openView("AdminProfile");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });*/
+
     }
 
     public void onEventsButton(ActionEvent actionEvent) {
-       /* Platform.runLater(() -> {
-            try {
-                viewHandler.openView("AdminEvents");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });*/
+
     }
 
     public void onChatButton(ActionEvent actionEvent) {
-       /* Platform.runLater(() -> {
-            try {
-                viewHandler.openView("AdminChat");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });*/
+
     }
 
     public void onUsersButton(ActionEvent actionEvent) {
         Platform.runLater(() -> {
-            try {
-                viewHandler.openView("UserList");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            viewHandler.openUserListView();
         });
     }
 

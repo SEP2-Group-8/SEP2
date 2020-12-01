@@ -1,5 +1,6 @@
 package dk.via.sep.client.view.login;
 
+import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
@@ -18,8 +19,8 @@ public class LoginViewModel implements Subject {
     private final StringProperty error;
     private final PropertyChangeSupport support;
 
-    public LoginViewModel(UserModel userModel) {
-        this.userModel = userModel;
+    public LoginViewModel() {
+        this.userModel = ModelFactory.getInstance().getUserModelManager();
         username = new SimpleStringProperty();
         password = new SimpleStringProperty();
         error = new SimpleStringProperty();
@@ -28,7 +29,7 @@ public class LoginViewModel implements Subject {
 
         this.userModel.addListener(UserAction.LOGIN_SUCCESS.toString(), this::onLoginOK);
         this.userModel.addListener(UserAction.LOGIN_FAILED.toString(), this::onLoginFail);
-        this.userModel.addListener(UserAction.LOGIN_SUCCESS_ADMIN.toString(),this::onLoginOK);
+        this.userModel.addListener(UserAction.LOGIN_SUCCESS_ADMIN.toString(), this::onLoginOK);
     }
 
     public void login() {

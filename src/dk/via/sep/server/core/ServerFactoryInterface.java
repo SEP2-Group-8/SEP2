@@ -8,5 +8,6 @@ import java.rmi.RemoteException;
 
 public interface ServerFactoryInterface extends Remote {
     UserServer getUserServer() throws RemoteException;
+
     EventServer getEventServer() throws RemoteException;
 }

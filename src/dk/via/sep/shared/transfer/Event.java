@@ -1,44 +1,53 @@
 package dk.via.sep.shared.transfer;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.io.Serializable;
 
-public class Event {
-    public Event(Date startDate, Time startTime, Date endDate, Time endTime, String location, String description, String eventName, int busID) {
+public class Event implements Serializable {
+    private final String startDate;
+    private final String endDate;
+    private final String location;
+    private final String description;
+    private final String name;
+    private Bus bus;
+
+    public Event(String name, String startDate, String endDate, String location, String description) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.description = description;
     }
 
-    public Date getStartDate() {
-        return null;
+    public Event(String name, String startDate, String endDate, String location, String description, Bus bus) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.description = description;
+        this.bus = bus;
     }
 
-    public Time getEndTime() {
-        return null;
-    }
-    
-    public Time getStartTime() {
-        return null;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public Date getEndDate() {
-        return null;
-    }
-
-    public String getEventName() {
-        return null;
-
-    }
-
-    public String getDescription() {
-        return null;
-
+    public String getEndDate() {
+        return endDate;
     }
 
     public String getLocation() {
-        return null;
-
+        return location;
     }
 
-    public void setID(int eventID) {
+    public String getDescription() {
+        return description;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public Bus getBus() {
+        return bus;
     }
 }

@@ -9,45 +9,44 @@ import dk.via.sep.client.view.userList.UserListViewModel;
 
 public class ViewModelFactory {
 
-    private final ModelFactory mf;
+    private final LoginViewModel loginViewModel;
+    private final MainViewModel mainViewModel;
+    private final RegisterViewModel registerViewModel;
+    private final AdminMainViewModel adminMainViewModel;
+    private final UserListViewModel userListViewModel;
+    private static ViewModelFactory viewModelFactory;
 
-    private LoginViewModel loginViewModel;
-    private MainViewModel mainViewModel;
-    private RegisterViewModel registerViewModel;
-    private AdminMainViewModel adminMainViewModel;
-    private UserListViewModel userListViewModel;
+    private ViewModelFactory() {
+        loginViewModel = new LoginViewModel();
+        registerViewModel = new RegisterViewModel();
+        mainViewModel = new MainViewModel();
+        adminMainViewModel = new AdminMainViewModel();
+        userListViewModel = new UserListViewModel();
+    }
 
-    public ViewModelFactory(ModelFactory mf) {
-        this.mf = mf;
+    public static ViewModelFactory getInstance() {
+        if (viewModelFactory == null)
+            viewModelFactory = new ViewModelFactory();
+        return viewModelFactory;
     }
 
     public LoginViewModel getLoginViewModel() {
-        if (loginViewModel == null)
-            loginViewModel = new LoginViewModel(mf.getModelManager());
         return loginViewModel;
     }
 
     public RegisterViewModel getRegisterViewModel() {
-        if (registerViewModel == null)
-            registerViewModel = new RegisterViewModel(mf.getModelManager());
         return registerViewModel;
     }
 
     public MainViewModel getMainViewModel() {
-        if (mainViewModel == null)
-            mainViewModel = new MainViewModel(mf.getModelManager());
         return mainViewModel;
     }
-    public AdminMainViewModel getAdminMainViewModel()
-    {
-        if(adminMainViewModel == null)
-            adminMainViewModel = new AdminMainViewModel(mf.getModelManager());
+
+    public AdminMainViewModel getAdminMainViewModel() {
         return adminMainViewModel;
     }
-    public UserListViewModel getUserListViewModel()
-    {
-        if(userListViewModel == null)
-            userListViewModel = new UserListViewModel(mf.getModelManager());
+
+    public UserListViewModel getUserListViewModel() {
         return userListViewModel;
     }
 
