@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -55,7 +56,7 @@ public class ViewHandler {
     }
 
     public void openMainView() {
-        viewController = ViewControllerFactory.getViewController(Views.USER_MAIN);
+        viewController = ViewControllerFactory.getViewController(Views.MAIN);
         showView(viewController, null);
     }
 
@@ -69,6 +70,26 @@ public class ViewHandler {
         showView(viewController, null);
     }
 
+    public void openProfileView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.PROFILE);
+        showView(viewController, pane);
+    }
+
+    public void openAdminEditEventView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_EDIT_EVENT);
+        showView(viewController, pane);
+    }
+
+    public void openAdminEventView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_EVENTS_MAIN);
+        showView(viewController, pane);
+    }
+
+    public void openAdminEventDetailsView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_EVENT_DETAILS);
+        showView(viewController, pane);
+    }
+
     private void showView(ViewController viewController, Pane pane) {
         Platform.runLater(() -> {
             if (pane == null) {
@@ -77,7 +98,6 @@ public class ViewHandler {
                     scene = new Scene(viewController.getRoot());
                 }
                 scene.setRoot(viewController.getRoot());
-                //scene.setFill(Color.TRANSPARENT);
                 scene.getStylesheets().add(css);
                 Font.loadFont(font, 16);
 

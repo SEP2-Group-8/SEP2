@@ -4,6 +4,7 @@ import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.userModel.UserModel;
 
 public class MainViewModel {
+
     private final UserModel userModel;
 
     public MainViewModel() {
@@ -13,4 +14,5 @@ public class MainViewModel {
     public void logOut() {
         userModel.logOut();
     }
+
 }

@@ -73,7 +73,6 @@ public class RegisterViewModel implements Subject {
         }
         System.out.println(un + "\n" + pw + "\n" + e_mail);
         model.register(un, pw, e_mail);
-
     }
 
 

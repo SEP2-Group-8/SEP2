@@ -66,7 +66,6 @@ public class AdminMainViewController extends ViewController {
         thirdCreationLabel.textProperty().bindBidirectional(adminMainViewModel.thirdEventCreationProperty());
         thirdCityLabel.textProperty().bindBidirectional(adminMainViewModel.thirdEventCityProperty());
         thirdDateLabel.textProperty().bindBidirectional(adminMainViewModel.thirdEventDateProperty());
-
     }
 
 

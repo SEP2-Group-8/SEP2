@@ -2,35 +2,52 @@ package dk.via.sep.client.view.main;
 
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
-import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.view.ViewController;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 public class MainViewController extends ViewController {
-
+    private ViewHandler viewHandler;
     private MainViewModel mainViewModel;
-    private ViewHandler vh;
     @FXML
-    private Button backButton;
-    @FXML
-    private TextArea user;
+    private AnchorPane currentPane;
+
+    public MainViewController(){
+        viewHandler = ViewHandler.getInstance();
+    }
 
     public void init() {
         this.mainViewModel = ViewModelFactory.getInstance().getMainViewModel();
-        this.vh = ViewHandler.getInstance();
-
-        user.setText(LoggedUser.getInstance().getUser().toString());
+        this.viewHandler = ViewHandler.getInstance();
     }
 
-    public void logOut() {
+    public void logOut(){
         mainViewModel.logOut();
-        Platform.runLater(() -> {
-            vh.openLoginView();
-        });
+        viewHandler.openLoginView();
     }
 
+    public void openHomeView(){
+        viewHandler.openMainView();
+    }
 
+    public void exit(){
+        mainViewModel.logOut();
+        System.exit(0);
+    }
+
+    public void minimize(){
+        viewHandler.minimize();
+    }
+
+    public void openProfileView(){
+        viewHandler.openProfileView(currentPane);
+    }
+
+    public void openEventsView(){
+        viewHandler.openAdminEventView(currentPane);
+    }
+
+    public void openChatView(){
+
+    }
 }

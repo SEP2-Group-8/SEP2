@@ -47,9 +47,10 @@ public class LoginViewController extends ViewController {
 
     private void openMain(PropertyChangeEvent propertyChangeEvent) {
         Platform.runLater(() -> {
-            if (LoggedUser.getInstance().getUser().getAdminCon())
-                vh.openMainAdminView();
-            else vh.openMainView();
+//            if (LoggedUser.getInstance().getUser().getAdminCon())
+//                vh.openMainAdminView();
+//            else vh.openMainView();
+            vh.openMainView();
         });
     }
 

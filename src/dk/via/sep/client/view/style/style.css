@@ -4,7 +4,7 @@
 }
 
 .side-bar{
-    -fx-background-color: mediumseagreen;
+    -fx-background-color: mediumseagreen !important;
 }
 .about-us{
     -fx-background-color: mediumseagreen;
@@ -38,4 +38,60 @@
     -fx-font-size: 10;
     -fx-alignment: center;
     -fx-text-fill: white;
+}
+
+/* Profile View */
+.profile-title{
+    -fx-font-size: 40px;
+}
+.profile-name{
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+.profile-email{
+    -fx-font-size: 15px;
+}
+.profile-admin-tag{
+    -fx-background-color: lightgrey;
+}
+.profile-item{
+    -fx-font-size: 15px;
+}
+.clock{
+    -fx-font-size: 35px;
+}
+
+/* Admin Main View */
+.admin-main-event{
+    -fx-border-color: #c7c7c7;
+    -fx-border-style: solid;
+    -fx-padding: 0 0 0 25px;
+}
+.admin-main-event-vbox{
+    -fx-padding: 0 0 0 30px;
+}
+.admin-main-event-title{
+    -fx-font-size: 25px;
+}
+.admin-main-event-description{
+    -fx-font-size: 16px;
+}
+.admin-main-event-date{
+    -fx-font-size: 16px;
+    -fx-text-fill: gray;
+}
+
+/* Event details view */
+.event-details-title{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+.event-details-title-content{
+    -fx-font-size: 30px;
+}
+.event-details-small{
+    -fx-font-size: 16px;
+}
+.event-details-user{
+    -fx-font-size: 16px;
 }

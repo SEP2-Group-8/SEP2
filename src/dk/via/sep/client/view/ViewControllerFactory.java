@@ -21,7 +21,10 @@ public class ViewControllerFactory {
                     viewController = createNewViewController("login/LoginView.fxml");
                     break;
                 case PROFILE:
-                    viewController = createNewViewController("path1");
+                    viewController = createNewViewController("profile/ProfileView.fxml");
+                    break;
+                case MAIN:
+                    viewController = createNewViewController("main/MainView.fxml");
                     break;
                 case REGISTER:
                     viewController = createNewViewController("register/RegisterView.fxml");
@@ -30,7 +33,7 @@ public class ViewControllerFactory {
                     viewController = createNewViewController("path3");
                     break;
                 case USER_MAIN:
-                    viewController = createNewViewController("main/MainView.fxml");
+                    System.out.println("");
                     break;
                 case ADMIN_MAIN:
                     viewController = createNewViewController("adminMain/AdminMainView.fxml");
@@ -43,6 +46,15 @@ public class ViewControllerFactory {
                     break;
                 case USERLIST:
                     viewController = createNewViewController("userList/UserListView.fxml");
+                    break;
+                case ADMIN_EVENTS_MAIN:
+                    viewController = createNewViewController("adminMainEvent/AdminMainEventView.fxml");
+                    break;
+                case ADMIN_EVENT_DETAILS:
+                    viewController = createNewViewController("adminEventDetails/AdminEventDetailsView.fxml");
+                    break;
+                case ADMIN_EDIT_EVENT:
+                    viewController = createNewViewController("adminEditEvent/AdminEditEvent.fxml");
                     break;
             }
             viewControllers.put(id, viewController);
