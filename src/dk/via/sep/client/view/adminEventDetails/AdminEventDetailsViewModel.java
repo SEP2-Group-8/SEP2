@@ -12,6 +12,7 @@ public class AdminEventDetailsViewModel {
     private EventModel eventModel;
     private StringProperty eventName;
     private StringProperty eventDate;
+    private StringProperty eventTime;
     private StringProperty eventDescription;
     private StringProperty busID;
     private StringProperty busDepartLocation;
@@ -35,20 +36,23 @@ public class AdminEventDetailsViewModel {
         busArriveLocationStartTime = new SimpleStringProperty();
         busArriveLocationEndTime = new SimpleStringProperty();
         busSeats = new SimpleStringProperty();
+        eventTime = new SimpleStringProperty();
     }
 
     public void initView() {
         Event event = LoggedUser.getInstance().getSelectedEvent();
         eventName.setValue(event.getEventName());
-        eventDate.setValue(event.getStartDate().toString());
+        eventDate.setValue(event.getDate().toString());
         eventDescription.setValue(event.getDescription());
+        eventTime.setValue(event.getStartTime().toString());
         Bus bus = event.getBus();
         busID.setValue(String.valueOf(bus.getBusId()));
         busArriveLocation.setValue(bus.getArriveLocation());
         busDepartLocation.setValue(bus.getDepartLocation());
-        busArriveLocationStartTime.setValue(bus.getDepartTime().toString());
-        busArriveLocationEndTime.setValue(bus.getArriveTime().toString());
-        busDepartLocationStartTime.setValue("not now");
+        busArriveLocationStartTime.setValue(bus.getArriveTimeStart().toString());
+        busArriveLocationEndTime.setValue(bus.getArriveTimeEnd().toString());
+        busDepartLocationStartTime.setValue(bus.getDepartTimeStart().toString());
+        busDepartLocationEndTime.setValue(bus.getDepartTimeEnd().toString());
         busSeats.setValue(String.valueOf(bus.getNoSeats()));
     }
 
@@ -94,6 +98,10 @@ public class AdminEventDetailsViewModel {
 
     public StringProperty busSeatsProperty() {
         return busSeats;
+    }
+
+    public StringProperty eventTimeProperty() {
+        return eventTime;
     }
 
     public void removeEvent(Event selectedEvent) {

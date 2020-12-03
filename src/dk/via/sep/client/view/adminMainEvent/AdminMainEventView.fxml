@@ -15,13 +15,13 @@
             <VBox fx:id="eventVBox" prefHeight="366.0" prefWidth="722.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="addEvent" layoutX="34.0" layoutY="153.0" mnemonicParsing="false" onAction="#addEvent" styleClass="login-button" text="Add Event" />
+      <Button fx:id="addEvent" layoutX="34.0" layoutY="153.0" mnemonicParsing="false" onAction="#addEvent" styleClass="login-button" text="Create Event" />
       <Label layoutX="34.0" layoutY="36.0" styleClass="profile-name" text="Events" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="608.0" layoutY="14.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../style/icons/linux.png" />
          </image>
       </ImageView>
-      <Button layoutX="148.0" layoutY="153.0" mnemonicParsing="false" styleClass="login-button" text="Search" />
+      <Button layoutX="164.0" layoutY="153.0" mnemonicParsing="false" styleClass="login-button" text="Search" />
    </children>
 </AnchorPane>

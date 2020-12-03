@@ -95,3 +95,11 @@
 .event-details-user{
     -fx-font-size: 16px;
 }
+
+/* Create event view */
+.create-event-background{
+    -fx-background-color: lightgray;
+}
+.create-event-text-small{
+    -fx-font-size: 16px;
+}

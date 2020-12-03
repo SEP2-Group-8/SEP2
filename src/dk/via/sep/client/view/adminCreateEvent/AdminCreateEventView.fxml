@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.sep.client.view.adminCreateEvent.AdminCreateEventViewController">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="900.0" vbarPolicy="ALWAYS">
+         <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="899.0" prefWidth="885.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="721.0" layoutY="14.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/icons/linux.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="33.0" layoutY="75.0" styleClass="admin-main-event-title" text="Create Event" />
+                  <Label layoutX="33.0" layoutY="126.0" prefWidth="324.0" text="Here you can create an event for all the fans to see. Since everybody is going to see this, make it attractive, make it fun for the people to see!" wrapText="true" />
+                  <AnchorPane layoutX="33.0" layoutY="200.0" prefHeight="275.0" prefWidth="820.0" styleClass="create-event-background">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="admin-main-event-title" text="General information" />
+                        <TextField fx:id="eventName" layoutX="14.0" layoutY="119.0" styleClass="login-field" />
+                        <TextField fx:id="eventLocation" layoutX="14.0" layoutY="199.0" styleClass="login-field" />
+                        <Label layoutX="14.0" layoutY="85.0" styleClass="create-event-text-small" text="Event name" />
+                        <Label layoutX="14.0" layoutY="163.0" styleClass="create-event-text-small" text="Event location" />
+                        <Label layoutX="198.0" layoutY="85.0" styleClass="create-event-text-small" text="Event date" />
+                        <TextField fx:id="eventDescription" alignment="TOP_LEFT" layoutX="375.0" layoutY="119.0" prefHeight="105.0" prefWidth="417.0" styleClass="login-field" />
+                        <Label layoutX="373.0" layoutY="85.0" styleClass="create-event-text-small" text="Event description" />
+                        <Label layoutX="198.0" layoutY="163.0" styleClass="create-event-text-small" text="Event time" />
+                        <JFXTimePicker fx:id="eventTime" layoutX="198.0" layoutY="198.0" prefHeight="28.0" prefWidth="143.0" />
+                        <JFXDatePicker fx:id="eventDate" layoutX="198.0" layoutY="118.0" prefHeight="28.0" prefWidth="143.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="33.0" layoutY="511.0" prefHeight="275.0" prefWidth="820.0" styleClass="create-event-background">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="admin-main-event-title" text="Bus information" />
+                        <TextField fx:id="departingLocation" layoutX="14.0" layoutY="119.0" styleClass="login-field" />
+                        <TextField fx:id="departingLeaveTime" layoutX="14.0" layoutY="199.0" styleClass="login-field" />
+                        <Label layoutX="14.0" layoutY="85.0" styleClass="create-event-text-small" text="Departing from" />
+                        <Label layoutX="14.0" layoutY="163.0" styleClass="create-event-text-small" text="Leaving at" />
+                        <Label layoutX="189.0" layoutY="163.0" styleClass="create-event-text-small" text="Arriving at" />
+                        <TextField fx:id="departingArriveTime" layoutX="189.0" layoutY="199.0" styleClass="login-field" />
+                        <CheckBox fx:id="isBus" layoutX="216.0" layoutY="20.0" mnemonicParsing="false" styleClass="create-event-text-small" text="Is there a bus?" />
+                        <TextField fx:id="arrivingDepartTime" layoutX="370.0" layoutY="199.0" styleClass="login-field" />
+                        <Label layoutX="370.0" layoutY="163.0" styleClass="create-event-text-small" text="Leaving at" />
+                        <Label layoutX="545.0" layoutY="163.0" styleClass="create-event-text-small" text="Arriving at" />
+                        <TextField fx:id="arrivingArriveTime" layoutX="545.0" layoutY="199.0" styleClass="login-field" />
+                        <Label layoutX="370.0" layoutY="85.0" styleClass="create-event-text-small" text="Arriving to" />
+                        <Label layoutX="370.0" layoutY="119.0" styleClass="create-event-text-small" text="Departing location" />
+                        <Label layoutX="545.0" layoutY="85.0" styleClass="create-event-text-small" text="Number of Seats" />
+                        <TextField fx:id="busSeats" layoutX="545.0" layoutY="125.0" styleClass="login-field" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="33.0" layoutY="833.0" mnemonicParsing="false" onAction="#createEvent" styleClass="login-button" text="Save &amp; Create" />
+                  <Button layoutX="177.0" layoutY="833.0" mnemonicParsing="false" styleClass="login-button" text="Clear" />
+                  <Label layoutX="282.0" layoutY="836.0" styleClass="create-event-text-small" text="Something went wrong. Please try again." />
+                  <Button layoutX="33.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" styleClass="login-button" text="Back" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

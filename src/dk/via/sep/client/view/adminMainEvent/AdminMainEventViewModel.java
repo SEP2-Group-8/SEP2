@@ -23,15 +23,13 @@ public class AdminMainEventViewModel implements Subject {
 
     public void createEvent() {
         Bus bus = new Bus(50,
-                new Date(2005,9,21),
+                new Time(2005,9,21),
                 new Time(8,55,00),
-                new Date(2005,9,21),
+                new Time(2005,9,21),
                 new Time(8,55,00),
                 "Horsens",
                 "Copenhagen");
         Event event = new Event(new Date(2020,9,21),
-                new Time(8,55,00),
-                new Date(2020,9,21),
                 new Time(8,55,00),
                 "Copenhagen",
                 "See us win a match by breaking everybody's legs",

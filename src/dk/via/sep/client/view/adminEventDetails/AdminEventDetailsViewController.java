@@ -7,6 +7,7 @@ import dk.via.sep.client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -49,6 +50,8 @@ public class AdminEventDetailsViewController extends ViewController {
     private Button deleteButton;
     @FXML
     private Button editButton;
+    @FXML
+    private Label eventTime;
 
     private ViewHandler viewHandler;
     private AdminEventDetailsViewModel adminEventDetailsViewModel;
@@ -62,6 +65,7 @@ public class AdminEventDetailsViewController extends ViewController {
     public void init() {
         eventName.textProperty().bind(adminEventDetailsViewModel.eventNameProperty());
         eventDate.textProperty().bind(adminEventDetailsViewModel.eventDateProperty());
+        eventTime.textProperty().bind(adminEventDetailsViewModel.eventTimeProperty());
         eventDescription.textProperty().bind(adminEventDetailsViewModel.eventDescriptionProperty());
         busID.textProperty().bind(adminEventDetailsViewModel.busIDProperty());
         busSeats.textProperty().bind(adminEventDetailsViewModel.busSeatsProperty());
@@ -101,6 +105,6 @@ public class AdminEventDetailsViewController extends ViewController {
     }
 
     public void editEvent() {
-        viewHandler.openAdminEditEventView(currentPane);
+        viewHandler.openAdminEditEventView(null);
     }
 }

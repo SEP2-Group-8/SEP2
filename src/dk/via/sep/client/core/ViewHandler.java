@@ -90,6 +90,11 @@ public class ViewHandler {
         showView(viewController, pane);
     }
 
+    public void openCreateEventView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.ADMIN_CREATE_EVENT);
+        showView(viewController, pane);
+    }
+
     private void showView(ViewController viewController, Pane pane) {
         Platform.runLater(() -> {
             if (pane == null) {

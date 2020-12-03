@@ -9,73 +9,95 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="currentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.sep.client.view.adminEventDetails.AdminEventDetailsViewController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.sep.client.view.adminEventDetails.AdminEventDetailsViewController">
    <children>
-      <Label fx:id="eventDescription" alignment="TOP_LEFT" layoutX="43.0" layoutY="135.0" prefHeight="73.0" prefWidth="353.0" styleClass="event-details-small" text="Event description" wrapText="true" />
-      <Label layoutX="40.0" layoutY="39.0" styleClass="event-details-title" text="Event name:">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="84.0" styleClass="event-details-title" text="Date:">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
-      <Label layoutX="47.0" layoutY="208.0" styleClass="event-details-title" text="Bus ID :">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="54.0" layoutY="300.0" styleClass="event-details-small" text="Depart Time:" />
-      <Label layoutX="47.0" layoutY="266.0" styleClass="event-details-small" text="From: " />
-      <Label fx:id="busDepartLocation" layoutX="125.0" layoutY="266.0" styleClass="event-details-small" text="depart location" />
-      <Label layoutX="53.0" layoutY="391.0" styleClass="event-details-small" text="Arrival Time:" />
-      <Label layoutX="48.0" layoutY="350.0" styleClass="event-details-small" text="To:" />
-      <Label layoutX="49.0" layoutY="450.0" styleClass="event-details-small" text="Total Seats:" />
-      <Label layoutX="49.0" layoutY="476.0" styleClass="event-details-small" text="Seats Availability:" />
-      <Button fx:id="chatButton" layoutX="204.0" layoutY="522.0" mnemonicParsing="false" onAction="#openChat" prefHeight="44.0" prefWidth="118.0" styleClass="login-button" text="See Chat" />
-      <Button fx:id="searchUserButton" layoutX="508.0" layoutY="193.0" mnemonicParsing="false" onAction="#searchUser" styleClass="login-button" text="Search User" />
-      <Label fx:id="busArriveLocation" layoutX="131.0" layoutY="350.0" styleClass="event-details-small" text="arrive location" />
-      <Label layoutX="53.0" layoutY="317.0" styleClass="event-details-small" text="Arrival back Time:" />
-      <Label layoutX="53.0" layoutY="408.0" styleClass="event-details-small" text="Depart back Time:" />
-      <Label fx:id="busDepartLocationStartTime" layoutX="194.0" layoutY="301.0" styleClass="event-details-small" text="time" />
-      <Label fx:id="busDepartLocationEndTime" layoutX="194.0" layoutY="317.0" styleClass="event-details-small" text="time" />
-      <Label fx:id="busArriveLocationStartTime" layoutX="194.0" layoutY="391.0" styleClass="event-details-small" text="time" />
-      <Label fx:id="busArriveLocationEndTime" layoutX="194.0" layoutY="408.0" styleClass="event-details-small" text="time" />
-      <Button fx:id="backButton" layoutX="44.0" layoutY="522.0" mnemonicParsing="false" onAction="#goBack" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" text="Back" />
-      <Label fx:id="busSeats" layoutX="187.0" layoutY="450.0" styleClass="event-details-small" text="nr of seats" />
-      <Label layoutX="187.0" layoutY="476.0" styleClass="event-details-small" text="availability" />
-      <Label fx:id="eventName" layoutX="238.0" layoutY="39.0" styleClass="event-details-title-content" text="name" />
-      <Label fx:id="eventDate" layoutX="139.0" layoutY="84.0" styleClass="event-details-title-content" text="date" />
-      <Label fx:id="busID" layoutX="175.0" layoutY="208.0" styleClass="event-details-title-content" text="Label" />
-      <ImageView fitHeight="198.0" fitWidth="198.0" layoutX="675.0" layoutY="22.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../style/icons/linux.png" />
-         </image>
-      </ImageView>
-      <ScrollPane hbarPolicy="NEVER" layoutX="508.0" layoutY="241.0" prefHeight="325.0" prefWidth="353.0" vbarPolicy="NEVER">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="900.0">
          <content>
-            <VBox fx:id="userListVBox" alignment="CENTER_LEFT" prefHeight="322.0" prefWidth="353.0" spacing="20.0">
+            <AnchorPane fx:id="currentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="900.0" stylesheets="@../style/style.css">
                <children>
-                  <Label styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="159.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="171.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="184.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="196.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="209.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="136.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="294.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="325.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="370.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="415.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="460.0" styleClass="event-details-user" text="Name 1" />
-                  <Label layoutX="10.0" layoutY="505.0" styleClass="event-details-user" text="Name 1" />
+                  <Label fx:id="eventDescription" alignment="TOP_LEFT" layoutX="43.0" layoutY="135.0" prefHeight="73.0" prefWidth="353.0" styleClass="event-details-small" text="Event description" wrapText="true" />
+                  <Label layoutX="40.0" layoutY="39.0" styleClass="event-details-title" text="Event name:">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="84.0" styleClass="event-details-title" text="Date and time:">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="backButton" layoutX="401.0" layoutY="193.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="99.0" styleClass="login-button" text="Back" />
+                  <Label fx:id="eventName" layoutX="238.0" layoutY="39.0" styleClass="event-details-title-content" text="name" />
+                  <Label fx:id="eventDate" layoutX="266.0" layoutY="84.0" styleClass="event-details-title-content" text="date" />
+                  <ImageView fitHeight="198.0" fitWidth="198.0" layoutX="675.0" layoutY="22.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/icons/linux.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="deleteButton" layoutX="510.0" layoutY="193.0" mnemonicParsing="false" onAction="#deleteEvent" styleClass="login-button" text="Delete" />
+                  <Button fx:id="editButton" layoutX="602.0" layoutY="193.0" mnemonicParsing="false" onAction="#editEvent" styleClass="login-button" text="Edit" />
+                  <AnchorPane layoutX="47.0" layoutY="235.0" prefHeight="275.0" prefWidth="820.0" styleClass="create-event-background">
+                     <children>
+                        <Label layoutX="16.0" layoutY="19.0" styleClass="event-details-title" text="Bus ID :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="busID" layoutX="144.0" layoutY="19.0" styleClass="event-details-title-content" text="Label" />
+                        <Label layoutX="20.0" layoutY="77.0" styleClass="event-details-small" text="From: " />
+                        <Label fx:id="busDepartLocation" layoutX="83.0" layoutY="77.0" styleClass="event-details-small" text="depart location" />
+                        <Label layoutX="20.0" layoutY="129.0" styleClass="event-details-small" text="Depart Time:" />
+                        <Label layoutX="20.0" layoutY="158.0" styleClass="event-details-small" text="Arrival back Time:" />
+                        <Label fx:id="busDepartLocationStartTime" layoutX="153.0" layoutY="129.0" styleClass="event-details-small" text="time" />
+                        <Label fx:id="busDepartLocationEndTime" layoutX="153.0" layoutY="158.0" styleClass="event-details-small" text="time" />
+                        <Label layoutX="281.0" layoutY="129.0" styleClass="event-details-small" text="Arrival Time:" />
+                        <Label layoutX="281.0" layoutY="76.0" styleClass="event-details-small" text="To:" />
+                        <Label fx:id="busArriveLocation" layoutX="364.0" layoutY="76.0" styleClass="event-details-small" text="arrive location" />
+                        <Label layoutX="281.0" layoutY="158.0" styleClass="event-details-small" text="Depart back Time:" />
+                        <Label fx:id="busArriveLocationStartTime" layoutX="427.0" layoutY="129.0" styleClass="event-details-small" text="time" />
+                        <Label fx:id="busArriveLocationEndTime" layoutX="427.0" layoutY="158.0" styleClass="event-details-small" text="time" />
+                        <Label layoutX="20.0" layoutY="207.0" styleClass="event-details-small" text="Total Seats:" />
+                        <Label fx:id="busSeats" layoutX="158.0" layoutY="207.0" styleClass="event-details-small" text="nr of seats" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="47.0" layoutY="552.0" prefHeight="281.0" prefWidth="820.0" styleClass="create-event-background">
+                     <children>
+                        <Label layoutX="25.0" layoutY="21.0" styleClass="event-details-title" text="Chat">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="77.0" styleClass="event-details-small" text="Users:" />
+                        <ScrollPane hbarPolicy="NEVER" layoutX="90.0" layoutY="77.0" prefHeight="188.0" prefWidth="317.0" vbarPolicy="NEVER">
+                           <content>
+                              <VBox fx:id="userListVBox" alignment="CENTER_LEFT" prefHeight="565.0" prefWidth="315.0" spacing="20.0">
+                                 <children>
+                                    <Label styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="159.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="171.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="184.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="196.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="209.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="136.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="294.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="325.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="370.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="415.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="460.0" styleClass="event-details-user" text="Name 1" />
+                                    <Label layoutX="10.0" layoutY="505.0" styleClass="event-details-user" text="Name 1" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <Button layoutX="700.0" layoutY="234.0" mnemonicParsing="false" styleClass="login-button" text="Delete chat" />
+                        <Button fx:id="chatButton" layoutX="558.0" layoutY="234.0" mnemonicParsing="false" onAction="#openChat" prefHeight="25.0" prefWidth="110.0" styleClass="login-button" text="See Chat" />
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="eventTime" layoutX="428.0" layoutY="84.0" styleClass="event-details-title-content" text="time" />
                </children>
-            </VBox>
+            </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="deleteButton" layoutX="396.0" layoutY="193.0" mnemonicParsing="false" onAction="#deleteEvent" styleClass="login-button" text="Delete" />
-      <Button fx:id="editButton" layoutX="405.0" layoutY="238.0" mnemonicParsing="false" onAction="#editEvent" styleClass="login-button" text="Edit" />
    </children>
 </AnchorPane>

@@ -43,7 +43,8 @@ public class AdminMainEventViewController extends ViewController {
     }
 
     public void addEvent(){
-        adminMainEventViewModel.createEvent();
+        //adminMainEventViewModel.createEvent();
+        viewHandler.openCreateEventView(null);
     }
 
 
@@ -70,7 +71,7 @@ public class AdminMainEventViewController extends ViewController {
         seats.setText(String.valueOf(event.getBus().getNoSeats()));
         seats.getStyleClass().add("admin-main-event-description");
         Label date = new Label();
-        date.setText(event.getStartDate().toString());
+        date.setText(event.getDate().toString());
         date.getStyleClass().add("admin-main-event-date");
         Label location = new Label();
         location.setText(event.getLocation());

@@ -1,6 +1,7 @@
 package dk.via.sep.client.core;
 
 
+import dk.via.sep.client.view.adminCreateEvent.AdminCreateEventViewModel;
 import dk.via.sep.client.view.adminEditEvent.AdminEditEventViewModel;
 import dk.via.sep.client.view.adminEventDetails.AdminEventDetailsViewModel;
 import dk.via.sep.client.view.adminMain.AdminMainViewModel;
@@ -22,6 +23,7 @@ public class ViewModelFactory {
     private final AdminMainEventViewModel adminMainEventViewModel;
     private final AdminEventDetailsViewModel adminEventDetailsViewModel;
     private final AdminEditEventViewModel adminEditEventViewModel;
+    private final AdminCreateEventViewModel adminCreateEventViewModel;
     private static ViewModelFactory viewModelFactory;
 
     private ViewModelFactory() {
@@ -34,6 +36,7 @@ public class ViewModelFactory {
         adminMainEventViewModel = new AdminMainEventViewModel();
         adminEventDetailsViewModel = new AdminEventDetailsViewModel();
         adminEditEventViewModel = new AdminEditEventViewModel();
+        adminCreateEventViewModel = new AdminCreateEventViewModel();
     }
 
     public static ViewModelFactory getInstance() {
@@ -76,5 +79,9 @@ public class ViewModelFactory {
 
     public AdminEditEventViewModel getAdminEditEventViewModel() {
         return adminEditEventViewModel;
+    }
+
+    public AdminCreateEventViewModel getAdminCreateEventViewModel() {
+        return adminCreateEventViewModel;
     }
 }
