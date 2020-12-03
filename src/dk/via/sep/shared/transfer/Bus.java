@@ -7,20 +7,22 @@ import java.util.Objects;
 
 public class Bus implements Serializable {
     private int noSeats;
-    private Date departDate;
-    private Time departTime;
-    private Date arriveDate;
-    private Time arriveTime;
+    private Time departTimeStart;
+    private Time departTimeEnd;
+    private Time arriveTimeStart;
+    private Time arriveTimeEnd;
     private String departLocation;
     private String arriveLocation;
     private int busId;
 
-    public Bus(int noSeats, Date departDate, Time departTime, Date arriveDate, Time arriveTime, String departLocation, String arriveLocation) {
+
+
+    public Bus(int noSeats, Time departTimeStart, Time departTimeEnd, Time arriveTimeStart, Time arriveTimeEnd, String departLocation, String arriveLocation) {
         this.noSeats = noSeats;
-        this.departDate = departDate;
-        this.departTime = departTime;
-        this.arriveDate = arriveDate;
-        this.arriveTime = arriveTime;
+        this.departTimeStart = departTimeStart;
+        this.departTimeEnd= departTimeEnd;
+        this.arriveTimeStart = arriveTimeStart;
+        this.arriveTimeEnd = arriveTimeEnd;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
     }
@@ -29,20 +31,20 @@ public class Bus implements Serializable {
         return noSeats;
     }
 
-    public Date getDepartDate() {
-        return departDate;
+    public Time getDepartTimeStart() {
+        return departTimeStart;
     }
 
-    public Time getDepartTime() {
-        return departTime;
+    public Time getArriveTimeStart() {
+        return arriveTimeStart;
     }
 
-    public Date getArriveDate() {
-        return arriveDate;
+    public Time getDepartTimeEnd() {
+        return departTimeEnd;
     }
 
-    public Time getArriveTime() {
-        return arriveTime;
+    public Time getArriveTimeEnd() {
+        return arriveTimeEnd;
     }
 
     public String getDepartLocation() {
@@ -61,20 +63,12 @@ public class Bus implements Serializable {
         this.noSeats = noSeats;
     }
 
-    public void setDepartDate(Date departDate) {
-        this.departDate = departDate;
+    public void setDepartTimeStart(Time departTimeStart) {
+        this.departTimeStart = departTimeStart;
     }
 
-    public void setDepartTime(Time departTime) {
-        this.departTime = departTime;
-    }
-
-    public void setArriveDate(Date arriveDate) {
-        this.arriveDate = arriveDate;
-    }
-
-    public void setArriveTime(Time arriveTime) {
-        this.arriveTime = arriveTime;
+    public void setArriveTimeStart(Time arriveTimeStart) {
+        this.arriveTimeStart = arriveTimeStart;
     }
 
     public void setDepartLocation(String departLocation) {
@@ -95,13 +89,12 @@ public class Bus implements Serializable {
             return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Bus bus = (Bus) obj;
-        return Objects.equals(noSeats, bus.noSeats) && Objects.equals(departDate, bus.departDate) && Objects.equals(arriveDate, bus.arriveDate)
-                &&Objects.equals(departLocation,bus.departLocation) && Objects.equals(arriveLocation, bus.arriveLocation) /*&& Objects.equals(busId, bus.busId)*/
-                && Objects.equals(departTime, bus.departTime) && Objects.equals(arriveTime, bus.arriveTime);
+        return Objects.equals(noSeats, bus.noSeats) &&Objects.equals(departLocation,bus.departLocation) && Objects.equals(arriveLocation, bus.arriveLocation) /*&& Objects.equals(busId, bus.busId)*/
+                && Objects.equals(departTimeStart, bus.departTimeStart) && Objects.equals(arriveTimeStart, bus.arriveTimeStart);
     }
 
     public String toString()
     {
-        return noSeats + "\n" + departDate + "\n" + departTime + "\n" + arriveDate + "\n" + arriveTime + "\n" + departLocation + "\n" + arriveLocation + "\n" + busId;
+        return noSeats + "\n" + "\n" + arriveTimeStart + "\n" + departLocation + "\n" + arriveLocation + "\n" + busId;
     }
 }

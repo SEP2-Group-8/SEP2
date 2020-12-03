@@ -8,5 +8,7 @@ public enum UserAction {
     REGISTER_SUCCESS,
     REGISTER_FAILED,
     LOGIN_SUCCESS_ADMIN,
-    USER_LIST
+    USER_LIST,
+    EVENT_REMOVE,
+    EVENT_CREATE
 }
