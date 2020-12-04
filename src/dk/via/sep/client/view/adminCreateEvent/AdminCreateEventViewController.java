@@ -1,6 +1,8 @@
 package dk.via.sep.client.view.adminCreateEvent;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
@@ -14,27 +16,27 @@ public class AdminCreateEventViewController extends ViewController {
     private ViewHandler viewHandler;
     private AdminCreateEventViewModel adminCreateEventViewModel;
     @FXML
-    private TextField eventName;
+    private JFXTextField eventName;
     @FXML
-    private TextField eventLocation;
+    private JFXTextField eventLocation;
     @FXML
-    private TextField eventDescription;
+    private JFXTextField eventDescription;
     @FXML
     private JFXDatePicker eventDate;
     @FXML
     private JFXTimePicker eventTime;
     @FXML
-    private TextField departingLocation;
+    private JFXTextField departingLocation;
     @FXML
-    private TextField departingLeaveTime;
+    private JFXTextField departingLeaveTime;
     @FXML
-    private TextField departingArriveTime;
+    private JFXTextField departingArriveTime;
     @FXML
-    private TextField arrivingArriveTime;
+    private JFXTextField arrivingArriveTime;
     @FXML
-    private TextField arrivingDepartTime;
+    private JFXTextField arrivingDepartTime;
     @FXML
-    private CheckBox isBus;
+    private JFXCheckBox isBus;
     @FXML
     private TextField busSeats;
 
@@ -68,5 +70,13 @@ public class AdminCreateEventViewController extends ViewController {
 
     public void goBack() {
         viewHandler.openMainView();
+    }
+
+    public void minimize(){
+        viewHandler.minimize();
+    }
+
+    public void exit(){
+        System.exit(0);
     }
 }

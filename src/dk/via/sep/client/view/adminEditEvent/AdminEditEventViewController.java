@@ -72,6 +72,12 @@ public class AdminEditEventViewController extends ViewController {
         viewHandler.openAdminEventDetailsView(null);
     }
 
+    public void minimize(){
+        viewHandler.minimize();
+    }
 
+    public void exit(){
+        System.exit(0);
+    }
 
 }
