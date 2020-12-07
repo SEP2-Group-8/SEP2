@@ -31,7 +31,6 @@
                      <children>
                         <Label layoutX="14.0" layoutY="6.0" styleClass="event-details-small" text="Seats" />
                         <Label layoutX="14.0" layoutY="100.0" styleClass="event-details-small" text="Depart Location" />
-                        <Label layoutX="200.0" layoutY="100.0" styleClass="event-details-small" text="Arrive Location" />
                         <Label layoutX="390.0" layoutY="14.0" styleClass="event-details-small" text="Depart Time" />
                         <Label layoutX="390.0" layoutY="100.0" styleClass="event-details-small" text="Arrival back Time" />
                         <Label layoutX="577.0" layoutY="12.0" styleClass="event-details-small" text="Arrival Time" />
@@ -42,7 +41,6 @@
                         <JFXTimePicker fx:id="busArriveLocationStartTime" layoutX="577.0" layoutY="51.0" prefHeight="28.0" prefWidth="121.0" />
                         <JFXTextField fx:id="busDepartLocation" layoutX="14.0" layoutY="141.0" />
                         <JFXTextField fx:id="busSeats" layoutX="14.0" layoutY="54.0" />
-                        <JFXTextField fx:id="busArriveLocation" layoutX="200.0" layoutY="141.0" />
                      </children>
                   </AnchorPane>
                   <JFXDatePicker fx:id="eventDate" layoutX="21.0" layoutY="261.0" />
@@ -50,6 +48,8 @@
                   <JFXTextField fx:id="eventName" layoutX="21.0" layoutY="179.0" />
                   <Label layoutX="192.0" layoutY="131.0" styleClass="event-details-small" text="Event time" />
                   <JFXTimePicker fx:id="eventTime" layoutX="192.0" layoutY="176.0" />
+                  <JFXTextField fx:id="eventLocation" layoutX="198.0" layoutY="263.0" />
+                  <Label layoutX="198.0" layoutY="227.0" styleClass="event-details-small" text="Event Location" />
                </children>
             </AnchorPane>
          </content>
