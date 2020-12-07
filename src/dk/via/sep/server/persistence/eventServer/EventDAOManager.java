@@ -40,8 +40,14 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
+
+
+
     @Override
     public void createEvent(Event event) {
+        this.createBus(event.getBus());
+        event.getBus().setBusId(this.getBus(event.getBus().getDepartTimeStart(),event.getBus().getArriveTimeStart()
+                ,event.getBus().getDepartLocation(),event.getBus().getArriveLocation()).getBusId());
         try (java.sql.Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO viaclub.event(eventdate,eventtime," +
@@ -85,12 +91,12 @@ public class EventDAOManager extends Connection implements EventDAO {
     }
 
     @Override
-    public void editEvent(Event oldEvent, Event newEvent) {
+    public void editEvent( Event newEvent) {
+        editBus(newEvent.getBus());
         try (java.sql.Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.event SET eventdate = ?,eventtime = ?," +
-                    "location = ?,description= ?,eventname = ?,busid= ? " +
-                    "WHERE eventdate = ? AND eventname = ?");
+                    "location = ?,description= ?,eventname = ? " + "WHERE id=?");
             statement.setDate(1,newEvent.getDate());
             System.out.println(statement);
             statement.setTime(2,newEvent.getStartTime());
@@ -98,8 +104,7 @@ public class EventDAOManager extends Connection implements EventDAO {
             statement.setString(4,newEvent.getDescription());
             statement.setString(5,newEvent.getEventName());
             statement.setInt(6,newEvent.getBus().getBusId());
-            statement.setDate(7,oldEvent.getDate());
-            statement.setString(8,oldEvent.getEventName());
+            statement.setInt(7,newEvent.getEventId());
             statement.executeUpdate();
             System.out.println(statement);
         } catch (SQLException throwables) {
@@ -108,7 +113,27 @@ public class EventDAOManager extends Connection implements EventDAO {
 
     }
 
-    @Override
+
+    public void editBus(Bus newBus) {
+        try(java.sql.Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.bus SET seats=?, departtimestart=?, departtimeend=?" +
+                    ",arrivetimestart=?, arrivetimeend=?, departlocation=?, arrivelocation=? WHERE id=?");
+            statement.setInt(1,newBus.getNoSeats());
+            statement.setTime(2,newBus.getDepartTimeStart());
+            statement.setTime(3,newBus.getDepartTimeEnd());
+            statement.setTime(4,newBus.getArriveTimeStart());
+            statement.setTime(5,newBus.getDepartTimeEnd());
+            statement.setString(6,newBus.getDepartLocation());
+            statement.setString(7,newBus.getArriveLocation());
+            statement.setInt(8,newBus.getBusId());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
     public void createBus(Bus bus) {
         try (java.sql.Connection connection = getConnection())
         {
@@ -161,14 +186,14 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
-    @Override
-    public Bus getBus(Date departDate1, Date arriveDate1, String departLocation1, String arriveLocation1)
+
+    public Bus getBus(Time departTime1, Time arriveTime1, String departLocation1, String arriveLocation1)
     {
         try (java.sql.Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM viaclub.bus WHERE departdatestart = ? AND arrivedatestart = ?" +
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM viaclub.bus WHERE departtimestart = ? AND arrivetimestart = ?" +
                     " AND departlocation = ? AND arriveLocation = ?");
-            statement.setDate(1,departDate1);
-            statement.setDate(2,arriveDate1);
+            statement.setTime(1,departTime1);
+            statement.setTime(2,arriveTime1);
             statement.setString(3,departLocation1);
             statement.setString(4,arriveLocation1);
             ResultSet resultSet = statement.executeQuery();
@@ -176,9 +201,9 @@ public class EventDAOManager extends Connection implements EventDAO {
             {
                 int busID = resultSet.getInt("id");
                 int seats = resultSet.getInt("seats");
-                Time departTimeStart = resultSet.getTime("departdatestart");
+                Time departTimeStart = resultSet.getTime("departtimestart");
                 Time departTime = resultSet.getTime("departtimeend");
-                Time arriveTimeStart = resultSet.getTime("arrivedatestart");
+                Time arriveTimeStart = resultSet.getTime("arrivetimestart");
                 Time arriveTime = resultSet.getTime("arrivetimeend");
                 String departLocation = resultSet.getString("departlocation");
                 String arriveLocation = resultSet.getString("arrivelocation");
@@ -202,9 +227,9 @@ public class EventDAOManager extends Connection implements EventDAO {
             {
                 int busID = resultSet.getInt("id");
                 int seats = resultSet.getInt("seats");
-                Time departTimeStart = resultSet.getTime("departdatestart");
+                Time departTimeStart = resultSet.getTime("departtimestart");
                 Time departTime = resultSet.getTime("departtimeend");
-                Time arriveTimeStart = resultSet.getTime("arrivedatestart");
+                Time arriveTimeStart = resultSet.getTime("arrivetimestart");
                 Time arriveTime = resultSet.getTime("arrivetimeend");
                 String departLocation = resultSet.getString("departlocation");
                 String arriveLocation = resultSet.getString("arrivelocation");
@@ -217,4 +242,5 @@ public class EventDAOManager extends Connection implements EventDAO {
         }
         return null;
     }
+
 }
