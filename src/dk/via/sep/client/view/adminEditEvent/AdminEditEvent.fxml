@@ -29,8 +29,7 @@
                   </ImageView>
                   <AnchorPane layoutX="20.0" layoutY="318.0" prefHeight="200.0" prefWidth="827.0" styleClass="create-event-background">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="event-details-small" text="Bus ID " />
-                        <Label layoutX="200.0" layoutY="12.0" styleClass="event-details-small" text="Seats" />
+                        <Label layoutX="14.0" layoutY="6.0" styleClass="event-details-small" text="Seats" />
                         <Label layoutX="14.0" layoutY="100.0" styleClass="event-details-small" text="Depart Location" />
                         <Label layoutX="200.0" layoutY="100.0" styleClass="event-details-small" text="Arrive Location" />
                         <Label layoutX="390.0" layoutY="14.0" styleClass="event-details-small" text="Depart Time" />
@@ -41,9 +40,8 @@
                         <JFXTimePicker fx:id="busDepartLocationEndTime" layoutX="391.0" layoutY="138.0" prefHeight="28.0" prefWidth="121.0" />
                         <JFXTimePicker fx:id="busArriveLocationEndTime" layoutX="577.0" layoutY="139.0" prefHeight="28.0" prefWidth="121.0" />
                         <JFXTimePicker fx:id="busArriveLocationStartTime" layoutX="577.0" layoutY="51.0" prefHeight="28.0" prefWidth="121.0" />
-                        <JFXTextField fx:id="busID" layoutX="14.0" layoutY="53.0" />
                         <JFXTextField fx:id="busDepartLocation" layoutX="14.0" layoutY="141.0" />
-                        <JFXTextField fx:id="busSeats" layoutX="200.0" layoutY="53.0" />
+                        <JFXTextField fx:id="busSeats" layoutX="14.0" layoutY="54.0" />
                         <JFXTextField fx:id="busArriveLocation" layoutX="200.0" layoutY="141.0" />
                      </children>
                   </AnchorPane>

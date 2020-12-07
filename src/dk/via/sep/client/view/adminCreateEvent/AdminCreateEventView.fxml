@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
@@ -47,16 +46,13 @@
                         <Label layoutX="189.0" layoutY="163.0" styleClass="create-event-text-small" text="Arriving at" />
                         <Label layoutX="370.0" layoutY="163.0" styleClass="create-event-text-small" text="Leaving at" />
                         <Label layoutX="545.0" layoutY="163.0" styleClass="create-event-text-small" text="Arriving at" />
-                        <Label layoutX="370.0" layoutY="85.0" styleClass="create-event-text-small" text="Arriving to" />
-                        <Label layoutX="370.0" layoutY="119.0" styleClass="create-event-text-small" text="Departing location" />
-                        <Label layoutX="545.0" layoutY="85.0" styleClass="create-event-text-small" text="Number of Seats" />
+                        <Label layoutX="362.0" layoutY="81.0" styleClass="create-event-text-small" text="Number of Seats" />
                         <JFXTextField fx:id="departingLocation" layoutX="14.0" layoutY="125.0" />
-                        <JFXTextField fx:id="departingLeaveTime" layoutX="14.0" layoutY="199.0" />
-                        <JFXTextField fx:id="departingArriveTime" layoutX="189.0" layoutY="200.0" />
-                        <JFXTextField fx:id="arrivingDepartTime" layoutX="369.0" layoutY="200.0" />
-                        <JFXTextField fx:id="arrivingArriveTime" layoutX="545.0" layoutY="199.0" />
-                        <JFXTextField fx:id="busSeats" layoutX="545.0" layoutY="119.0" />
-                        <JFXCheckBox fx:id="isBus" layoutX="218.0" layoutY="23.0" text="Is there a bus?" />
+                        <JFXTextField fx:id="busSeats" layoutX="362.0" layoutY="127.0" />
+                        <JFXTimePicker fx:id="departingLeaveTime" layoutX="16.0" layoutY="208.0" prefHeight="28.0" prefWidth="149.0" />
+                        <JFXTimePicker fx:id="departingArriveTime" layoutX="178.0" layoutY="208.0" prefHeight="28.0" prefWidth="149.0" />
+                        <JFXTimePicker fx:id="arrivingDepartTime" layoutX="362.0" layoutY="208.0" prefHeight="28.0" prefWidth="149.0" />
+                        <JFXTimePicker fx:id="arrivingArriveTime" layoutX="538.0" layoutY="208.0" prefHeight="28.0" prefWidth="149.0" />
                      </children>
                   </AnchorPane>
                   <Button layoutX="33.0" layoutY="833.0" mnemonicParsing="false" onAction="#createEvent" styleClass="login-button" text="Save &amp; Create" />
