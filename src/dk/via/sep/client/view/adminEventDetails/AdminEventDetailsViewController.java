@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -107,4 +108,13 @@ public class AdminEventDetailsViewController extends ViewController {
     public void editEvent() {
         viewHandler.openAdminEditEventView(null);
     }
+
+    public void exit(){
+        System.exit(0);
+    }
+
+    public void minimize(){
+        viewHandler.minimize();
+    }
+
 }

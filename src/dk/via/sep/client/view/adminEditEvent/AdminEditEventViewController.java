@@ -20,11 +20,7 @@ public class AdminEditEventViewController extends ViewController {
     @FXML
     private JFXTextField eventDescription;
     @FXML
-    private JFXTextField busID;
-    @FXML
     private JFXTextField busDepartLocation;
-    @FXML
-    private JFXTextField busArriveLocation;
     @FXML
     private JFXTimePicker busDepartLocationStartTime;
     @FXML
@@ -38,6 +34,8 @@ public class AdminEditEventViewController extends ViewController {
     @FXML
     private JFXTimePicker eventTime;
     @FXML
+    private JFXTextField eventLocation;
+    @FXML
     private AnchorPane currentPane;
 
     private ViewHandler viewHandler;
@@ -49,23 +47,21 @@ public class AdminEditEventViewController extends ViewController {
     }
 
     public void init(){
+        eventLocation.textProperty().bindBidirectional(adminEditEventViewModel.eventLocationProperty());
         eventName.textProperty().bindBidirectional(adminEditEventViewModel.eventNameProperty());
-        eventDate.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.eventDateProperty());
+        eventDate.valueProperty().bindBidirectional(adminEditEventViewModel.eventDateProperty());
         eventDescription.textProperty().bindBidirectional(adminEditEventViewModel.eventDescriptionProperty());
-        eventTime.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.eventTimeProperty());
-        busID.textProperty().bindBidirectional(adminEditEventViewModel.busIDProperty());
+        eventTime.valueProperty().bindBidirectional(adminEditEventViewModel.eventTimeProperty());
         busDepartLocation.textProperty().bindBidirectional(adminEditEventViewModel.busDepartLocationProperty());
-        busDepartLocationStartTime.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.busDepartLocationStartTimeProperty());
-        busDepartLocationEndTime.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.busDepartLocationEndTimeProperty());
-        busArriveLocation.textProperty().bindBidirectional(adminEditEventViewModel.busArriveLocationProperty());
-        busArriveLocationStartTime.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.busArriveLocationStartTimeProperty());
-        busArriveLocationEndTime.accessibleTextProperty().bindBidirectional(adminEditEventViewModel.busArriveLocationEndTimeProperty());
+        busDepartLocationStartTime.valueProperty().bindBidirectional(adminEditEventViewModel.busDepartLocationStartTimeProperty());
+        busDepartLocationEndTime.valueProperty().bindBidirectional(adminEditEventViewModel.busDepartLocationEndTimeProperty());
+        busArriveLocationStartTime.valueProperty().bindBidirectional(adminEditEventViewModel.busArriveLocationStartTimeProperty());
+        busArriveLocationEndTime.valueProperty().bindBidirectional(adminEditEventViewModel.busArriveLocationEndTimeProperty());
         busSeats.textProperty().bindBidirectional(adminEditEventViewModel.busSeatsProperty());
     }
 
     public void saveChanges(){
         adminEditEventViewModel.saveEventChanges();
-        viewHandler.openAdminEventDetailsView(null);
     }
 
     public void goBack(){

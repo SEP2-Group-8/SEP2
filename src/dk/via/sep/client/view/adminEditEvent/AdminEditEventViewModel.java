@@ -2,46 +2,55 @@ package dk.via.sep.client.view.adminEditEvent;
 
 import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.eventModel.EventModel;
+import dk.via.sep.client.model.user.LoggedUser;
+import dk.via.sep.shared.transfer.Bus;
+import dk.via.sep.shared.transfer.Event;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 
 public class AdminEditEventViewModel {
 
     private EventModel eventModel;
     private StringProperty eventName;
-    private StringProperty eventDate;
+    private ObjectProperty<LocalDate> eventDate;
     private StringProperty eventDescription;
-    private StringProperty eventTime;
-    private StringProperty busID;
+    private StringProperty eventLocation;
+    private ObjectProperty<LocalTime> eventTime;
     private StringProperty busDepartLocation;
-    private StringProperty busArriveLocation;
-    private StringProperty busDepartLocationStartTime;
-    private StringProperty busDepartLocationEndTime;
-    private StringProperty busArriveLocationStartTime;
-    private StringProperty busArriveLocationEndTime;
+    private ObjectProperty<LocalTime> busDepartLocationStartTime;
+    private ObjectProperty<LocalTime> busDepartLocationEndTime;
+    private ObjectProperty<LocalTime> busArriveLocationStartTime;
+    private ObjectProperty<LocalTime> busArriveLocationEndTime;
     private StringProperty busSeats;
 
     public AdminEditEventViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
         eventName = new SimpleStringProperty();
-        eventDate = new SimpleStringProperty();
+        eventDate = new SimpleObjectProperty();
         eventDescription = new SimpleStringProperty();
-        busID = new SimpleStringProperty();
+        eventLocation = new SimpleStringProperty();
         busDepartLocation = new SimpleStringProperty();
-        busArriveLocation = new SimpleStringProperty();
-        busDepartLocationStartTime = new SimpleStringProperty();
-        busDepartLocationEndTime = new SimpleStringProperty();
-        busArriveLocationStartTime = new SimpleStringProperty();
-        busArriveLocationEndTime = new SimpleStringProperty();
+        busDepartLocationStartTime = new SimpleObjectProperty();
+        busDepartLocationEndTime = new SimpleObjectProperty();
+        busArriveLocationStartTime = new SimpleObjectProperty();
+        busArriveLocationEndTime = new SimpleObjectProperty();
         busSeats = new SimpleStringProperty();
-        eventTime = new SimpleStringProperty();
+        eventTime = new SimpleObjectProperty();
     }
 
     public StringProperty eventNameProperty() {
         return eventName;
     }
 
-    public StringProperty eventDateProperty() {
+    public ObjectProperty eventDateProperty() {
         return eventDate;
     }
 
@@ -49,31 +58,23 @@ public class AdminEditEventViewModel {
         return eventDescription;
     }
 
-    public StringProperty busIDProperty() {
-        return busID;
-    }
-
     public StringProperty busDepartLocationProperty() {
         return busDepartLocation;
     }
 
-    public StringProperty busArriveLocationProperty() {
-        return busArriveLocation;
-    }
-
-    public StringProperty busDepartLocationStartTimeProperty() {
+    public ObjectProperty busDepartLocationStartTimeProperty() {
         return busDepartLocationStartTime;
     }
 
-    public StringProperty busDepartLocationEndTimeProperty() {
+    public ObjectProperty busDepartLocationEndTimeProperty() {
         return busDepartLocationEndTime;
     }
 
-    public StringProperty busArriveLocationStartTimeProperty() {
+    public ObjectProperty busArriveLocationStartTimeProperty() {
         return busArriveLocationStartTime;
     }
 
-    public StringProperty busArriveLocationEndTimeProperty() {
+    public ObjectProperty busArriveLocationEndTimeProperty() {
         return busArriveLocationEndTime;
     }
 
@@ -81,10 +82,45 @@ public class AdminEditEventViewModel {
         return busSeats;
     }
 
-    public StringProperty eventTimeProperty() {
+    public ObjectProperty eventTimeProperty() {
         return eventTime;
     }
 
+    public StringProperty eventLocationProperty() { return eventLocation; }
+
     public void saveEventChanges() {
+
+        Date date = new Date(eventDate.getValue().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli());
+        Time startTime = Time.valueOf(eventTime.get());
+        Time departStartTime = Time.valueOf(busDepartLocationStartTime.get());
+        Time departEndTime = Time.valueOf(busDepartLocationEndTime.get());
+        Time arriveStartTime = Time.valueOf(busArriveLocationStartTime.get());
+        Time arriveEndTime = Time.valueOf(busArriveLocationEndTime.get());
+        int noOfSeats = Integer.parseInt(busSeats.getValue());
+
+        if(eventName.getValue().equals("") || eventName.getValue() == null)
+        { LoggedUser.getInstance().getSelectedEvent().setEventName(eventName.getValue()); }
+        if(eventDate.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().setDate(date);}
+        if(eventTime.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().setStartTime(startTime);}
+        if(eventDescription.getValue().equals("") || eventDescription.getValue() == null)
+        { LoggedUser.getInstance().getSelectedEvent().setEventName(eventName.getValue()); }
+        if(eventLocation.getValue().equals("") || eventLocation.getValue() == null)
+        { LoggedUser.getInstance().getSelectedEvent().setLocation(eventLocation.getValue()); }
+        if(busDepartLocation.getValue().equals("") || busDepartLocation.getValue() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setDepartLocation(busDepartLocation.getValue()); }
+        if(busDepartLocationStartTime.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setDepartTimeStart(departStartTime); }
+        if(busDepartLocationEndTime.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setDepartTimeEnd(departEndTime); }
+        if(busArriveLocationStartTime.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setArriveTimeStart(arriveStartTime); }
+        if(busArriveLocationEndTime.get() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setArriveTimeEnd(arriveEndTime); }
+        if(busSeats.getValue().equals("") || busSeats.getValue() == null)
+        { LoggedUser.getInstance().getSelectedEvent().getBus().setNoSeats(noOfSeats); }
+
+        eventModel.editEvent(LoggedUser.getInstance().getSelectedEvent());
     }
 }

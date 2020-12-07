@@ -43,7 +43,6 @@ public class AdminMainEventViewController extends ViewController {
     }
 
     public void addEvent(){
-        //adminMainEventViewModel.createEvent();
         viewHandler.openCreateEventView(null);
     }
 
@@ -90,7 +89,7 @@ public class AdminMainEventViewController extends ViewController {
 
         hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             LoggedUser.getInstance().setSelectedEvent(event);
-            viewHandler.openAdminEventDetailsView(null);
+                viewHandler.openAdminEventDetailsView(null);
         });
 
         return hBox;

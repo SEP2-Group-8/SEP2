@@ -16,7 +16,6 @@ public class Bus implements Serializable {
     private int busId;
 
 
-
     public Bus(int noSeats, Time departTimeStart, Time departTimeEnd, Time arriveTimeStart, Time arriveTimeEnd, String departLocation, String arriveLocation) {
         this.noSeats = noSeats;
         this.departTimeStart = departTimeStart;
@@ -82,6 +81,10 @@ public class Bus implements Serializable {
     public void setBusId(int busId) {
         this.busId = busId;
     }
+
+    public void setDepartTimeEnd(Time departTimeEnd) { this.departTimeEnd = departTimeEnd; }
+
+    public void setArriveTimeEnd(Time arriveTimeEnd) { this.arriveTimeEnd = arriveTimeEnd; }
 
     public boolean equals(Object obj)
     {

@@ -11,7 +11,7 @@ public interface EventServerCallback extends Remote {
 
     void removeEvent(Event event) throws RemoteException;
 
-    void editEvent(Event oldEvent, Event newEvent) throws RemoteException;
+    void editEvent(Event newEvent) throws RemoteException;
 
     ArrayList<Event> getEventList() throws RemoteException;
 }

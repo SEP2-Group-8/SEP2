@@ -7,10 +7,15 @@ import com.jfoenix.controls.JFXTimePicker;
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
 import dk.via.sep.client.view.ViewController;
+import dk.via.sep.shared.utils.UserAction;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+
+import javax.swing.*;
+import java.beans.PropertyChangeEvent;
 
 public class AdminCreateEventViewController extends ViewController {
     private ViewHandler viewHandler;
@@ -28,44 +33,49 @@ public class AdminCreateEventViewController extends ViewController {
     @FXML
     private JFXTextField departingLocation;
     @FXML
-    private JFXTextField departingLeaveTime;
+    private JFXTimePicker departingLeaveTime;
     @FXML
-    private JFXTextField departingArriveTime;
+    private JFXTimePicker departingArriveTime;
     @FXML
-    private JFXTextField arrivingArriveTime;
+    private JFXTimePicker arrivingArriveTime;
     @FXML
-    private JFXTextField arrivingDepartTime;
-    @FXML
-    private JFXCheckBox isBus;
+    private JFXTimePicker arrivingDepartTime;
     @FXML
     private TextField busSeats;
 
     public AdminCreateEventViewController() {
         viewHandler = ViewHandler.getInstance();
         adminCreateEventViewModel = ViewModelFactory.getInstance().getAdminCreateEventViewModel();
+        adminCreateEventViewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(),this::createEventSuccess);
+        adminCreateEventViewModel.addListener(UserAction.EVENT_CREATE_FAILED.toString(),this::createEventFailed);
+    }
+
+    private void createEventFailed(PropertyChangeEvent propertyChangeEvent) {
+
+    }
+
+    private void createEventSuccess(PropertyChangeEvent propertyChangeEvent) {
+        adminCreateEventViewModel.clear();
+        Platform.runLater(this::goBack);
     }
 
     public void init() {
         eventName.textProperty().bindBidirectional(adminCreateEventViewModel.eventNameProperty());
-        //eventDate.accessibleTextProperty().bindBidirectional(adminCreateEventViewModel.eventDateProperty());
-        //eventDate.toString();
+        eventDate.valueProperty().bindBidirectional(adminCreateEventViewModel.eventDateProperty());
+        eventTime.valueProperty().bindBidirectional(adminCreateEventViewModel.eventTimeProperty());
         eventLocation.textProperty().bindBidirectional(adminCreateEventViewModel.eventLocationProperty());
         eventDescription.textProperty().bindBidirectional(adminCreateEventViewModel.eventDescriptionProperty());
         busSeats.textProperty().bindBidirectional(adminCreateEventViewModel.busSeatsProperty());
         departingLocation.textProperty().bindBidirectional(adminCreateEventViewModel.busDepartLocationProperty());
-        departingLeaveTime.textProperty().bindBidirectional(adminCreateEventViewModel.busDepartLocationStartTimeProperty());
-        departingArriveTime.textProperty().bindBidirectional(adminCreateEventViewModel.busDepartLocationEndTimeProperty());
-        arrivingArriveTime.textProperty().bindBidirectional(adminCreateEventViewModel.busArriveLocationStartTimeProperty());
-        arrivingDepartTime.textProperty().bindBidirectional(adminCreateEventViewModel.busArriveLocationEndTimeProperty());
+        departingLeaveTime.valueProperty().bindBidirectional(adminCreateEventViewModel.busDepartLocationStartTimeProperty());
+        departingArriveTime.valueProperty().bindBidirectional(adminCreateEventViewModel.busDepartLocationEndTimeProperty());
+        arrivingArriveTime.valueProperty().bindBidirectional(adminCreateEventViewModel.busArriveLocationStartTimeProperty());
+        arrivingDepartTime.valueProperty().bindBidirectional(adminCreateEventViewModel.busArriveLocationEndTimeProperty());
+
     }
 
     public void createEvent() {
         adminCreateEventViewModel.createEvent();
-        //System.out.println(eventDate.getValue().toString());
-        //eventDate.getValue().get
-        System.out.println("Date and time "+eventDate.getValue().toString() + eventTime.getValue().toString());
-
-
     }
 
     public void goBack() {
