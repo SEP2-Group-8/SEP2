@@ -59,6 +59,9 @@ public class ViewControllerFactory {
                 case ADMIN_CREATE_EVENT:
                     viewController = createNewViewController("adminCreateEvent/AdminCreateEventView.fxml");
                     break;
+                case USER_EVENT_MAIN:
+                    viewController = createNewViewController("userMainEvent/UserMainEventView.fxml");
+                    break;
             }
             viewControllers.put(id, viewController);
         }

@@ -2,6 +2,7 @@ package dk.via.sep.client.view.main;
 
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -44,7 +45,9 @@ public class MainViewController extends ViewController {
     }
 
     public void openEventsView(){
+        if(LoggedUser.getInstance().getUser().getAdminCon())
         viewHandler.openAdminEventView(currentPane);
+        else viewHandler.openUserEventView(currentPane);
     }
 
     public void openChatView(){

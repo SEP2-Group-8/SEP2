@@ -95,6 +95,11 @@ public class ViewHandler {
         showView(viewController, pane);
     }
 
+    public void openUserEventView(Pane pane) {
+        viewController = ViewControllerFactory.getViewController(Views.USER_EVENT_MAIN);
+        showView(viewController, pane);
+    }
+
     private void showView(ViewController viewController, Pane pane) {
         Platform.runLater(() -> {
             if (pane == null) {
@@ -144,5 +149,6 @@ public class ViewHandler {
             }
         });
     }
+
 
 }

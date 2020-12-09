@@ -15,11 +15,7 @@ public interface EventDAO {
 
     boolean editEvent(Event newEvent);
 
-    void createBus(Bus bus);
-
     Event getEvent(String eventName, Date startDate);
-
-    Bus getBus(Date departDate, Date arriveDate, String departLocation, String arriveLocation);
 
 
 }

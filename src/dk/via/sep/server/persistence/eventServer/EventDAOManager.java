@@ -183,11 +183,6 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
-    @Override
-    public Bus getBus(Date departDate, Date arriveDate, String departLocation, String arriveLocation) {
-        return null;
-    }
-
 
     public Bus getBus(Time departTime1, Time arriveTime1, String departLocation1, String arriveLocation1)
     {
