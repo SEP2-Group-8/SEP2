@@ -6,5 +6,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface UserClientCallback extends Remote {
-    void loginOrRegisterResult(UserAction result) throws RemoteException;
+
 }

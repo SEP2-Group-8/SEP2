@@ -9,11 +9,11 @@ import java.util.UUID;
 public interface UserServerModel extends Subject {
     User login(String username, String password);
 
-    void addUser(User user);
+    boolean addUser(User user);
 
     ArrayList<User> getUserList();
 
-    void logOut(UUID uuid, User user);
+    void logOut();
 
     ArrayList<User> getActiveUsers();
 }

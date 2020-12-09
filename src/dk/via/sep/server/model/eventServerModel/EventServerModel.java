@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public interface EventServerModel extends Subject {
     ArrayList<Event> getEventList();
 
-    void createEvent(Event event);
+    boolean createEvent(Event event);
 
-    void removeEvent(Event event);
+    boolean removeEvent(Event event);
 
-    void editEvent(Event newEvent);
+    boolean editEvent(Event newEvent);
 }

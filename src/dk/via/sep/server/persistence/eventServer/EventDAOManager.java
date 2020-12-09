@@ -44,7 +44,7 @@ public class EventDAOManager extends Connection implements EventDAO {
 
 
     @Override
-    public void createEvent(Event event) {
+    public boolean createEvent(Event event) {
         this.createBus(event.getBus());
         event.getBus().setBusId(this.getBus(event.getBus().getDepartTimeStart(),event.getBus().getArriveTimeStart()
                 ,event.getBus().getDepartLocation(),event.getBus().getArriveLocation()).getBusId());
@@ -68,49 +68,46 @@ public class EventDAOManager extends Connection implements EventDAO {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
-
+        return true;
     }
 
     @Override
-    public void removeEvent(Event event) {
+    public boolean removeEvent(Event event) {
         try (java.sql.Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM viaclub.event WHERE eventname = ? AND eventdate = ? ");
             statement.setString(1,event.getEventName());
             statement.setDate(2,event.getDate());
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next())
-            {
-                System.out.println("Removed event: " + event.getEventName() + " and id: " + event.getEventId());
-            }
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
-
+        return true;
     }
 
     @Override
-    public void editEvent( Event newEvent) {
+    public boolean editEvent( Event newEvent) {
         editBus(newEvent.getBus());
         try (java.sql.Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.event SET eventdate = ?,eventtime = ?," +
                     "location = ?,description= ?,eventname = ? " + "WHERE id=?");
             statement.setDate(1,newEvent.getDate());
-            System.out.println(statement);
             statement.setTime(2,newEvent.getStartTime());
             statement.setString(3,newEvent.getLocation());
             statement.setString(4,newEvent.getDescription());
             statement.setString(5,newEvent.getEventName());
-            statement.setInt(6,newEvent.getBus().getBusId());
-            statement.setInt(7,newEvent.getEventId());
+            statement.setInt(6,newEvent.getEventId());
             statement.executeUpdate();
             System.out.println(statement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
-
+        return true;
     }
 
 
@@ -183,6 +180,11 @@ public class EventDAOManager extends Connection implements EventDAO {
             throwables.printStackTrace();
 
         }
+        return null;
+    }
+
+    @Override
+    public Bus getBus(Date departDate, Date arriveDate, String departLocation, String arriveLocation) {
         return null;
     }
 

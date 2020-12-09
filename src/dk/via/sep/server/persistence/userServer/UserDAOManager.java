@@ -16,7 +16,7 @@ public class UserDAOManager extends Connection implements UserDAO {
     }
 
     @Override
-    public void addUser(User user) {
+    public boolean addUser(User user) {
         try (java.sql.Connection connection = getConnection()) {
             //The command that is ran after the update is executed.
             PreparedStatement statement = connection.prepareStatement
@@ -35,7 +35,9 @@ public class UserDAOManager extends Connection implements UserDAO {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
@@ -59,7 +61,6 @@ public class UserDAOManager extends Connection implements UserDAO {
                 user.setUser_id(user_id);
                 user.setAdminCon(adminCon);
                 return user;
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

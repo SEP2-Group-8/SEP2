@@ -20,20 +20,19 @@ public class EventServerHandler implements EventServer {
         }
     }
 
-
     @Override
-    public void createEvent(Event event) {
-        eventServerModel.createEvent(event);
+    public boolean createEvent(Event event) {
+        return eventServerModel.createEvent(event);
     }
 
     @Override
-    public void removeEvent(Event event) {
-        eventServerModel.removeEvent(event);
+    public boolean removeEvent(Event event) {
+        return eventServerModel.removeEvent(event);
     }
 
     @Override
-    public void editEvent(Event oldEvent, Event newEvent) {
-        eventServerModel.editEvent(oldEvent, newEvent);
+    public boolean editEvent(Event newEvent) {
+        return eventServerModel.editEvent(newEvent);
     }
 
     @Override

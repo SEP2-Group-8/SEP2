@@ -17,6 +17,10 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
 public class AdminCreateEventViewController extends ViewController {
     private ViewHandler viewHandler;
     private AdminCreateEventViewModel adminCreateEventViewModel;
@@ -76,6 +80,7 @@ public class AdminCreateEventViewController extends ViewController {
 
     public void createEvent() {
         adminCreateEventViewModel.createEvent();
+        viewHandler.openMainView();
     }
 
     public void goBack() {

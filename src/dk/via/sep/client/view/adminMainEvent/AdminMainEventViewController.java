@@ -5,6 +5,7 @@ import dk.via.sep.client.core.ViewModelFactory;
 import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.view.ViewController;
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.utils.UserAction;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -33,7 +34,21 @@ public class AdminMainEventViewController extends ViewController {
     public AdminMainEventViewController() {
         viewHandler = ViewHandler.getInstance();
         adminMainEventViewModel = ViewModelFactory.getInstance().getAdminMainEventViewModel();
-        adminMainEventViewModel.addListener("EventCreated", this::addEvent);
+        adminMainEventViewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::addEvent);
+        adminMainEventViewModel.addListener(UserAction.EVENT_CREATE.toString(), this::addEvent);
+        adminMainEventViewModel.addListener(UserAction.EVENT_REMOVE.toString(), this::updateEventList);
+        adminMainEventViewModel.addListener(UserAction.EVENT_EDIT.toString(), this::updateEventList);
+    }
+
+    private void updateEventList(PropertyChangeEvent event) {
+        Platform.runLater(() ->{
+            eventVBox.getChildren().clear();
+            adminMainEventViewModel.getEventList();
+        });
+    }
+
+    public void init(){
+        adminMainEventViewModel.getEventList();
     }
 
     private void addEvent(PropertyChangeEvent event) {
@@ -89,6 +104,7 @@ public class AdminMainEventViewController extends ViewController {
 
         hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             LoggedUser.getInstance().setSelectedEvent(event);
+            System.out.println("Event clicked "+event.getEventName());
                 viewHandler.openAdminEventDetailsView(null);
         });
 

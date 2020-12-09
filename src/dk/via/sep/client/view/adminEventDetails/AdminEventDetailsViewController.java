@@ -60,10 +60,10 @@ public class AdminEventDetailsViewController extends ViewController {
     public AdminEventDetailsViewController() {
         viewHandler = ViewHandler.getInstance();
         adminEventDetailsViewModel = ViewModelFactory.getInstance().getAdminEventDetailsViewModel();
-        adminEventDetailsViewModel.initView();
     }
 
     public void init() {
+        adminEventDetailsViewModel.initView();
         eventName.textProperty().bind(adminEventDetailsViewModel.eventNameProperty());
         eventDate.textProperty().bind(adminEventDetailsViewModel.eventDateProperty());
         eventTime.textProperty().bind(adminEventDetailsViewModel.eventTimeProperty());
@@ -97,16 +97,11 @@ public class AdminEventDetailsViewController extends ViewController {
                 JOptionPane.YES_NO_OPTION);
         if(reply == JOptionPane.YES_OPTION){
             adminEventDetailsViewModel.removeEvent(LoggedUser.getInstance().getSelectedEvent());
-            LoggedUser.getInstance().setSelectedEvent(null);
-            //how to remove from list???
             viewHandler.openMainView();
+            LoggedUser.getInstance().setSelectedEvent(null);
         } else{
             JOptionPane.showMessageDialog(null, "Operation aborted");
         }
-    }
-
-    public void editEvent() {
-        viewHandler.openAdminEditEventView(null);
     }
 
     public void exit(){
@@ -117,4 +112,7 @@ public class AdminEventDetailsViewController extends ViewController {
         viewHandler.minimize();
     }
 
+    public void editEvent() {
+        viewHandler.openAdminEditEventView(null);
+    }
 }

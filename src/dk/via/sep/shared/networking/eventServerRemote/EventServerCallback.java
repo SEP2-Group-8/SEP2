@@ -7,11 +7,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface EventServerCallback extends Remote {
-    void createEvent(Event event) throws RemoteException;
+    boolean createEvent(Event event) throws RemoteException;
 
-    void removeEvent(Event event) throws RemoteException;
+    boolean removeEvent(Event event) throws RemoteException;
 
-    void editEvent(Event newEvent) throws RemoteException;
+    boolean editEvent(Event newEvent) throws RemoteException;
 
     ArrayList<Event> getEventList() throws RemoteException;
 }

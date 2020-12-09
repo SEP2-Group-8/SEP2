@@ -24,29 +24,8 @@ public class UserServerModelManager implements UserServerModel {
     }
 
     @Override
-    public void addUser(User user) {
-        boolean user_exists = false;
-        ArrayList<User> currentUsers;
-
-        currentUsers = userDAO.getAllUsers();
-        System.out.println(currentUsers);
-        for (User user1 : currentUsers) {
-            if (user.equals(user1)) {
-                user_exists = true;
-                break;
-            }
-        }
-        if (!user_exists) {
-            synchronized (lock) {
-                userDAO.addUser(user);
-            }
-            user.setUser_id(userDAO.getUser(user.getUsername(), user.getPassword()).getUser_id());
-            LoggedUsers.getInstance().addUser(user);
-            support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_SUCCESS);
-            support.firePropertyChange(UserAction.USER_LIST.toString(), user.getUUID(), UserAction.USER_LIST);
-        } else {
-            support.firePropertyChange(UserAction.REGISTER.toString(), user.getUUID(), UserAction.REGISTER_FAILED);
-        }
+    public boolean addUser(User user) {
+        return userDAO.addUser(user);
     }
 
     @Override
@@ -55,10 +34,8 @@ public class UserServerModelManager implements UserServerModel {
     }
 
     @Override
-    public void logOut(UUID uuid, User user) {
-        LoggedUsers.getInstance().removeClient(uuid);
-        LoggedUsers.getInstance().removeUser(user);
-        System.out.println("Removed id: " + uuid + "\n Removed user: " + user.getUsername());
+    public void logOut() {
+
     }
 
     @Override

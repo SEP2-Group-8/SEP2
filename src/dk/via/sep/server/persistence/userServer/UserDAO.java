@@ -5,7 +5,7 @@ import dk.via.sep.shared.transfer.User;
 import java.util.ArrayList;
 
 public interface UserDAO {
-    void addUser(User user);
+    boolean addUser(User user);
 
     ArrayList<User> getAllUsers();
 

@@ -5,6 +5,7 @@ import dk.via.sep.shared.networking.eventServerRemote.EventClientCallback;
 import dk.via.sep.shared.networking.eventServerRemote.EventServerCallback;
 import dk.via.sep.shared.transfer.Event;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -27,29 +28,32 @@ public class EventClientImpl implements EventClient, EventClientCallback {
     }
 
     @Override
-    public void createEvent(Event event) {
+    public boolean createEvent(Event event) {
         try {
-            server.createEvent(event);
+            return server.createEvent(event);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void removeEvent(Event event) {
+    public boolean removeEvent(Event event) {
         try {
-            server.removeEvent(event);
+            return server.removeEvent(event);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void editEvent(Event oldEvent, Event newEvent) {
+    public boolean editEvent(Event newEvent) {
         try {
-            server.editEvent(oldEvent, newEvent);
+            return server.editEvent(newEvent);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -59,9 +63,17 @@ public class EventClientImpl implements EventClient, EventClientCallback {
             return server.getEventList();
         } catch (RemoteException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
+    @Override
+    public void addListener(String eventName, PropertyChangeListener listener) {
 
+    }
+
+    @Override
+    public void removeListener(String eventName, PropertyChangeListener listener) {
+
+    }
 }

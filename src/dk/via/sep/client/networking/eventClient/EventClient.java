@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public interface EventClient extends Subject {
     void startClient();
 
-    void createEvent(Event event);
+    boolean createEvent(Event event);
 
-    void removeEvent(Event event);
+    boolean removeEvent(Event event);
 
-    void editEvent(Event oldEvent);
+    boolean editEvent(Event oldEvent);
 
     ArrayList<Event> getEventList();
 }

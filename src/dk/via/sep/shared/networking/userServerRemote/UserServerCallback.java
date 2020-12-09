@@ -7,15 +7,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public interface userServerCallback extends Remote {
+public interface UserServerCallback extends Remote {
 
-    void registerNewAccount(UserClientCallback client, User user) throws RemoteException;
+    boolean registerAccount(User user) throws RemoteException;
 
     User login(String username, String password) throws RemoteException;
 
-    void registerClient(UserClientCallback client, UUID id) throws RemoteException;
+    void registerClient(UserClientCallback client) throws RemoteException;
 
-    void logOut(UUID uuid, User user) throws RemoteException;
+    void logOut() throws RemoteException;
 
     ArrayList<User> getUserList() throws RemoteException;
 
