@@ -60,6 +60,11 @@ public class UserModelManager implements UserModel {
     }
 
     @Override
+    public void deleteAccount() {
+        client.deleteAccount();
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
     }

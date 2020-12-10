@@ -17,4 +17,6 @@ public interface UserClient extends Subject {
     ArrayList<User> getUserList();
 
     ArrayList<User> getActiveUsers();
+
+    void deleteAccount();
 }

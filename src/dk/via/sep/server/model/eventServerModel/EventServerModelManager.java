@@ -3,17 +3,21 @@ package dk.via.sep.server.model.eventServerModel;
 import dk.via.sep.server.persistence.eventServer.EventDAO;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
+import dk.via.sep.shared.utils.UserAction;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class EventServerModelManager implements EventServerModel {
 
     private final EventDAO eventDAO;
-
+    private PropertyChangeSupport support;
 
     public EventServerModelManager(EventDAO eventDAO) {
         this.eventDAO = eventDAO;
+        support = new PropertyChangeSupport(this);
     }
 
     @Override
@@ -22,18 +26,34 @@ public class EventServerModelManager implements EventServerModel {
     }
 
     @Override
-    public boolean createEvent(Event event) {
-        return eventDAO.createEvent(event);
+    public void createEvent(Event event) {
+        boolean success = eventDAO.createEvent(event);
+        if(success){
+            support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, event);
+        }
     }
 
     @Override
-    public boolean removeEvent(Event event) {
-        return eventDAO.removeEvent(event);
+    public void removeEvent(Event event) {
+        boolean success = eventDAO.removeEvent(event);
+        if(success){
+            support.firePropertyChange(UserAction.EVENT_REMOVE.toString(), null, event);
+        }
     }
 
     @Override
-    public boolean editEvent(Event newEvent) {
-        return eventDAO.editEvent(newEvent);
+    public void editEvent(Event event) {
+        boolean success = eventDAO.editEvent(event);
+        if(success){
+            support.firePropertyChange(UserAction.EVENT_EDIT.toString(), null, event);
+        }
+    }
+
+    @Override
+    public void getEventListASync(UUID clientID) {
+        ArrayList<Event> events = eventDAO.getEventList();
+        System.out.println("called method");
+        support.firePropertyChange(UserAction.EVENT_LIST.toString() + clientID, null, events);
     }
 
     @Override
@@ -52,11 +72,11 @@ public class EventServerModelManager implements EventServerModel {
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
-
+        support.addPropertyChangeListener(eventName, listener);
     }
 
     @Override
     public void removeListener(String eventName, PropertyChangeListener listener) {
-
+        support.removePropertyChangeListener(eventName, listener);
     }
 }

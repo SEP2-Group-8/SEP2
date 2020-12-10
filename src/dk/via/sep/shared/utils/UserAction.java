@@ -19,4 +19,6 @@ public enum UserAction {
     EVENT_JOIN_FAILED,
     EVENT_LEAVE_SUCCESS,
     EVENT_LEAVE_FAILED,
+    EVENT_EDIT,
+    EVENT_LIST
 }

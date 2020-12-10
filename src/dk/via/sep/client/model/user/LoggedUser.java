@@ -3,12 +3,16 @@ package dk.via.sep.client.model.user;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
 
+import java.util.UUID;
+
 public class LoggedUser {
     private User user;
     private Event selectedEvent;
     private static LoggedUser loggedUser;
+    private UUID clientID;
 
     private LoggedUser() {
+        clientID = UUID.randomUUID();
     }
 
     public synchronized static LoggedUser getInstance() {
@@ -33,4 +37,7 @@ public class LoggedUser {
         this.selectedEvent = selectedEvent;
     }
 
+    public UUID getClientID() {
+        return clientID;
+    }
 }

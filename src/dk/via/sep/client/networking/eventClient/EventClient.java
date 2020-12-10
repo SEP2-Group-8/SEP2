@@ -9,11 +9,11 @@ import java.util.ArrayList;
 public interface EventClient extends Subject {
     void startClient();
 
-    boolean createEvent(Event event);
+    void createEvent(Event event);
 
-    boolean removeEvent(Event event);
+    void removeEvent(Event event);
 
-    boolean editEvent(Event oldEvent);
+    void editEvent(Event oldEvent);
 
     ArrayList<Event> getEventList();
 
@@ -22,4 +22,6 @@ public interface EventClient extends Subject {
     boolean leaveEvent(User user, Event event);
 
     ArrayList<User> getUserList(Event event);
+
+    void getEventListAsync();
 }

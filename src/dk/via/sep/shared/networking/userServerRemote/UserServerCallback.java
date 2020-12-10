@@ -20,4 +20,6 @@ public interface UserServerCallback extends Remote {
     ArrayList<User> getUserList() throws RemoteException;
 
     ArrayList<User> getActiveUsers() throws RemoteException;
+
+    void deleteAccount(User user) throws RemoteException;
 }

@@ -1,7 +1,6 @@
 package dk.via.sep.client.model.eventModel;
 
 import dk.via.sep.client.core.ClientFactory;
-import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.eventClient.EventClient;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
@@ -23,6 +22,10 @@ public class EventModelManager implements EventModel {
         this.eventClient.startClient();
         eventClient.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::onReceiveRequest);
         eventClient.addListener(UserAction.EVENT_CREATE_FAILED.toString(), this::onReceiveRequest);
+        eventClient.addListener(UserAction.EVENT_CREATE.toString(), this::onReceiveRequest);
+        eventClient.addListener(UserAction.EVENT_REMOVE.toString(), this::onReceiveRequest);
+        eventClient.addListener(UserAction.EVENT_EDIT.toString(), this::onReceiveRequest);
+        eventClient.addListener(UserAction.EVENT_LIST.toString(), this::onReceiveRequest);
     }
 
     private void onReceiveRequest(PropertyChangeEvent evt) {
@@ -31,21 +34,17 @@ public class EventModelManager implements EventModel {
 
     @Override
     public void removeEvent(Event selectedEvent) {
-        if(eventClient.removeEvent(selectedEvent));
-            support.firePropertyChange(UserAction.EVENT_REMOVE.toString(), null, null);
+        eventClient.removeEvent(selectedEvent);
     }
 
     @Override
     public void createEvent(Event event) {
-        boolean success = eventClient.createEvent(event);
-        if(success) support.firePropertyChange(UserAction.EVENT_CREATE_SUCCESS.toString(), null, event);
-        else support.firePropertyChange(UserAction.EVENT_CREATE_FAILED.toString(), null, null);
+        eventClient.createEvent(event);
     }
 
     @Override
     public void editEvent(Event selectedEvent) {
-        boolean success = eventClient.editEvent(selectedEvent);
-        if(success) support.firePropertyChange(UserAction.EVENT_EDIT.toString(), null, null);
+        eventClient.editEvent(selectedEvent);
     }
 
     @Override
@@ -76,6 +75,11 @@ public class EventModelManager implements EventModel {
     @Override
     public ArrayList<User> getUserList(Event event) {
         return eventClient.getUserList(event);
+    }
+
+    @Override
+    public void getEventListAsync() {
+        eventClient.getEventListAsync();
     }
 
     @Override

@@ -5,13 +5,14 @@ import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.Subject;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public interface EventServerModel extends Subject {
     ArrayList<Event> getEventList();
 
-    boolean createEvent(Event event);
+    void createEvent(Event event);
 
-    boolean removeEvent(Event event);
+    void removeEvent(Event event);
 
     boolean editEvent(Event newEvent);
 
@@ -20,4 +21,7 @@ public interface EventServerModel extends Subject {
     boolean leaveEvent(User user, Event event);
 
     ArrayList<User> getUserList(Event event);
+    void editEvent(Event newEvent);
+
+    void getEventListASync(UUID clientID);
 }

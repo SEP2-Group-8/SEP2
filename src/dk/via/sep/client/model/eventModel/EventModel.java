@@ -20,4 +20,6 @@ public interface EventModel extends Subject {
     void leaveEvent();
 
     ArrayList<User> getUserList(Event event);
+
+    void getEventListAsync();
 }

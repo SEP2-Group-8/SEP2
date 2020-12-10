@@ -12,13 +12,10 @@ public class User implements Serializable {
     private final String email;
     private final String password;
 
-    private final UUID uuid;
-
     public User(String email, String password, String username) {
         this.email = email;
         this.password = password;
         this.username = username;
-        this.uuid = UUID.randomUUID();
         adminCon = false;
     }
 
@@ -40,10 +37,6 @@ public class User implements Serializable {
 
     public int getUser_id() {
         return user_id;
-    }
-
-    public UUID getUUID() {
-        return uuid;
     }
 
     public void setAdminCon(boolean adminCon) {

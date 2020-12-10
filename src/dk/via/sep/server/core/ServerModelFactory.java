@@ -1,5 +1,7 @@
 package dk.via.sep.server.core;
 
+import dk.via.sep.server.model.chatServerModel.ChatServerModel;
+import dk.via.sep.server.model.chatServerModel.ChatServerModelManager;
 import dk.via.sep.server.model.eventServerModel.EventServerModel;
 import dk.via.sep.server.model.eventServerModel.EventServerModelManager;
 import dk.via.sep.server.model.userServerModel.UserServerModel;
@@ -12,6 +14,7 @@ public class ServerModelFactory {
     private final ServerDAOFactory DAOFactory;
     private UserServerModel userServerModel;
     private EventServerModel eventServerModel;
+    private ChatServerModel chatServerModel;
     private final Lock lock;
 
     public ServerModelFactory(ServerDAOFactory DAOFactory) {
@@ -39,5 +42,14 @@ public class ServerModelFactory {
         return eventServerModel;
     }
 
+    public ChatServerModel getChatServerModel(){
+        if(chatServerModel == null){
+            synchronized (lock){
+                if(chatServerModel == null)
+                    chatServerModel = new ChatServerModelManager();
+            }
+        }
+        return chatServerModel;
+    }
 
 }

@@ -65,8 +65,6 @@ public class EventDAOManager extends Connection implements EventDAO {
             {
                 System.out.println("INSERTED with ID " + resultSet.getInt("id"));
             }
-
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;

@@ -62,4 +62,9 @@ public class ProfileViewModel implements Subject {
     public void removeListener(String eventName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(eventName, listener);
     }
+
+    public void deleteAccount() {
+        userModel.logOut();
+        userModel.deleteAccount();
+    }
 }

@@ -44,6 +44,11 @@ public class UserServerModelManager implements UserServerModel {
     }
 
     @Override
+    public void deleteAccount(User user) {
+        userDAO.removeUser(user);
+    }
+
+    @Override
     public User login(String username, String password) {
         User user;
         synchronized (lock) {

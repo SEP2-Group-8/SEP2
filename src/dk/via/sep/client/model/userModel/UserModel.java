@@ -13,4 +13,6 @@ public interface UserModel extends Subject {
     void logOut();
 
     ArrayList<User> getUserList();
+
+    void deleteAccount();
 }

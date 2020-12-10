@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="900.0" styleClass="chat" stylesheets="@../style/style.css">
+         <children>
+            <AnchorPane prefHeight="560.0" prefWidth="250.0" styleClass="chat-sidebar">
+               <children>
+                  <AnchorPane layoutY="507.0" prefHeight="53.0" prefWidth="250.0" styleClass="chat-sidebar-name">
+                     <children>
+                        <Label layoutX="14.0" layoutY="12.0" styleClass="chat-username" text="Username" />
+                        <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="208.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../style/icons/back.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="250.0" styleClass="chat-main">
+                     <children>
+                        <Label layoutX="14.0" layoutY="12.0" styleClass="about-us-title" text="VIA Chat" />
+                     </children>
+                  </AnchorPane>
+                  <ScrollPane hbarPolicy="NEVER" layoutY="100.0" prefHeight="406.0" prefWidth="250.0" styleClass="chat-sidebar" vbarPolicy="NEVER">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="452.0" prefWidth="248.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="104.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="198.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="292.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="379.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="455.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="544.0" prefHeight="84.0" prefWidth="218.0" spacing="10.0" styleClass="chat-padding">
+                                 <children>
+                                    <ImageView fitHeight="52.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../style/icons/man.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="169.0">
+                                       <children>
+                                          <Label styleClass="chat-name-small" text="Name" />
+                                          <Label layoutX="10.0" layoutY="10.0" styleClass="chat-last-sent" text="Last sent message" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <HBox alignment="CENTER" layoutX="16.0" layoutY="64.0" prefHeight="30.0" prefWidth="218.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../style/icons/loupe.png" />
+                           </image>
+                        </ImageView>
+                        <JFXTextField prefHeight="25.0" prefWidth="224.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="250.0" prefHeight="53.0" prefWidth="650.0" styleClass="chat-name">
+               <children>
+                  <Label layoutX="51.0" layoutY="12.0" styleClass="chat-username" text=" User's name goes here" />
+                  <Circle fill="#00ff22" layoutX="268.0" layoutY="27.0" radius="3.0" stroke="#00ff22" strokeType="INSIDE" />
+                  <Label layoutX="277.0" layoutY="18.0" text="online" textFill="#757575" />
+                  <ImageView fitHeight="30.0" fitWidth="51.0" layoutX="606.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/icons/more.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="39.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/icons/man.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="250.0" layoutY="507.0" prefHeight="53.0" prefWidth="650.0" styleClass="chat-text">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="49.0" layoutX="597.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/icons/send.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField layoutX="22.0" layoutY="14.0" prefHeight="25.0" prefWidth="552.0" promptText="Write your message here .." />
+               </children>
+            </AnchorPane>
+            <ScrollPane hbarPolicy="NEVER" layoutX="250.0" layoutY="53.0" prefHeight="454.0" prefWidth="650.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+               <content>
+                  <VBox prefHeight="453.0" prefWidth="648.0" styleClass="chat-padding">
+                     <children>
+                        <HBox prefWidth="556.0" spacing="12.0">
+                           <children>
+                              <Label styleClass="message" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="25.0" prefWidth="556.0" spacing="12.0">
+                           <children>
+                              <Label styleClass="message" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="40.0" prefWidth="900.0" styleClass="about-us">
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="45.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/icons/cancel.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="39.0" layoutX="40.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/icons/minimize.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
