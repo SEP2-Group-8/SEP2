@@ -97,18 +97,21 @@ public class AdminCreateEventViewModel implements Subject {
 
     public void createEvent() {
 
-        if(eventName.getValue().equals("") || eventName.getValue() == null) { return; }
+        if(eventName.getValue() == null) { return; }
         if(eventDate.get() == null){ return;}
         if(eventTime.get() == null){ return;}
-        if(eventDescription.getValue().equals("") || eventDescription.getValue() == null){ return; }
-        if(eventLocation.getValue().equals("") || eventLocation.getValue() == null){ return; }
-        if(busDepartLocation.getValue().equals("") || busDepartLocation.getValue() == null) { return; }
+        if(eventDescription.getValue() == null){ return; }
+        if(eventLocation.getValue() == null){ return; }
+        if(busDepartLocation.getValue() == null) { return; }
         if(busDepartLocationStartTime.get() == null) { return; }
         if(busDepartLocationEndTime.get() == null) { return; }
         if(busArriveLocationStartTime.get() == null)  { return; }
         if(busArriveLocationEndTime.get() == null)  { return; }
-        if(busSeats.getValue().equals("") || busSeats.getValue() == null)  { return; }
-
+        if(busSeats.getValue() == null)  { return; }
+        //TODO checks for the time so you can not have a starting time of the event after the depart time of the bus, making the depart time of the bus redundant.
+        //if(busDepartLocationStartTime.get().isAfter(busDepartLocationEndTime.get())) { return; }
+        //if(busDepartLocationStartTime.get().isAfter(busArriveLocationStartTime.get())) { return; }
+        //if(busArriveLocationStartTime.get().isAfter(busArriveLocationEndTime.get())) { return; }
         int noOfSeats = Integer.parseInt(busSeats.getValue());
         Date date = new Date(eventDate.getValue().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli());
         Time startTime = Time.valueOf(eventTime.get());

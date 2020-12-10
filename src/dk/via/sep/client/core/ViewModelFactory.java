@@ -10,6 +10,7 @@ import dk.via.sep.client.view.login.LoginViewModel;
 import dk.via.sep.client.view.main.MainViewModel;
 import dk.via.sep.client.view.profile.ProfileViewModel;
 import dk.via.sep.client.view.register.RegisterViewModel;
+import dk.via.sep.client.view.userEventDetails.UserEventDetailsViewModel;
 import dk.via.sep.client.view.userList.UserListViewModel;
 import dk.via.sep.client.view.userMainEvent.UserMainEventViewModel;
 
@@ -26,6 +27,7 @@ public class ViewModelFactory {
     private final AdminEditEventViewModel adminEditEventViewModel;
     private final AdminCreateEventViewModel adminCreateEventViewModel;
     private final UserMainEventViewModel userMainEventViewModel;
+    private final UserEventDetailsViewModel userEventDetailsViewModel;
     private static ViewModelFactory viewModelFactory;
 
     private ViewModelFactory() {
@@ -40,6 +42,7 @@ public class ViewModelFactory {
         adminEditEventViewModel = new AdminEditEventViewModel();
         adminCreateEventViewModel = new AdminCreateEventViewModel();
         userMainEventViewModel = new UserMainEventViewModel();
+        userEventDetailsViewModel = new UserEventDetailsViewModel();
     }
 
     public static ViewModelFactory getInstance() {
@@ -89,4 +92,6 @@ public class ViewModelFactory {
     }
 
     public UserMainEventViewModel getUserMainEventViewModel() { return userMainEventViewModel; }
+
+    public UserEventDetailsViewModel getUserEventDetailsViewModel() { return userEventDetailsViewModel; }
 }

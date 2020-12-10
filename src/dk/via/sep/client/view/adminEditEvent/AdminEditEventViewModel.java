@@ -91,6 +91,7 @@ public class AdminEditEventViewModel {
 
     public void saveEventChanges() {
         Event currentEvent = LoggedUser.getInstance().getSelectedEvent();
+        //TODO checks for the time so the time of the bus isn't redundant if it is introduced. Might need to switch the structure of the ifs
 
         if (!(eventName.getValue().equals("") || eventName.getValue() == null)) {
             currentEvent.setEventName(eventName.getValue());

@@ -1,6 +1,7 @@
 package dk.via.sep.shared.networking.eventServerRemote;
 
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.transfer.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -14,4 +15,10 @@ public interface EventServerCallback extends Remote {
     boolean editEvent(Event newEvent) throws RemoteException;
 
     ArrayList<Event> getEventList() throws RemoteException;
+
+    boolean joinEvent(User user, Event event, boolean b) throws RemoteException;
+
+    boolean leaveEvent(User user, Event event) throws RemoteException;
+
+    ArrayList<User> getUserList(Event event) throws RemoteException;
 }

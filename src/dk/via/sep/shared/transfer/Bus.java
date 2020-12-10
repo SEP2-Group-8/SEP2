@@ -15,6 +15,8 @@ public class Bus implements Serializable {
     private String arriveLocation;
     private int busId;
 
+    private int occupiedSeats;
+
 
     public Bus(int noSeats, Time departTimeStart, Time departTimeEnd, Time arriveTimeStart, Time arriveTimeEnd, String departLocation, String arriveLocation) {
         this.noSeats = noSeats;
@@ -24,6 +26,7 @@ public class Bus implements Serializable {
         this.arriveTimeEnd = arriveTimeEnd;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
+        this.occupiedSeats = 0;
     }
 
     public int getNoSeats() {
@@ -58,6 +61,8 @@ public class Bus implements Serializable {
         return busId;
     }
 
+    public int getOccupiedSeats() { return occupiedSeats; }
+
     public void setNoSeats(int noSeats) {
         this.noSeats = noSeats;
     }
@@ -85,6 +90,8 @@ public class Bus implements Serializable {
     public void setDepartTimeEnd(Time departTimeEnd) { this.departTimeEnd = departTimeEnd; }
 
     public void setArriveTimeEnd(Time arriveTimeEnd) { this.arriveTimeEnd = arriveTimeEnd; }
+
+    public void setOccupiedSeats(int occupiedSeats) { this.occupiedSeats = occupiedSeats; }
 
     public boolean equals(Object obj)
     {

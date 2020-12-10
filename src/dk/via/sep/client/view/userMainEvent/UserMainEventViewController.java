@@ -97,10 +97,10 @@ public class UserMainEventViewController extends ViewController {
         hBox.getChildren().add(vBox);
         hBox.getChildren().add(img2);
 
-        //hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
-            //LoggedUser.getInstance().setSelectedEvent(event);
-            //viewHandler.openAdminEventDetailsView(null);
-        //});
+        hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
+            LoggedUser.getInstance().setSelectedEvent(event);
+            viewHandler.openUserEventDetailsView(null);
+        });
 
         return hBox;
     }

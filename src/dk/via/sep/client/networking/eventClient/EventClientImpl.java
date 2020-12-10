@@ -4,6 +4,7 @@ import dk.via.sep.client.networking.Connection;
 import dk.via.sep.shared.networking.eventServerRemote.EventClientCallback;
 import dk.via.sep.shared.networking.eventServerRemote.EventServerCallback;
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.transfer.User;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
@@ -62,6 +63,37 @@ public class EventClientImpl implements EventClient, EventClientCallback {
         try {
             return server.getEventList();
         } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean joinEvent(User user, Event event, boolean b) {
+        try{
+            System.out.println("I got here -> client");
+            return server.joinEvent(user, event,b);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean leaveEvent(User user, Event event) {
+        try{
+            return server.leaveEvent(user,event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public ArrayList<User> getUserList(Event event) {
+        try{
+            return server.getUserList(event);
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

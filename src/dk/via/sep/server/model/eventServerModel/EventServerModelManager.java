@@ -2,6 +2,7 @@ package dk.via.sep.server.model.eventServerModel;
 
 import dk.via.sep.server.persistence.eventServer.EventDAO;
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.transfer.User;
 
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -33,6 +34,20 @@ public class EventServerModelManager implements EventServerModel {
     @Override
     public boolean editEvent(Event newEvent) {
         return eventDAO.editEvent(newEvent);
+    }
+
+    @Override
+    public boolean joinEvent(User user, Event event, boolean b) {
+        System.out.println("I got here -> server model");
+        return eventDAO.joinEvent(user,event,b);
+    }
+
+    @Override
+    public boolean leaveEvent(User user, Event event) { return eventDAO.leaveEvent(user,event); }
+
+    @Override
+    public ArrayList<User> getUserList(Event event) {
+        return eventDAO.getUserList(event);
     }
 
     @Override

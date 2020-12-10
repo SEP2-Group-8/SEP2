@@ -3,6 +3,7 @@ package dk.via.sep.server.persistence.eventServer;
 import dk.via.sep.server.persistence.Connection;
 import dk.via.sep.shared.transfer.Bus;
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.transfer.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -114,16 +115,17 @@ public class EventDAOManager extends Connection implements EventDAO {
     public void editBus(Bus newBus) {
         try(java.sql.Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.bus SET seats=?, departtimestart=?, departtimeend=?" +
+            PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.bus SET seats=?,occupiedseats = ?, departtimestart=?, departtimeend=?" +
                     ",arrivetimestart=?, arrivetimeend=?, departlocation=?, arrivelocation=? WHERE id=?");
             statement.setInt(1,newBus.getNoSeats());
-            statement.setTime(2,newBus.getDepartTimeStart());
-            statement.setTime(3,newBus.getDepartTimeEnd());
-            statement.setTime(4,newBus.getArriveTimeStart());
-            statement.setTime(5,newBus.getDepartTimeEnd());
-            statement.setString(6,newBus.getDepartLocation());
-            statement.setString(7,newBus.getArriveLocation());
-            statement.setInt(8,newBus.getBusId());
+            statement.setInt(2,newBus.getOccupiedSeats());
+            statement.setTime(3,newBus.getDepartTimeStart());
+            statement.setTime(4,newBus.getDepartTimeEnd());
+            statement.setTime(5,newBus.getArriveTimeStart());
+            statement.setTime(6,newBus.getDepartTimeEnd());
+            statement.setString(7,newBus.getDepartLocation());
+            statement.setString(8,newBus.getArriveLocation());
+            statement.setInt(9,newBus.getBusId());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -179,6 +181,88 @@ public class EventDAOManager extends Connection implements EventDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
 
+        }
+        return null;
+    }
+
+    @Override
+    public boolean joinEvent(User user, Event event, boolean joinBus) {
+        System.out.println(joinBus);
+        if(joinBus)
+        {
+            Bus bus = this.getBus(event.getBus().getBusId());
+            if(!(bus.getOccupiedSeats() >= bus.getNoSeats()))
+            {
+                System.out.println(bus.getBusId());
+                bus.setOccupiedSeats(bus.getOccupiedSeats()+1);
+                this.editBus(bus);
+            }
+            else return false;
+
+        }
+        try(java.sql.Connection connection = getConnection()){
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO viaclub.eventlist(eventid,userid,isinbus) VALUES(?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1,event.getEventId());
+            statement.setInt(2,user.getUser_id());
+            statement.setBoolean(3,joinBus);
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if(resultSet.next())
+            {
+                System.out.println("INSERTED the user with the id: " + resultSet.getInt("userid") + "\n in the event with the ID: " + resultSet.getInt("eventid"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean leaveEvent(User user, Event event) {
+        try(java.sql.Connection connection = getConnection()){
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM viaclub.eventlist WHERE userid = ? AND eventid = ?",Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1,user.getUser_id());
+            statement.setInt(2,event.getEventId());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if(resultSet.next())
+            {
+                if(resultSet.getBoolean("isinbus"))
+                {
+                    Bus bus = this.getBus(event.getBus().getBusId());
+                    bus.setOccupiedSeats(bus.getOccupiedSeats()-1);
+                    this.editBus(bus);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public ArrayList<User> getUserList(Event event) {
+        try(java.sql.Connection connection = getConnection()) {
+            ArrayList<User> users = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM viaclub.useraccount NATURAL JOIN eventlist WHERE eventlist.eventid = ?");
+            statement.setInt(1,event.getEventId());
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                int user_id = resultSet.getInt("user_id");
+                String email = resultSet.getString("email");
+                String password_name = resultSet.getString("password");
+                String username_name = resultSet.getString("username");
+                boolean adminCon = resultSet.getBoolean("admincondition");
+                User user = new User(email, password_name, username_name);
+                user.setUser_id(user_id);
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }
@@ -239,5 +323,4 @@ public class EventDAOManager extends Connection implements EventDAO {
         }
         return null;
     }
-
 }

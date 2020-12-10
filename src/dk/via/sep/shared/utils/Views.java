@@ -15,5 +15,6 @@ public enum Views {
     ADMIN_EDIT_EVENT,
     ADMIN_CREATE_EVENT,
     ADMIN_USERLIST,
-    USERLIST
+    USERLIST,
+    USER_EVENT_DETAILS,
 }

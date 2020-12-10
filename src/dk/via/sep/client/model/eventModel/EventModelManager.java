@@ -1,6 +1,7 @@
 package dk.via.sep.client.model.eventModel;
 
 import dk.via.sep.client.core.ClientFactory;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.eventClient.EventClient;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
@@ -50,6 +51,31 @@ public class EventModelManager implements EventModel {
     @Override
     public ArrayList<Event> getEventList() {
         return eventClient.getEventList();
+    }
+
+    @Override
+    public void joinEvent(boolean b) {
+        User user = LoggedUser.getInstance().getUser();
+        Event event = LoggedUser.getInstance().getSelectedEvent();
+        System.out.println("I got here -> model");
+        boolean success = eventClient.joinEvent(user,event, b);
+        if(success) support.firePropertyChange(UserAction.EVENT_JOIN_SUCCESS.toString(),user,event);
+        else support.firePropertyChange(UserAction.EVENT_JOIN_FAILED.toString(),null,null);
+    }
+
+    @Override
+    public void leaveEvent() {
+        User user = LoggedUser.getInstance().getUser();
+        Event event = LoggedUser.getInstance().getSelectedEvent();
+        boolean success = eventClient.leaveEvent(user,event);
+        if(success) support.firePropertyChange(UserAction.EVENT_LEAVE_SUCCESS.toString(),user,event);
+        else support.firePropertyChange(UserAction.EVENT_LEAVE_FAILED.toString(),null,null);
+
+    }
+
+    @Override
+    public ArrayList<User> getUserList(Event event) {
+        return eventClient.getUserList(event);
     }
 
     @Override

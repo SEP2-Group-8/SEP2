@@ -2,6 +2,7 @@ package dk.via.sep.server.networking.eventServerHandler;
 
 import dk.via.sep.server.model.eventServerModel.EventServerModel;
 import dk.via.sep.shared.transfer.Event;
+import dk.via.sep.shared.transfer.User;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -38,5 +39,20 @@ public class EventServerHandler implements EventServer {
     @Override
     public ArrayList<Event> getEventList() {
         return eventServerModel.getEventList();
+    }
+
+    @Override
+    public boolean joinEvent(User user, Event event, boolean b) {
+        return eventServerModel.joinEvent(user,event,b);
+    }
+
+    @Override
+    public boolean leaveEvent(User user, Event event) {
+        return eventServerModel.leaveEvent(user,event);
+    }
+
+    @Override
+    public ArrayList<User> getUserList(Event event) {
+        return eventServerModel.getUserList(event);
     }
 }

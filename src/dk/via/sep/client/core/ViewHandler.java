@@ -99,6 +99,10 @@ public class ViewHandler {
         viewController = ViewControllerFactory.getViewController(Views.USER_EVENT_MAIN);
         showView(viewController, pane);
     }
+    public void openUserEventDetailsView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.USER_EVENT_DETAILS);
+        showView(viewController,pane);
+    }
 
     private void showView(ViewController viewController, Pane pane) {
         Platform.runLater(() -> {

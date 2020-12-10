@@ -31,6 +31,7 @@ public class AdminMainEventViewModel implements Subject {
 
     public void getEventList(){
         ArrayList<Event> events = eventModel.getEventList();
+        if (events!= null)
         for (Event event: events) {
             support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, event);
         }
