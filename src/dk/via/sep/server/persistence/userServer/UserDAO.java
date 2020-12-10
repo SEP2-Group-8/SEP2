@@ -12,4 +12,6 @@ public interface UserDAO {
     ArrayList<User> getAllAdmins();
 
     User getUser(String username, String password);
+
+    boolean removeUser(User user);
 }

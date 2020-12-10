@@ -69,6 +69,19 @@ public class UserDAOManager extends Connection implements UserDAO {
     }
 
     @Override
+    public boolean removeUser(User user) {
+        try(java.sql.Connection connection = getConnection()){
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM viaclub.useraccount WHERE username = ?");
+            statement.setString(1,user.getUsername());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
         try (java.sql.Connection connection = getConnection()) {
