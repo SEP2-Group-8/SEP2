@@ -13,4 +13,6 @@ public interface EventModel extends Subject {
     void editEvent(Event selectedEvent);
 
     ArrayList<Event> getEventList();
+
+    void getEventListAsync();
 }

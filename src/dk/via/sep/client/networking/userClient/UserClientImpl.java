@@ -90,6 +90,15 @@ public class UserClientImpl implements UserClient, UserClientCallback {
     }
 
     @Override
+    public void deleteAccount() {
+        try {
+            server.deleteAccount(LoggedUser.getInstance().getUser());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
     }

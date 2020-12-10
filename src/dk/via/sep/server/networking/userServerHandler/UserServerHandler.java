@@ -21,32 +21,37 @@ public class UserServerHandler implements UserServer {
     }
 
     @Override
-    public void registerClient(UserClientCallback client) throws RemoteException {
+    public void registerClient(UserClientCallback client) {
         //depends on what else we add if we need this method or not
     }
 
     @Override
-    public User login(String username, String password) throws RemoteException {
+    public User login(String username, String password) {
         return userServerModel.login(username, password);
     }
 
     @Override
-    public boolean registerAccount(User user) throws RemoteException {
+    public boolean registerAccount(User user) {
         return userServerModel.addUser(user);
     }
 
     @Override
-    public void logOut() throws RemoteException {
+    public void logOut() {
         userServerModel.logOut();
     }
 
     @Override
-    public ArrayList<User> getUserList() throws RemoteException {
+    public ArrayList<User> getUserList() {
         return userServerModel.getUserList();
     }
 
     @Override
-    public ArrayList<User> getActiveUsers() throws RemoteException {
+    public ArrayList<User> getActiveUsers() {
         return userServerModel.getActiveUsers();
+    }
+
+    @Override
+    public void deleteAccount(User user) {
+        userServerModel.deleteAccount(user);
     }
 }

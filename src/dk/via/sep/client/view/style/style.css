@@ -103,3 +103,50 @@
 .create-event-text-small{
     -fx-font-size: 16px;
 }
+
+/* chat view */
+.chat-sidebar{
+    -fx-background-color: mediumseagreen;
+}
+.chat-sidebar-name{
+    -fx-background-color: #308f5a;
+}
+.chat{
+    -fx-background-color: #c3e6ce;
+}
+.chat-name{
+    -fx-background-color: #64c088;
+}
+.chat-main{
+    -fx-background-color: #265639;
+}
+.chat-text{
+    -fx-background-color: white;
+}
+.chat-username{
+    -fx-font-size: 20px;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.chat-padding{
+    -fx-padding: 15px;
+}
+.message{
+    -fx-background-color: #054740;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 15px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+}
+.chat-name-small{
+    -fx-font-size: 14px;
+}
+.chat-last-sent{
+    -fx-font-size: 14px;
+    -fx-text-fill: dimgray;
+}
+.chat-selected-user{
+    -fx-background-color: #308f5a;
+}

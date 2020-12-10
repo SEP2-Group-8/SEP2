@@ -13,5 +13,6 @@ public enum UserAction {
     EVENT_CREATE,
     EVENT_CREATE_SUCCESS,
     EVENT_CREATE_FAILED,
-    EVENT_EDIT
+    EVENT_EDIT,
+    EVENT_LIST
 }

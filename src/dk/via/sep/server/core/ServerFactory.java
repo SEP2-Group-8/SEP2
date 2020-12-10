@@ -1,5 +1,7 @@
 package dk.via.sep.server.core;
 
+import dk.via.sep.server.networking.chatServerHandler.ChatServer;
+import dk.via.sep.server.networking.chatServerHandler.ChatServerHandler;
 import dk.via.sep.server.networking.eventServerHandler.EventServer;
 import dk.via.sep.server.networking.eventServerHandler.EventServerHandler;
 import dk.via.sep.server.networking.userServerHandler.UserServer;
@@ -14,6 +16,7 @@ public class ServerFactory implements ServerFactoryInterface {
     private final ServerModelFactory serverModelFactory;
     private UserServer userServer;
     private EventServer eventServer;
+    private ChatServer chatServer;
     private final Lock lock;
 
     public ServerFactory(ServerModelFactory serverModelFactory) throws RemoteException {
@@ -44,6 +47,18 @@ public class ServerFactory implements ServerFactoryInterface {
             }
         }
         return eventServer;
+    }
+
+    @Override
+    public ChatServer getChatServer() {
+        if (chatServer == null) {
+            synchronized (lock) {
+                if (chatServer == null) {
+                    chatServer = new ChatServerHandler(serverModelFactory.getChatServerModel());
+                }
+            }
+        }
+        return chatServer;
     }
 
 }

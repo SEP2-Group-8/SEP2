@@ -62,6 +62,7 @@ public class AdminEditEventViewController extends ViewController {
 
     public void saveChanges(){
         adminEditEventViewModel.saveEventChanges();
+        viewHandler.openMainView();
     }
 
     public void goBack(){

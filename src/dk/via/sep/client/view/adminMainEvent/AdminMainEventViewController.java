@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 
 public class AdminMainEventViewController extends ViewController {
     private ViewHandler viewHandler;
@@ -35,20 +36,43 @@ public class AdminMainEventViewController extends ViewController {
         viewHandler = ViewHandler.getInstance();
         adminMainEventViewModel = ViewModelFactory.getInstance().getAdminMainEventViewModel();
         adminMainEventViewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::addEvent);
-        adminMainEventViewModel.addListener(UserAction.EVENT_CREATE.toString(), this::addEvent);
+        adminMainEventViewModel.addListener(UserAction.EVENT_CREATE_FAILED.toString(), this::eventFailed);
+        adminMainEventViewModel.addListener(UserAction.EVENT_CREATE.toString(), this::updateEventList);
         adminMainEventViewModel.addListener(UserAction.EVENT_REMOVE.toString(), this::updateEventList);
         adminMainEventViewModel.addListener(UserAction.EVENT_EDIT.toString(), this::updateEventList);
+        adminMainEventViewModel.addListener(UserAction.EVENT_LIST.toString(), this::updateEventListAsync);
+    }
+
+    private void updateEventListAsync(PropertyChangeEvent event) {
+        Platform.runLater(() -> {
+            eventVBox.getChildren().clear();
+            ArrayList<Event> events = (ArrayList<Event>) event.getNewValue();
+            if (!(events == null)) {
+                for (Event eventItem : events) {
+                    addEvent(eventItem);
+                }
+            }
+        });
+    }
+
+    private void eventFailed(PropertyChangeEvent event) {
+
+    }
+
+    private void eventSuccess(PropertyChangeEvent event) {
+
     }
 
     private void updateEventList(PropertyChangeEvent event) {
-        Platform.runLater(() ->{
+        Platform.runLater(() -> {
             eventVBox.getChildren().clear();
             adminMainEventViewModel.getEventList();
         });
     }
 
-    public void init(){
-        adminMainEventViewModel.getEventList();
+    public void init() {
+        eventVBox.getChildren().clear();
+        adminMainEventViewModel.getEventListAsync();
     }
 
     private void addEvent(PropertyChangeEvent event) {
@@ -57,7 +81,13 @@ public class AdminMainEventViewController extends ViewController {
         });
     }
 
-    public void addEvent(){
+    private void addEvent(Event event) {
+        Platform.runLater(() -> {
+            eventVBox.getChildren().add(createEventHBox(event));
+        });
+    }
+
+    public void addEvent() {
         viewHandler.openCreateEventView(null);
     }
 
@@ -104,8 +134,8 @@ public class AdminMainEventViewController extends ViewController {
 
         hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             LoggedUser.getInstance().setSelectedEvent(event);
-            System.out.println("Event clicked "+event.getEventName());
-                viewHandler.openAdminEventDetailsView(null);
+            System.out.println("Event clicked " + event.getEventName());
+            viewHandler.openAdminEventDetailsView(null);
         });
 
         return hBox;

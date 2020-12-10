@@ -23,6 +23,8 @@ public class AdminMainEventViewModel implements Subject {
         eventModel.addListener(UserAction.EVENT_CREATE_FAILED.toString(), this::onReceiveRequest);
         eventModel.addListener(UserAction.EVENT_REMOVE.toString(), this::onReceiveRequest);
         eventModel.addListener(UserAction.EVENT_EDIT.toString(), this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_CREATE.toString(), this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_LIST.toString(), this::onReceiveRequest);
     }
 
     private void onReceiveRequest(PropertyChangeEvent event) {
@@ -31,10 +33,11 @@ public class AdminMainEventViewModel implements Subject {
 
     public void getEventList(){
         ArrayList<Event> events = eventModel.getEventList();
-        for (Event event: events) {
-            support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, event);
+        if(events != null) {
+            for (Event event: events) {
+                support.firePropertyChange(UserAction.EVENT_CREATE_SUCCESS.toString(), null, event);
+            }
         }
-
     }
 
     @Override
@@ -45,5 +48,9 @@ public class AdminMainEventViewModel implements Subject {
     @Override
     public void removeListener(String eventName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(eventName, listener);
+    }
+
+    public void getEventListAsync() {
+        eventModel.getEventListAsync();
     }
 }
