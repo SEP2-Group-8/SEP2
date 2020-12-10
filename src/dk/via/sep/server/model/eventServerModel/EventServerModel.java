@@ -14,13 +14,12 @@ public interface EventServerModel extends Subject {
 
     void removeEvent(Event event);
 
-    boolean editEvent(Event newEvent);
-
     boolean joinEvent(User user, Event event, boolean b);
 
     boolean leaveEvent(User user, Event event);
 
     ArrayList<User> getUserList(Event event);
+
     void editEvent(Event newEvent);
 
     void getEventListASync(UUID clientID);

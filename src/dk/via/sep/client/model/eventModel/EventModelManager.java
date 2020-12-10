@@ -1,6 +1,7 @@
 package dk.via.sep.client.model.eventModel;
 
 import dk.via.sep.client.core.ClientFactory;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.eventClient.EventClient;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
