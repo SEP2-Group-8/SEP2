@@ -40,9 +40,14 @@ public class ProfileEditViewModel {
     }
 
     public void saveChanges(){
-        User user = new User(emailLabel.getValue(), passwordLabel.getValue(), nameLabel.getValue());
-        user.setUser_id(LoggedUser.getInstance().getUser().getUser_id());
-        System.out.println(user.toString());
-        userModel.editUserDetails(user);
+        User currentUser = LoggedUser.getInstance().getUser();
+        if(emailLabel.getValue() !=null)
+            currentUser.setEmail(emailLabel.getValue());
+        if(passwordLabel.getValue() !=null)
+            currentUser.setPassword(passwordLabel.getValue());
+        if(nameLabel.getValue() != null)
+            currentUser.setUsername(nameLabel.getValue());
+        System.out.println(currentUser.toString());
+        userModel.editUserDetails(currentUser);
     }
 }
