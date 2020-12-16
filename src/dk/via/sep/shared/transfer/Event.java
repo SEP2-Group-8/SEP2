@@ -86,8 +86,7 @@ public class Event implements Serializable {
             return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Event event = (Event) obj;
-        return Objects.equals(date, event.date) && Objects.equals(startTime, event.startTime)
-                && Objects.equals(location, event.location) && Objects.equals(description, event.description)
+        return Objects.equals(location, event.location) && Objects.equals(description, event.description)
                 && Objects.equals(eventName, event.eventName);
     }
 

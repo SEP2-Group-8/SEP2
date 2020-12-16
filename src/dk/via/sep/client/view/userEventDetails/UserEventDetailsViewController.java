@@ -2,6 +2,7 @@ package dk.via.sep.client.view.userEventDetails;
 
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.view.ViewController;
 import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.UserAction;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 
 public class UserEventDetailsViewController extends ViewController {
 
@@ -74,13 +76,14 @@ public class UserEventDetailsViewController extends ViewController {
     {
         viewHandler = ViewHandler.getInstance();
         viewModel = ViewModelFactory.getInstance().getUserEventDetailsViewModel();
+        viewModel.addListener(UserAction.EVENT_JOIN.toString(), this::addUserToList);
+        viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::userListUpdated);
+        viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::userListUpdated);
     }
 
     public void init()
     {
         viewModel.getUserList();
-        chatButton.visibleProperty().setValue(false);
-        leaveButton.visibleProperty().setValue(false);
         viewModel.initView();
         eventName.textProperty().bind(viewModel.eventNameProperty());
         eventDate.textProperty().bind(viewModel.eventDateProperty());
@@ -95,9 +98,6 @@ public class UserEventDetailsViewController extends ViewController {
         busDepartLocationStartTime.textProperty().bind(viewModel.busDepartLocationStartTimeProperty());
         busDepartLocationEndTime.textProperty().bind(viewModel.busDepartLocationEndTimeProperty());
         busCheckBox.selectedProperty().bindBidirectional(viewModel.busCheckProperty());
-        viewModel.addListener(UserAction.EVENT_JOIN.toString(),this::addUserToList);
-        viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::userListUpdated);
-        viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::userListUpdated);
     }
 
     private void userListUpdated(PropertyChangeEvent event) {
@@ -107,9 +107,26 @@ public class UserEventDetailsViewController extends ViewController {
         });
     }
 
-    private void addUserToList(PropertyChangeEvent event)
-    {
-        userListVBox.getChildren().add(createUserHBox((User) event.getNewValue()));
+    private void addUserToList(PropertyChangeEvent event) {
+        boolean helper = false;
+        System.out.println("I got here");
+        ArrayList<User> userList = (ArrayList<User>) event.getNewValue();
+        for (User user : userList)
+            if (user.equals(LoggedUser.getInstance().getUser()))
+                helper = true;
+        if (helper) {
+            Platform.runLater(() -> {
+                joinButton.setDisable(true);
+                leaveButton.setDisable(false);
+                chatButton.setDisable(false);
+            });
+        } else {
+            Platform.runLater(() -> {
+                joinButton.setDisable(false);
+                leaveButton.setDisable(true);
+                chatButton.setDisable(true);
+            });
+        }
     }
 
     public HBox createUserHBox(User user)
@@ -123,15 +140,17 @@ public class UserEventDetailsViewController extends ViewController {
         System.out.println("no chat for now");
     }
 
-    public void exit(){
+    public void exit() {
         System.exit(0);
     }
 
-    public void minimize(){
+    public void minimize() {
         viewHandler.minimize();
     }
 
-    public void goBack(ActionEvent actionEvent) { viewHandler.openMainView(); }
+    public void goBack(ActionEvent actionEvent) {
+        viewHandler.openMainView();
+    }
 
     public void leaveEvent(ActionEvent actionEvent) {
         viewModel.leaveEvent();

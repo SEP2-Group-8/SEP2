@@ -82,6 +82,22 @@ public class UserDAOManager extends Connection implements UserDAO {
     }
 
     @Override
+    public void editUser(User user) {
+        try(java.sql.Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE viaclub.useraccount SET username=?,password=?,email=? WHERE user_id = ?");
+            statement.setString(1,user.getUsername());
+            statement.setString(2,user.getPassword());
+            statement.setString(3,user.getEmail());
+            statement.setInt(4,user.getUser_id());
+            statement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
         try (java.sql.Connection connection = getConnection()) {

@@ -1,6 +1,7 @@
 package dk.via.sep.client.view.profileEdit;
 
 import dk.via.sep.client.core.ModelFactory;
+import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.transfer.User;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,6 +41,7 @@ public class ProfileEditViewModel {
 
     public void saveChanges(){
         User user = new User(emailLabel.getValue(), passwordLabel.getValue(), nameLabel.getValue());
+        user.setUser_id(LoggedUser.getInstance().getUser().getUser_id());
         System.out.println(user.toString());
         userModel.editUserDetails(user);
     }

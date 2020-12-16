@@ -38,7 +38,8 @@ public class UserEventDetailsViewModel implements Subject {
     private BooleanProperty busCheck;
 
 
-    public UserEventDetailsViewModel() {
+    public UserEventDetailsViewModel()
+    {
         eventModel = ModelFactory.getInstance().getEventModel();
         support = new PropertyChangeSupport(this);
         eventName = new SimpleStringProperty();
@@ -98,9 +99,7 @@ public class UserEventDetailsViewModel implements Subject {
         return busID;
     }
 
-    public StringProperty busDepartLocationProperty() {
-        return busDepartLocation;
-    }
+    public StringProperty busDepartLocationProperty() { return busDepartLocation; }
 
     public StringProperty busArriveLocationProperty() {
         return busArriveLocation;
@@ -130,9 +129,7 @@ public class UserEventDetailsViewModel implements Subject {
         return eventTime;
     }
 
-    public BooleanProperty busCheckProperty() {
-        return busCheck;
-    }
+    public BooleanProperty busCheckProperty() { return busCheck; }
 
     public void removeEvent(Event selectedEvent) {
         eventModel.removeEvent(selectedEvent);

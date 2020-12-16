@@ -245,7 +245,8 @@ public class EventDAOManager extends Connection implements EventDAO {
     public ArrayList<User> getUserList(Event event) {
         try(java.sql.Connection connection = getConnection()) {
             ArrayList<User> users = new ArrayList<>();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM viaclub.useraccount NATURAL JOIN eventlist WHERE eventlist.eventid = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM viaclub.useraccount NATURAL JOIN viaclub.eventlist WHERE eventlist.eventid = ?" +
+                    " AND viaclub.useraccount.user_id = eventlist.userid");
             statement.setInt(1,event.getEventId());
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()) {
@@ -253,7 +254,6 @@ public class EventDAOManager extends Connection implements EventDAO {
                 String email = resultSet.getString("email");
                 String password_name = resultSet.getString("password");
                 String username_name = resultSet.getString("username");
-                boolean adminCon = resultSet.getBoolean("admincondition");
                 User user = new User(email, password_name, username_name);
                 user.setUser_id(user_id);
                 users.add(user);
