@@ -65,6 +65,8 @@ public class ViewControllerFactory {
                 case USER_EVENT_DETAILS:
                     viewController = createNewViewController("userEventDetails/UserEventDetailsView.fxml");
                     break;
+                case PROFILE_EDIT:
+                    viewController = createNewViewController("profileEdit/ProfileEditView.fxml");
             }
             viewControllers.put(id, viewController);
         }

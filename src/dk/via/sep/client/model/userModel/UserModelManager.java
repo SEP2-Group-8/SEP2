@@ -26,6 +26,7 @@ public class UserModelManager implements UserModel {
 
         this.client.addListener(UserAction.REGISTER_SUCCESS.toString(), this::onReceiveRequest);
         this.client.addListener(UserAction.REGISTER_FAILED.toString(), this::onReceiveRequest);
+        this.client.addListener(UserAction.PROFILE_EDIT.toString(), this::onReceiveRequest);
 
         this.client.startClient();
     }
@@ -62,6 +63,11 @@ public class UserModelManager implements UserModel {
     @Override
     public void deleteAccount() {
         client.deleteAccount();
+    }
+
+    @Override
+    public void editUserDetails(User user) {
+        client.editUserDetails(user);
     }
 
     @Override

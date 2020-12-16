@@ -3,11 +3,14 @@ package dk.via.sep.client.view.profile;
 import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.model.userModel.UserModel;
+import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.Clock;
 import dk.via.sep.shared.utils.Subject;
+import dk.via.sep.shared.utils.UserAction;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDateTime;
@@ -31,6 +34,17 @@ public class ProfileViewModel implements Subject {
         birthdayLabel = new SimpleStringProperty();
         support = new PropertyChangeSupport(this);
 
+        userModel.addListener(UserAction.PROFILE_EDIT.toString(), this::updateProfile);
+    }
+
+    private void updateProfile(PropertyChangeEvent event) {
+        User user = (User) event.getNewValue();
+        LoggedUser.getInstance().setUser(user);
+        System.out.println("got here");
+        getNameLabel();
+        getPasswordLabel();
+        getEmailLabel();
+        getBirthdayLabel();
     }
 
     public StringProperty getNameLabel() {

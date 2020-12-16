@@ -38,8 +38,7 @@ public class UserEventDetailsViewModel implements Subject {
     private BooleanProperty busCheck;
 
 
-    public UserEventDetailsViewModel()
-    {
+    public UserEventDetailsViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
         support = new PropertyChangeSupport(this);
         eventName = new SimpleStringProperty();
@@ -55,10 +54,10 @@ public class UserEventDetailsViewModel implements Subject {
         busSeats = new SimpleStringProperty();
         eventTime = new SimpleStringProperty();
         busCheck = new SimpleBooleanProperty();
-        eventModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::onReceiveRequest);
-        eventModel.addListener(UserAction.EVENT_JOIN_FAILED.toString(),this::onReceiveRequest);
-        eventModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::onReceiveRequest);
-        eventModel.addListener(UserAction.EVENT_LEAVE_FAILED.toString(),this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(), this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_JOIN_FAILED.toString(), this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(), this::onReceiveRequest);
+        eventModel.addListener(UserAction.EVENT_LEAVE_FAILED.toString(), this::onReceiveRequest);
     }
 
     private void onReceiveRequest(PropertyChangeEvent event) {
@@ -99,7 +98,9 @@ public class UserEventDetailsViewModel implements Subject {
         return busID;
     }
 
-    public StringProperty busDepartLocationProperty() { return busDepartLocation; }
+    public StringProperty busDepartLocationProperty() {
+        return busDepartLocation;
+    }
 
     public StringProperty busArriveLocationProperty() {
         return busArriveLocation;
@@ -129,7 +130,9 @@ public class UserEventDetailsViewModel implements Subject {
         return eventTime;
     }
 
-    public BooleanProperty busCheckProperty() { return busCheck; }
+    public BooleanProperty busCheckProperty() {
+        return busCheck;
+    }
 
     public void removeEvent(Event selectedEvent) {
         eventModel.removeEvent(selectedEvent);
@@ -147,9 +150,9 @@ public class UserEventDetailsViewModel implements Subject {
     public void getUserList() {
         Event event = LoggedUser.getInstance().getSelectedEvent();
         ArrayList<User> userList = eventModel.getUserList(event);
-        if(userList!= null)
-            for(User user: userList)
-            support.firePropertyChange(UserAction.EVENT_JOIN.toString(),null,event);
+        if (userList != null)
+            for (User user : userList)
+                support.firePropertyChange(UserAction.EVENT_JOIN.toString(), null, user);
     }
 
     @Override

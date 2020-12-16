@@ -13,7 +13,7 @@ public interface UserServerCallback extends Remote {
 
     User login(String username, String password) throws RemoteException;
 
-    void registerClient(UserClientCallback client) throws RemoteException;
+    void registerClient(UserClientCallback client, UUID clientID) throws RemoteException;
 
     void logOut() throws RemoteException;
 
@@ -22,4 +22,6 @@ public interface UserServerCallback extends Remote {
     ArrayList<User> getActiveUsers() throws RemoteException;
 
     void deleteAccount(User user) throws RemoteException;
+
+    void editUserDetails(User user, UUID clientID) throws RemoteException;
 }

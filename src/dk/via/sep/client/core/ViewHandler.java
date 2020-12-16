@@ -104,6 +104,11 @@ public class ViewHandler {
         showView(viewController,pane);
     }
 
+    public void openProfileEditView(Pane pane){
+        viewController = ViewControllerFactory.getViewController(Views.PROFILE_EDIT);
+        showView(viewController, pane);
+    }
+
     private void showView(ViewController viewController, Pane pane) {
         Platform.runLater(() -> {
             if (pane == null) {

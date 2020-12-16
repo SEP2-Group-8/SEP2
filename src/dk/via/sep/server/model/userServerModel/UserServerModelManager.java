@@ -49,6 +49,14 @@ public class UserServerModelManager implements UserServerModel {
     }
 
     @Override
+    public void editUserDetails(User user, UUID clientID) {
+        //method here
+        System.out.println(user.toString());
+        //User newUser = userDAO.getUser(user.getUsername(), user.getPassword());
+        support.firePropertyChange(UserAction.PROFILE_EDIT.toString() + clientID, null, user);
+    }
+
+    @Override
     public User login(String username, String password) {
         User user;
         synchronized (lock) {

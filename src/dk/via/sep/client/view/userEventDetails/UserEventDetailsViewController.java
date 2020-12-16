@@ -95,9 +95,9 @@ public class UserEventDetailsViewController extends ViewController {
         busDepartLocationStartTime.textProperty().bind(viewModel.busDepartLocationStartTimeProperty());
         busDepartLocationEndTime.textProperty().bind(viewModel.busDepartLocationEndTimeProperty());
         busCheckBox.selectedProperty().bindBidirectional(viewModel.busCheckProperty());
-        //viewModel.addListener(UserAction.EVENT_JOIN.toString(),this::addUserToList);
-        //viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::userListUpdated);
-        //viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::userListUpdated);
+        viewModel.addListener(UserAction.EVENT_JOIN.toString(),this::addUserToList);
+        viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::userListUpdated);
+        viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::userListUpdated);
     }
 
     private void userListUpdated(PropertyChangeEvent event) {
@@ -115,6 +115,7 @@ public class UserEventDetailsViewController extends ViewController {
     public HBox createUserHBox(User user)
     {
         HBox hBox = new HBox();
+
         return hBox;
     }
 

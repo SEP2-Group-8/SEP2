@@ -15,4 +15,6 @@ public interface UserModel extends Subject {
     ArrayList<User> getUserList();
 
     void deleteAccount();
+
+    void editUserDetails(User user);
 }

@@ -64,7 +64,10 @@ public class ProfileViewController extends ViewController {
         } else{
             JOptionPane.showMessageDialog(null, "Operation aborted");
         }
+    }
 
+    public void editAccount(){
+        viewHandler.openProfileEditView(null);
     }
 
 

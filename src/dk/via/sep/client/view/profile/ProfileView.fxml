@@ -25,7 +25,7 @@
       <Label fx:id="emailLabel" layoutX="145.0" layoutY="373.0" styleClass="profile-item" text="email@email.com" />
       <Label fx:id="birthdayLabel" layoutX="140.0" layoutY="408.0" styleClass="profile-item" text="07/04/2001" />
       <Label fx:id="clock" layoutX="35.0" layoutY="519.0" styleClass="clock" text="12:45 AM" />
-      <Button layoutX="659.0" layoutY="529.0" mnemonicParsing="false" styleClass="login-button" text="Update" />
+      <Button layoutX="659.0" layoutY="529.0" mnemonicParsing="false" onAction="#editAccount" styleClass="login-button" text="Update" />
       <ImageView fitHeight="335.0" fitWidth="336.0" layoutX="428.0" layoutY="154.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../style/icons/linux.png" />

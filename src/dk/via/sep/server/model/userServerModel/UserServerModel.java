@@ -18,4 +18,6 @@ public interface UserServerModel extends Subject {
     ArrayList<User> getActiveUsers();
 
     void deleteAccount(User user);
+
+    void editUserDetails(User user, UUID clientID);
 }

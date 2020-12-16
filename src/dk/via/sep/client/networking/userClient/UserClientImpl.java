@@ -4,6 +4,7 @@ import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.networking.Connection;
 import dk.via.sep.shared.networking.userServerRemote.UserClientCallback;
 import dk.via.sep.shared.networking.userServerRemote.UserServerCallback;
+import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.transfer.User;
 import dk.via.sep.shared.utils.UserAction;
 
@@ -37,7 +38,7 @@ public class UserClientImpl implements UserClient, UserClientCallback {
         try {
             User user = server.login(username, password);
             if (user != null) {
-                server.registerClient(this);
+                server.registerClient(this, LoggedUser.getInstance().getClientID());
             }
             return user;
         } catch (RemoteException e) {
@@ -96,6 +97,21 @@ public class UserClientImpl implements UserClient, UserClientCallback {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void editUserDetails(User user) {
+        try {
+            server.editUserDetails(user, LoggedUser.getInstance().getClientID());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateProfile(User newUser) {
+        System.out.println(newUser.toString()+" back from server");
+        support.firePropertyChange(UserAction.PROFILE_EDIT.toString(), null, newUser);
     }
 
     @Override

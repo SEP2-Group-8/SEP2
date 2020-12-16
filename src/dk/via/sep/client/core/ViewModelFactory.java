@@ -10,6 +10,7 @@ import dk.via.sep.client.view.login.LoginViewModel;
 import dk.via.sep.client.view.main.MainViewModel;
 import dk.via.sep.client.view.mainChatView.MainChatViewModel;
 import dk.via.sep.client.view.profile.ProfileViewModel;
+import dk.via.sep.client.view.profileEdit.ProfileEditViewModel;
 import dk.via.sep.client.view.register.RegisterViewModel;
 import dk.via.sep.client.view.userEventDetails.UserEventDetailsViewModel;
 import dk.via.sep.client.view.userList.UserListViewModel;
@@ -30,6 +31,7 @@ public class ViewModelFactory {
     private final UserMainEventViewModel userMainEventViewModel;
     private final UserEventDetailsViewModel userEventDetailsViewModel;
     private final MainChatViewModel mainChatViewModel;
+    private final ProfileEditViewModel profileEditViewModel;
     private static ViewModelFactory viewModelFactory;
 
     private ViewModelFactory() {
@@ -46,6 +48,7 @@ public class ViewModelFactory {
         userMainEventViewModel = new UserMainEventViewModel();
         userEventDetailsViewModel = new UserEventDetailsViewModel();
         mainChatViewModel = new MainChatViewModel();
+        profileEditViewModel = new ProfileEditViewModel();
     }
 
     public static ViewModelFactory getInstance() {
@@ -98,7 +101,15 @@ public class ViewModelFactory {
         return mainChatViewModel;
     }
 
-    public UserMainEventViewModel getUserMainEventViewModel() { return userMainEventViewModel; }
+    public UserMainEventViewModel getUserMainEventViewModel() {
+        return userMainEventViewModel;
+    }
 
-    public UserEventDetailsViewModel getUserEventDetailsViewModel() { return userEventDetailsViewModel; }
+    public UserEventDetailsViewModel getUserEventDetailsViewModel() {
+        return userEventDetailsViewModel;
+    }
+
+    public ProfileEditViewModel getProfileEditViewModel() {
+        return profileEditViewModel;
+    }
 }

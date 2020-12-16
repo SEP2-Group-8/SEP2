@@ -9,6 +9,7 @@ public enum Views {
     USER_EVENT_MAIN,
     CHAT_MAIN,
     PROFILE,
+    PROFILE_EDIT,
     EVENTS_MAIN,
     ADMIN_EVENTS_MAIN,
     ADMIN_EVENT_DETAILS,
