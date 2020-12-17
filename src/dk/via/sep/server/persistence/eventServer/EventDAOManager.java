@@ -8,11 +8,20 @@ import dk.via.sep.shared.transfer.User;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author Constantin Mihail
+ * @version 1.0.0
+ * Implementation for the eventDAO interface that will send forward data towards a database hosted on a cloud.
+ */
 public class EventDAOManager extends Connection implements EventDAO {
     public java.sql.Connection getConnection() throws SQLException {
         return super.getConnection();
     }
 
+    /**
+     * A method that returns the list of event that is currently available in the database
+     * @return ArrayList of type Event
+     */
     @Override
     public ArrayList<Event> getEventList() {
         try (java.sql.Connection connection = getConnection())
@@ -42,8 +51,12 @@ public class EventDAOManager extends Connection implements EventDAO {
     }
 
 
-
-
+    /**
+     * Method that adds a new event in the database, based on whatever Event class it's receiving. Also this method includes the call
+     * of the createBus method, which creates the bus the event comes with.
+     * @param event Event class containing the details we need for the database
+     * @return boolean that represents if the event was created or not.
+     */
     @Override
     public boolean createEvent(Event event) {
         this.createBus(event.getBus());
@@ -72,6 +85,11 @@ public class EventDAOManager extends Connection implements EventDAO {
         return true;
     }
 
+    /**
+     * Method that removes an event from the list in the database.
+     * @param event an Event class that represents the event sent forward to remove
+     * @return a boolean that represents if the action was successful or not
+     */
     @Override
     public boolean removeEvent(Event event) {
         try (java.sql.Connection connection = getConnection())
@@ -87,6 +105,12 @@ public class EventDAOManager extends Connection implements EventDAO {
         return true;
     }
 
+    /**
+     * A method that modifies the event in the database based on the ID of the event, as the method only uses 1 parameter which is an event class.
+     * The event contains the ID of the event that needs to be modified.
+     * @param newEvent an event class parameter that contains the new data of the event but the old id
+     * @return a boolean the represents if the action was successful or not.
+     */
     @Override
     public boolean editEvent( Event newEvent) {
         editBus(newEvent.getBus());
@@ -109,7 +133,11 @@ public class EventDAOManager extends Connection implements EventDAO {
         return true;
     }
 
-
+    /**
+     * Modifies the bus of an existing event. This method is called when the editEvent method is called, as some data for the bus might be
+     * modified too.
+     * @param newBus contains the new data of the bus, except for the ID which is the id of the bus that needs to be search on.
+     */
     public void editBus(Bus newBus) {
         try(java.sql.Connection connection = getConnection())
         {
@@ -130,7 +158,10 @@ public class EventDAOManager extends Connection implements EventDAO {
         }
     }
 
-
+    /**
+     * Creates the bus that comes along with an event in the database, giving it an unique id
+     * @param bus contains the data of the bus that needs to be added in the database
+     */
     public void createBus(Bus bus) {
         try (java.sql.Connection connection = getConnection())
         {
@@ -155,6 +186,12 @@ public class EventDAOManager extends Connection implements EventDAO {
 
     }
 
+    /**
+     * Gets a specific event from the database that is searched from 2 specific values
+     * @param eventName1 contains the name that needs to be searched in the database
+     * @param startDate1 contains the date that needs to be searched in the database
+     * @return an Event class that is found in the database with those 2 specific arguments.
+     */
     @Override
     public Event getEvent(String eventName1, Date startDate1)
     {
@@ -183,6 +220,14 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
+    /**
+     * This adds the user to a list that contains users and events. The user is represented by his ID and the event is also represented by the
+     * ID. The primary keys are both of the IDs and they are also foreign keys.
+     * @param user this is the user that wants to join the event. It has its unique id stored in this class.
+     * @param event this is the event that a user wants to join. It has its unique id stored in this class.
+     * @param joinBus this represents if the user wanted to join the bus from the event or not.
+     * @return
+     */
     @Override
     public boolean joinEvent(User user, Event event, boolean joinBus) {
         System.out.println(joinBus);
@@ -216,7 +261,12 @@ public class EventDAOManager extends Connection implements EventDAO {
         return true;
     }
 
-
+    /**
+     * This removes the user from the list of people going to events, searching for the IDs of both the userid and the eventid.
+     * @param user the user that wants to leave the event.
+     * @param event the event that the user wants to leave.
+     * @return
+     */
     @Override
     public boolean leaveEvent(User user, Event event) {
         try(java.sql.Connection connection = getConnection()){
@@ -241,6 +291,11 @@ public class EventDAOManager extends Connection implements EventDAO {
         return true;
     }
 
+    /**
+     * This returns an arraylist of users that are present in the list of events. It will only return users that are signed in a specific event.
+     * @param event this is the parameter from where you get the ID.
+     * @return an ArrayList of users that are signed up in the event parameter.
+     */
     @Override
     public ArrayList<User> getUserList(Event event) {
         try(java.sql.Connection connection = getConnection()) {
@@ -265,7 +320,14 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
-
+    /**
+     * This method returns a bus that is present in the database with the information given from the 4 parameters.
+     * @param departTime1 the departing time of the bus
+     * @param arriveTime1 the arriving time of the bus
+     * @param departLocation1 the departing location of the bus
+     * @param arriveLocation1 the arriving location of the bus
+     * @return a Bus class that contains the information of the bus from the database
+     */
     public Bus getBus(Time departTime1, Time arriveTime1, String departLocation1, String arriveLocation1)
     {
         try (java.sql.Connection connection = getConnection()) {
@@ -296,6 +358,12 @@ public class EventDAOManager extends Connection implements EventDAO {
         return null;
     }
 
+    /**
+     * This method is for internal use in the DAO, as it searches for the bus using the ID. ID is unique so there cannot be multiple instances
+     * of the same bus with that ID.
+     * @param id an integer representing the ID of the bus
+     * @return the Bus that is found in the database with the given id.
+     */
     public Bus getBus(int id)
     {
         try (java.sql.Connection connection = getConnection()) {
