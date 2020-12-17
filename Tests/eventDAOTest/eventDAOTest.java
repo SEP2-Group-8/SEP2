@@ -136,7 +136,7 @@ public class eventDAOTest {
         Event newEvent = event;
         newEvent.setEventName("This");
         eventDAO.editEvent(newEvent);
-        assertFalse(newEvent.equals(helper));
+        assertFalse(eventDAO.getEvent(newEvent.getEventName(),newEvent.getDate()).equals(helper));
     }
 
     @Test
