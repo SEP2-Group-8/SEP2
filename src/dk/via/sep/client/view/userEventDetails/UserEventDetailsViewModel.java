@@ -20,26 +20,25 @@ import java.util.ArrayList;
 
 public class UserEventDetailsViewModel implements Subject {
 
-    private EventModel eventModel;
-    private PropertyChangeSupport support;
+    private final EventModel eventModel;
+    private final PropertyChangeSupport support;
 
-    private StringProperty eventName;
-    private StringProperty eventDate;
-    private StringProperty eventTime;
-    private StringProperty eventDescription;
-    private StringProperty busID;
-    private StringProperty busDepartLocation;
-    private StringProperty busArriveLocation;
-    private StringProperty busDepartLocationStartTime;
-    private StringProperty busDepartLocationEndTime;
-    private StringProperty busArriveLocationStartTime;
-    private StringProperty busArriveLocationEndTime;
-    private StringProperty busSeats;
-    private BooleanProperty busCheck;
+    private final StringProperty eventName;
+    private final StringProperty eventDate;
+    private final StringProperty eventTime;
+    private final StringProperty eventDescription;
+    private final StringProperty busID;
+    private final StringProperty busDepartLocation;
+    private final StringProperty busArriveLocation;
+    private final StringProperty busDepartLocationStartTime;
+    private final StringProperty busDepartLocationEndTime;
+    private final StringProperty busArriveLocationStartTime;
+    private final StringProperty busArriveLocationEndTime;
+    private final StringProperty busSeats;
+    private final BooleanProperty busCheck;
 
 
-    public UserEventDetailsViewModel()
-    {
+    public UserEventDetailsViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
         support = new PropertyChangeSupport(this);
         eventName = new SimpleStringProperty();
@@ -99,7 +98,9 @@ public class UserEventDetailsViewModel implements Subject {
         return busID;
     }
 
-    public StringProperty busDepartLocationProperty() { return busDepartLocation; }
+    public StringProperty busDepartLocationProperty() {
+        return busDepartLocation;
+    }
 
     public StringProperty busArriveLocationProperty() {
         return busArriveLocation;
@@ -129,7 +130,9 @@ public class UserEventDetailsViewModel implements Subject {
         return eventTime;
     }
 
-    public BooleanProperty busCheckProperty() { return busCheck; }
+    public BooleanProperty busCheckProperty() {
+        return busCheck;
+    }
 
     public void removeEvent(Event selectedEvent) {
         eventModel.removeEvent(selectedEvent);

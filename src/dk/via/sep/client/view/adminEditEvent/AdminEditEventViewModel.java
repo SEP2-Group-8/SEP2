@@ -17,18 +17,18 @@ import java.time.ZoneOffset;
 
 public class AdminEditEventViewModel {
 
-    private EventModel eventModel;
-    private StringProperty eventName;
-    private ObjectProperty<LocalDate> eventDate;
-    private StringProperty eventDescription;
-    private StringProperty eventLocation;
-    private ObjectProperty<LocalTime> eventTime;
-    private StringProperty busDepartLocation;
-    private ObjectProperty<LocalTime> busDepartLocationStartTime;
-    private ObjectProperty<LocalTime> busDepartLocationEndTime;
-    private ObjectProperty<LocalTime> busArriveLocationStartTime;
-    private ObjectProperty<LocalTime> busArriveLocationEndTime;
-    private StringProperty busSeats;
+    private final EventModel eventModel;
+    private final StringProperty eventName;
+    private final ObjectProperty<LocalDate> eventDate;
+    private final StringProperty eventDescription;
+    private final StringProperty eventLocation;
+    private final ObjectProperty<LocalTime> eventTime;
+    private final StringProperty busDepartLocation;
+    private final ObjectProperty<LocalTime> busDepartLocationStartTime;
+    private final ObjectProperty<LocalTime> busDepartLocationEndTime;
+    private final ObjectProperty<LocalTime> busArriveLocationStartTime;
+    private final ObjectProperty<LocalTime> busArriveLocationEndTime;
+    private final StringProperty busSeats;
 
     public AdminEditEventViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();

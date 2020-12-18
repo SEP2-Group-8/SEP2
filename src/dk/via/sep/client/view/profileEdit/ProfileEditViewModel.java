@@ -8,19 +8,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ProfileEditViewModel {
-    private UserModel userModel;
-    private StringProperty nameLabel;
-    private StringProperty passwordLabel;
-    private StringProperty emailLabel;
-    //might delete this later
-    private StringProperty birthdayLabel;
+    private final UserModel userModel;
+    private final StringProperty nameLabel;
+    private final StringProperty passwordLabel;
+    private final StringProperty emailLabel;
 
     public ProfileEditViewModel() {
         userModel = ModelFactory.getInstance().getUserModelManager();
         nameLabel = new SimpleStringProperty();
         passwordLabel = new SimpleStringProperty();
         emailLabel = new SimpleStringProperty();
-        birthdayLabel = new SimpleStringProperty();
     }
 
     public StringProperty nameLabelProperty() {
@@ -35,17 +32,14 @@ public class ProfileEditViewModel {
         return emailLabel;
     }
 
-    public StringProperty birthdayLabelProperty() {
-        return birthdayLabel;
-    }
 
-    public void saveChanges(){
+    public void saveChanges() {
         User currentUser = LoggedUser.getInstance().getUser();
-        if(emailLabel.getValue() !=null)
+        if (emailLabel.getValue() != null)
             currentUser.setEmail(emailLabel.getValue());
-        if(passwordLabel.getValue() !=null)
+        if (passwordLabel.getValue() != null)
             currentUser.setPassword(passwordLabel.getValue());
-        if(nameLabel.getValue() != null)
+        if (nameLabel.getValue() != null)
             currentUser.setUsername(nameLabel.getValue());
         System.out.println(currentUser.toString());
         userModel.editUserDetails(currentUser);

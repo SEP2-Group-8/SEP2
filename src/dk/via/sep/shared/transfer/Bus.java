@@ -1,7 +1,6 @@
 package dk.via.sep.shared.transfer;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
@@ -21,7 +20,7 @@ public class Bus implements Serializable {
     public Bus(int noSeats, Time departTimeStart, Time departTimeEnd, Time arriveTimeStart, Time arriveTimeEnd, String departLocation, String arriveLocation) {
         this.noSeats = noSeats;
         this.departTimeStart = departTimeStart;
-        this.departTimeEnd= departTimeEnd;
+        this.departTimeEnd = departTimeEnd;
         this.arriveTimeStart = arriveTimeStart;
         this.arriveTimeEnd = arriveTimeEnd;
         this.departLocation = departLocation;
@@ -61,7 +60,9 @@ public class Bus implements Serializable {
         return busId;
     }
 
-    public int getOccupiedSeats() { return occupiedSeats; }
+    public int getOccupiedSeats() {
+        return occupiedSeats;
+    }
 
     public void setNoSeats(int noSeats) {
         this.noSeats = noSeats;
@@ -87,24 +88,28 @@ public class Bus implements Serializable {
         this.busId = busId;
     }
 
-    public void setDepartTimeEnd(Time departTimeEnd) { this.departTimeEnd = departTimeEnd; }
+    public void setDepartTimeEnd(Time departTimeEnd) {
+        this.departTimeEnd = departTimeEnd;
+    }
 
-    public void setArriveTimeEnd(Time arriveTimeEnd) { this.arriveTimeEnd = arriveTimeEnd; }
+    public void setArriveTimeEnd(Time arriveTimeEnd) {
+        this.arriveTimeEnd = arriveTimeEnd;
+    }
 
-    public void setOccupiedSeats(int occupiedSeats) { this.occupiedSeats = occupiedSeats; }
+    public void setOccupiedSeats(int occupiedSeats) {
+        this.occupiedSeats = occupiedSeats;
+    }
 
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (obj == this)
             return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Bus bus = (Bus) obj;
-        return Objects.equals(noSeats, bus.noSeats) &&Objects.equals(departLocation,bus.departLocation) && Objects.equals(arriveLocation, bus.arriveLocation) /*&& Objects.equals(busId, bus.busId)*/
+        return Objects.equals(noSeats, bus.noSeats) && Objects.equals(departLocation, bus.departLocation) && Objects.equals(arriveLocation, bus.arriveLocation) /*&& Objects.equals(busId, bus.busId)*/
                 && Objects.equals(departTimeStart, bus.departTimeStart) && Objects.equals(arriveTimeStart, bus.arriveTimeStart);
     }
 
-    public String toString()
-    {
+    public String toString() {
         return noSeats + "\n" + "\n" + arriveTimeStart + "\n" + departLocation + "\n" + arriveLocation + "\n" + busId;
     }
 }

@@ -9,7 +9,6 @@ import dk.via.sep.server.persistence.userServer.UserDAOManager;
  * @author Constantin Mihail
  * @version 1.0.0
  * Factory for the DAO
- *
  */
 public class ServerDAOFactory {
 
@@ -26,6 +25,7 @@ public class ServerDAOFactory {
 
     /**
      * Getter that returns the userDAO
+     *
      * @return userDAO
      */
     public UserDAO getUserDAO() {
@@ -34,6 +34,7 @@ public class ServerDAOFactory {
 
     /**
      * Getter that returns the EventDAO
+     *
      * @return eventDAO
      */
     public EventDAO getEventDAO() {

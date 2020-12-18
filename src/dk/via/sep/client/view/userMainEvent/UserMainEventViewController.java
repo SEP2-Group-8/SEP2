@@ -21,39 +21,38 @@ import java.util.ArrayList;
 
 public class UserMainEventViewController extends ViewController {
 
-    private ViewHandler viewHandler;
-    private UserMainEventViewModel viewModel;
+    private final ViewHandler viewHandler;
+    private final UserMainEventViewModel viewModel;
 
     @FXML
     private VBox eventVBox;
 
-    public UserMainEventViewController()
-    {
+    public UserMainEventViewController() {
         viewHandler = ViewHandler.getInstance();
         viewModel = ViewModelFactory.getInstance().getUserMainEventViewModel();
-        viewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(),this::addEvent);
-        viewModel.addListener(UserAction.EVENT_CREATE.toString(),this::addEvent);
-        viewModel.addListener(UserAction.EVENT_REMOVE.toString(),this::UpdateEventList);
-        viewModel.addListener(UserAction.EVENT_EDIT.toString(),this::UpdateEventList);
+        viewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::addEvent);
+        viewModel.addListener(UserAction.EVENT_CREATE.toString(), this::addEvent);
+        viewModel.addListener(UserAction.EVENT_REMOVE.toString(), this::UpdateEventList);
+        viewModel.addListener(UserAction.EVENT_EDIT.toString(), this::UpdateEventList);
     }
 
     private void UpdateEventList(PropertyChangeEvent event) {
-            Platform.runLater(() ->{
-                eventVBox.getChildren().clear();
-                viewModel.getEventList();
-            });
+        Platform.runLater(() -> {
+            eventVBox.getChildren().clear();
+            viewModel.getEventList();
+        });
     }
 
-    public void init(){
+    public void init() {
         viewModel.getEventList();
     }
 
     private void addEvent(PropertyChangeEvent event) {
 
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             eventVBox.getChildren().clear();
-            for (Event event1 : (ArrayList<Event>)event.getNewValue())
-            eventVBox.getChildren().add(createEventHBox(event1));
+            for (Event event1 : (ArrayList<Event>) event.getNewValue())
+                eventVBox.getChildren().add(createEventHBox(event1));
         });
     }
 

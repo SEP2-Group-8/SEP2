@@ -1,7 +1,5 @@
 package dk.via.sep.server.core;
 
-import dk.via.sep.server.networking.chatServerHandler.ChatServer;
-import dk.via.sep.server.networking.chatServerHandler.ChatServerHandler;
 import dk.via.sep.server.networking.eventServerHandler.EventServer;
 import dk.via.sep.server.networking.eventServerHandler.EventServerHandler;
 import dk.via.sep.server.networking.userServerHandler.UserServer;
@@ -12,19 +10,35 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Class used to create, instantiate, and get the server classes.
+ *
+ * @author Bogdan-Florin Cirstoiu
+ * @version 1.3
+ */
 public class ServerFactory implements ServerFactoryInterface {
     private final ServerModelFactory serverModelFactory;
     private UserServer userServer;
     private EventServer eventServer;
-    private ChatServer chatServer;
     private final Lock lock;
 
+    /**
+     * Public constructor user to make this class remotely available, so the client can use its interface.
+     *
+     * @param serverModelFactory model factory needed to instantiate the servers.
+     * @throws RemoteException if the connection cannot be established.
+     */
     public ServerFactory(ServerModelFactory serverModelFactory) throws RemoteException {
         UnicastRemoteObject.exportObject(this, 0);
         this.serverModelFactory = serverModelFactory;
         lock = new ReentrantLock();
     }
 
+    /**
+     * Method used to create and instantiate the user server.
+     *
+     * @return the user server.
+     */
     @Override
     public UserServer getUserServer() {
         if (userServer == null) {
@@ -37,6 +51,11 @@ public class ServerFactory implements ServerFactoryInterface {
         return userServer;
     }
 
+    /**
+     * Method used to create and instantiate the event server.
+     *
+     * @return the event server.
+     */
     @Override
     public EventServer getEventServer() {
         if (eventServer == null) {
@@ -48,17 +67,4 @@ public class ServerFactory implements ServerFactoryInterface {
         }
         return eventServer;
     }
-
-    @Override
-    public ChatServer getChatServer() {
-        if (chatServer == null) {
-            synchronized (lock) {
-                if (chatServer == null) {
-                    chatServer = new ChatServerHandler(serverModelFactory.getChatServerModel());
-                }
-            }
-        }
-        return chatServer;
-    }
-
 }

@@ -13,7 +13,7 @@ import java.util.UUID;
 public class EventServerModelManager implements EventServerModel {
 
     private final EventDAO eventDAO;
-    private PropertyChangeSupport support;
+    private final PropertyChangeSupport support;
 
     public EventServerModelManager(EventDAO eventDAO) {
         this.eventDAO = eventDAO;
@@ -28,7 +28,7 @@ public class EventServerModelManager implements EventServerModel {
     @Override
     public void createEvent(Event event) {
         boolean success = eventDAO.createEvent(event);
-        if(success){
+        if (success) {
             support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, event);
         }
     }
@@ -36,7 +36,7 @@ public class EventServerModelManager implements EventServerModel {
     @Override
     public void removeEvent(Event event) {
         boolean success = eventDAO.removeEvent(event);
-        if(success){
+        if (success) {
             support.firePropertyChange(UserAction.EVENT_REMOVE.toString(), null, event);
         }
     }
@@ -44,7 +44,7 @@ public class EventServerModelManager implements EventServerModel {
     @Override
     public void editEvent(Event event) {
         boolean success = eventDAO.editEvent(event);
-        if(success){
+        if (success) {
             support.firePropertyChange(UserAction.EVENT_EDIT.toString(), null, event);
         }
     }
@@ -59,11 +59,13 @@ public class EventServerModelManager implements EventServerModel {
     @Override
     public boolean joinEvent(User user, Event event, boolean b) {
         System.out.println("I got here -> server model");
-        return eventDAO.joinEvent(user,event,b);
+        return eventDAO.joinEvent(user, event, b);
     }
 
     @Override
-    public boolean leaveEvent(User user, Event event) { return eventDAO.leaveEvent(user,event); }
+    public boolean leaveEvent(User user, Event event) {
+        return eventDAO.leaveEvent(user, event);
+    }
 
     @Override
     public ArrayList<User> getUserList(Event event) {

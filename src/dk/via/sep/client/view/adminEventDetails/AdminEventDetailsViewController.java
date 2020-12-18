@@ -7,8 +7,6 @@ import dk.via.sep.client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -54,8 +52,8 @@ public class AdminEventDetailsViewController extends ViewController {
     @FXML
     private Label eventTime;
 
-    private ViewHandler viewHandler;
-    private AdminEventDetailsViewModel adminEventDetailsViewModel;
+    private final ViewHandler viewHandler;
+    private final AdminEventDetailsViewModel adminEventDetailsViewModel;
 
     public AdminEventDetailsViewController() {
         viewHandler = ViewHandler.getInstance();
@@ -95,20 +93,20 @@ public class AdminEventDetailsViewController extends ViewController {
                 "Are you sure you want to delete this event? This action cannot be undone",
                 "Delete event",
                 JOptionPane.YES_NO_OPTION);
-        if(reply == JOptionPane.YES_OPTION){
+        if (reply == JOptionPane.YES_OPTION) {
             adminEventDetailsViewModel.removeEvent(LoggedUser.getInstance().getSelectedEvent());
             viewHandler.openMainView();
             LoggedUser.getInstance().setSelectedEvent(null);
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Operation aborted");
         }
     }
 
-    public void exit(){
+    public void exit() {
         System.exit(0);
     }
 
-    public void minimize(){
+    public void minimize() {
         viewHandler.minimize();
     }
 

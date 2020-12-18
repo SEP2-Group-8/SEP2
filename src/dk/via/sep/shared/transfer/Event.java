@@ -80,8 +80,7 @@ public class Event implements Serializable {
         this.bus = bus;
     }
 
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (obj == this)
             return true;
         if (obj == null || getClass() != obj.getClass()) return false;
@@ -90,8 +89,7 @@ public class Event implements Serializable {
                 && Objects.equals(eventName, event.eventName);
     }
 
-    public String toString()
-    {
+    public String toString() {
         return date + "\n" + startTime + "\n" + location + "\n" + description + "\n" + eventName + "\n" + bus.toString();
     }
 

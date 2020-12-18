@@ -18,14 +18,11 @@ public class ProfileEditViewController extends ViewController {
     private JFXTextField password;
     @FXML
     private JFXTextField email;
-    //might remove this one
-    @FXML
-    private JFXTextField birthday;
     @FXML
     private Label clock;
 
-    private ViewHandler viewHandler;
-    private ProfileEditViewModel viewModel;
+    private final ViewHandler viewHandler;
+    private final ProfileEditViewModel viewModel;
 
     public ProfileEditViewController() {
         viewHandler = ViewHandler.getInstance();
@@ -36,7 +33,6 @@ public class ProfileEditViewController extends ViewController {
         name.textProperty().bindBidirectional(viewModel.nameLabelProperty());
         password.textProperty().bindBidirectional(viewModel.passwordLabelProperty());
         email.textProperty().bindBidirectional(viewModel.emailLabelProperty());
-        birthday.textProperty().bindBidirectional(viewModel.birthdayLabelProperty());
 
         Clock clock = new Clock();
         Thread thread = new Thread(clock);
@@ -44,7 +40,7 @@ public class ProfileEditViewController extends ViewController {
         clock.addListener("Clock", this::updateClock);
     }
 
-    public void updateAccount(){
+    public void updateAccount() {
         viewModel.saveChanges();
         viewHandler.openMainView();
     }
@@ -64,7 +60,7 @@ public class ProfileEditViewController extends ViewController {
         viewHandler.minimize();
     }
 
-    public void back(){
+    public void back() {
         viewHandler.openMainView();
     }
 

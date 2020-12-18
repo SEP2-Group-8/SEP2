@@ -1,37 +1,44 @@
-.root{
+.root {
     -fx-font-family: "Roboto Light" !important;
     -fx-font-smoothing-type: gray !important;
 }
 
-.side-bar{
+.side-bar {
     -fx-background-color: mediumseagreen !important;
 }
-.about-us{
+
+.about-us {
     -fx-background-color: mediumseagreen;
 }
+
 .about-us-title {
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
-.login-title{
+
+.login-title {
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
-.login-field{
-    -fx-background-color: #a9a9a9 , white , white;
+
+.login-field {
+    -fx-background-color: #a9a9a9, white, white;
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
-.login-field:focused{
-    -fx-background-color: lightskyblue , white , white;
+
+.login-field:focused {
+    -fx-background-color: lightskyblue, white, white;
 }
-.login-button{
+
+.login-button {
     -fx-background-radius: 0;
     -fx-background-color: #292929;
     -fx-text-fill: white;
     -fx-padding: 5px 15px 5px 15px;
     -fx-font-size: 15px;
 }
-.notification{
+
+.notification {
     -fx-background-color: red;
     -fx-border-radius: 30;
     -fx-background-radius: 30;
@@ -41,98 +48,120 @@
 }
 
 /* Profile View */
-.profile-title{
+.profile-title {
     -fx-font-size: 40px;
 }
-.profile-name{
+
+.profile-name {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
-.profile-email{
+
+.profile-email {
     -fx-font-size: 15px;
 }
-.profile-admin-tag{
+
+.profile-admin-tag {
     -fx-background-color: lightgrey;
 }
-.profile-item{
+
+.profile-item {
     -fx-font-size: 15px;
 }
-.clock{
+
+.clock {
     -fx-font-size: 35px;
 }
 
 /* Admin Main View */
-.admin-main-event{
+.admin-main-event {
     -fx-border-color: #c7c7c7;
     -fx-border-style: solid;
     -fx-padding: 0 0 0 25px;
 }
-.admin-main-event-vbox{
+
+.admin-main-event-vbox {
     -fx-padding: 0 0 0 30px;
 }
-.admin-main-event-title{
+
+.admin-main-event-title {
     -fx-font-size: 25px;
 }
-.admin-main-event-description{
+
+.admin-main-event-description {
     -fx-font-size: 16px;
 }
-.admin-main-event-date{
+
+.admin-main-event-date {
     -fx-font-size: 16px;
     -fx-text-fill: gray;
 }
 
 /* Event details view */
-.event-details-title{
+.event-details-title {
     -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
-.event-details-title-content{
+
+.event-details-title-content {
     -fx-font-size: 30px;
 }
-.event-details-small{
+
+.event-details-small {
     -fx-font-size: 16px;
 }
-.event-details-user{
+
+.event-details-user {
     -fx-font-size: 16px;
 }
 
 /* Create event view */
-.create-event-background{
+.create-event-background {
     -fx-background-color: lightgray;
 }
-.create-event-text-small{
+
+.create-event-text-small {
     -fx-font-size: 16px;
 }
 
 /* chat view */
-.chat-sidebar{
+.chat-sidebar {
     -fx-background-color: mediumseagreen;
 }
-.chat-sidebar-name{
+
+.chat-sidebar-name {
     -fx-background-color: #308f5a;
 }
-.chat{
+
+.chat {
     -fx-background-color: #c3e6ce;
 }
-.chat-name{
+
+.chat-name {
     -fx-background-color: #64c088;
 }
-.chat-main{
+
+.chat-main {
     -fx-background-color: #265639;
 }
-.chat-text{
+
+.chat-text {
     -fx-background-color: white;
 }
-.chat-username{
+
+.chat-username {
     -fx-font-size: 20px;
 }
+
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
-.chat-padding{
+
+.chat-padding {
     -fx-padding: 15px;
 }
-.message{
+
+.message {
     -fx-background-color: #054740;
     -fx-text-fill: white;
     -fx-font-size: 13px;
@@ -140,13 +169,16 @@
     -fx-background-radius: 12px;
     -fx-border-radius: 12px;
 }
-.chat-name-small{
+
+.chat-name-small {
     -fx-font-size: 14px;
 }
-.chat-last-sent{
+
+.chat-last-sent {
     -fx-font-size: 14px;
     -fx-text-fill: dimgray;
 }
-.chat-selected-user{
+
+.chat-selected-user {
     -fx-background-color: #308f5a;
 }

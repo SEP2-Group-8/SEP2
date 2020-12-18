@@ -9,21 +9,21 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class AdminEventDetailsViewModel {
-    private EventModel eventModel;
-    private StringProperty eventName;
-    private StringProperty eventDate;
-    private StringProperty eventTime;
-    private StringProperty eventDescription;
-    private StringProperty busID;
-    private StringProperty busDepartLocation;
-    private StringProperty busArriveLocation;
-    private StringProperty busDepartLocationStartTime;
-    private StringProperty busDepartLocationEndTime;
-    private StringProperty busArriveLocationStartTime;
-    private StringProperty busArriveLocationEndTime;
-    private StringProperty busSeats;
+    private final EventModel eventModel;
+    private final StringProperty eventName;
+    private final StringProperty eventDate;
+    private final StringProperty eventTime;
+    private final StringProperty eventDescription;
+    private final StringProperty busID;
+    private final StringProperty busDepartLocation;
+    private final StringProperty busArriveLocation;
+    private final StringProperty busDepartLocationStartTime;
+    private final StringProperty busDepartLocationEndTime;
+    private final StringProperty busArriveLocationStartTime;
+    private final StringProperty busArriveLocationEndTime;
+    private final StringProperty busSeats;
 
-    public AdminEventDetailsViewModel(){
+    public AdminEventDetailsViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
         eventName = new SimpleStringProperty();
         eventDate = new SimpleStringProperty();

@@ -22,8 +22,8 @@ import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
 public class AdminMainEventViewController extends ViewController {
-    private ViewHandler viewHandler;
-    private AdminMainEventViewModel adminMainEventViewModel;
+    private final ViewHandler viewHandler;
+    private final AdminMainEventViewModel adminMainEventViewModel;
 
     @FXML
     private VBox eventVBox;

@@ -4,7 +4,6 @@ import dk.via.sep.client.core.ModelFactory;
 import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.model.userModel.UserModel;
 import dk.via.sep.shared.transfer.User;
-import dk.via.sep.shared.utils.Clock;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,18 +12,16 @@ import javafx.beans.property.StringProperty;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 
 public class ProfileViewModel implements Subject {
 
-    private UserModel userModel;
-    private StringProperty nameLabel;
-    private StringProperty passwordLabel;
-    private StringProperty emailLabel;
-    private StringProperty birthdayLabel;
-    private PropertyChangeSupport support;
+    private final UserModel userModel;
+    private final StringProperty nameLabel;
+    private final StringProperty passwordLabel;
+    private final StringProperty emailLabel;
+    private final StringProperty birthdayLabel;
+    private final PropertyChangeSupport support;
 
     public ProfileViewModel() {
         userModel = ModelFactory.getInstance().getUserModelManager();

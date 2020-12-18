@@ -6,8 +6,10 @@ import dk.via.sep.shared.transfer.Bus;
 import dk.via.sep.shared.transfer.Event;
 import dk.via.sep.shared.utils.Subject;
 import dk.via.sep.shared.utils.UserAction;
-import javafx.beans.binding.ObjectExpression;
-import javafx.beans.property.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -19,19 +21,19 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 
 public class AdminCreateEventViewModel implements Subject {
-    private EventModel eventModel;
-    private StringProperty eventName;
-    private ObjectProperty<LocalDate> eventDate;
-    private ObjectProperty<LocalTime> eventTime;
-    private StringProperty eventDescription;
-    private StringProperty busDepartLocation;
-    private ObjectProperty<LocalTime> busDepartLocationStartTime;
-    private ObjectProperty<LocalTime> busDepartLocationEndTime;
-    private ObjectProperty<LocalTime> busArriveLocationStartTime;
-    private ObjectProperty<LocalTime> busArriveLocationEndTime;
-    private StringProperty busSeats;
-    private StringProperty eventLocation;
-    private PropertyChangeSupport support;
+    private final EventModel eventModel;
+    private final StringProperty eventName;
+    private final ObjectProperty<LocalDate> eventDate;
+    private final ObjectProperty<LocalTime> eventTime;
+    private final StringProperty eventDescription;
+    private final StringProperty busDepartLocation;
+    private final ObjectProperty<LocalTime> busDepartLocationStartTime;
+    private final ObjectProperty<LocalTime> busDepartLocationEndTime;
+    private final ObjectProperty<LocalTime> busArriveLocationStartTime;
+    private final ObjectProperty<LocalTime> busArriveLocationEndTime;
+    private final StringProperty busSeats;
+    private final StringProperty eventLocation;
+    private final PropertyChangeSupport support;
 
 
     public AdminCreateEventViewModel() {
@@ -47,12 +49,12 @@ public class AdminCreateEventViewModel implements Subject {
         busArriveLocationStartTime = new SimpleObjectProperty<>();
         busArriveLocationEndTime = new SimpleObjectProperty<>();
         busSeats = new SimpleStringProperty();
-        support= new PropertyChangeSupport(this);
-        eventModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(),this::onReceiveAction);
+        support = new PropertyChangeSupport(this);
+        eventModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::onReceiveAction);
     }
 
     private void onReceiveAction(PropertyChangeEvent evt) {
-        support.firePropertyChange(evt.getNewValue().toString(),null,null);
+        support.firePropertyChange(evt.getNewValue().toString(), null, null);
     }
 
     public StringProperty eventNameProperty() {
@@ -97,17 +99,39 @@ public class AdminCreateEventViewModel implements Subject {
 
     public void createEvent() {
 
-        if(eventName.getValue() == null) { return; }
-        if(eventDate.get() == null){ return;}
-        if(eventTime.get() == null){ return;}
-        if(eventDescription.getValue() == null){ return; }
-        if(eventLocation.getValue() == null){ return; }
-        if(busDepartLocation.getValue() == null) { return; }
-        if(busDepartLocationStartTime.get() == null) { return; }
-        if(busDepartLocationEndTime.get() == null) { return; }
-        if(busArriveLocationStartTime.get() == null)  { return; }
-        if(busArriveLocationEndTime.get() == null)  { return; }
-        if(busSeats.getValue() == null)  { return; }
+        if (eventName.getValue() == null) {
+            return;
+        }
+        if (eventDate.get() == null) {
+            return;
+        }
+        if (eventTime.get() == null) {
+            return;
+        }
+        if (eventDescription.getValue() == null) {
+            return;
+        }
+        if (eventLocation.getValue() == null) {
+            return;
+        }
+        if (busDepartLocation.getValue() == null) {
+            return;
+        }
+        if (busDepartLocationStartTime.get() == null) {
+            return;
+        }
+        if (busDepartLocationEndTime.get() == null) {
+            return;
+        }
+        if (busArriveLocationStartTime.get() == null) {
+            return;
+        }
+        if (busArriveLocationEndTime.get() == null) {
+            return;
+        }
+        if (busSeats.getValue() == null) {
+            return;
+        }
         //TODO checks for the time so you can not have a starting time of the event after the depart time of the bus, making the depart time of the bus redundant.
         //if(busDepartLocationStartTime.get().isAfter(busDepartLocationEndTime.get())) { return; }
         //if(busDepartLocationStartTime.get().isAfter(busArriveLocationStartTime.get())) { return; }
@@ -120,16 +144,18 @@ public class AdminCreateEventViewModel implements Subject {
         Time arriveStartTime = Time.valueOf(busArriveLocationStartTime.get());
         Time arriveEndTime = Time.valueOf(busArriveLocationEndTime.get());
 
-        Bus bus = new Bus(noOfSeats,departStartTime,departEndTime,arriveStartTime,arriveEndTime,
-                busDepartLocation.getValue(),eventLocation.getValue());
+        Bus bus = new Bus(noOfSeats, departStartTime, departEndTime, arriveStartTime, arriveEndTime,
+                busDepartLocation.getValue(), eventLocation.getValue());
 
-        Event event = new Event(date,startTime,eventLocation.getValue(),eventDescription.getValue(),eventName.getValue(),bus);
+        Event event = new Event(date, startTime, eventLocation.getValue(), eventDescription.getValue(), eventName.getValue(), bus);
 
         eventModel.createEvent(event);
 
     }
 
-    public ObjectProperty eventTimeProperty() { return eventTime; }
+    public ObjectProperty eventTimeProperty() {
+        return eventTime;
+    }
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {

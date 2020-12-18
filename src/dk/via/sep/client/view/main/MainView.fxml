@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.sep.client.view.main.MainViewController">
-   <children>
-      <AnchorPane prefHeight="600.0" prefWidth="110.0" styleClass="side-bar" stylesheets="@../style/style.css">
-         <children>
-            <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="529.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/logout.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="201.0" onMouseClicked="#openHomeView" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/home.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="308.0" onMouseClicked="#openChatView" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/chat.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="357.0" onMouseClicked="#openProfileView" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/settings.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="253.0" onMouseClicked="#openEventsView" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/calendar.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/cancel.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="49.0" layoutY="14.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/icons/minimize.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="68.0" layoutY="297.0" prefHeight="16.0" prefWidth="18.0" styleClass="notification" text="1" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="currentPane" layoutX="110.0" prefHeight="600.0" prefWidth="790.0" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" style="-fx-background-color: white;" stylesheets="@../style/style.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dk.via.sep.client.view.main.MainViewController">
+    <children>
+        <AnchorPane prefHeight="600.0" prefWidth="110.0" styleClass="side-bar" stylesheets="@../style/style.css">
+            <children>
+                <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="529.0" onMouseClicked="#logOut"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/logout.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="201.0"
+                           onMouseClicked="#openHomeView" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/home.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="308.0"
+                           onMouseClicked="#openChatView" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/chat.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="357.0"
+                           onMouseClicked="#openProfileView" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/settings.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="32.0" layoutY="253.0"
+                           onMouseClicked="#openEventsView" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/calendar.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#exit"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/cancel.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="49.0" layoutY="14.0" onMouseClicked="#minimize"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../style/icons/minimize.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="68.0" layoutY="297.0" prefHeight="16.0" prefWidth="18.0" styleClass="notification"
+                       text="1"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="currentPane" layoutX="110.0" prefHeight="600.0" prefWidth="790.0"/>
+    </children>
 </AnchorPane>

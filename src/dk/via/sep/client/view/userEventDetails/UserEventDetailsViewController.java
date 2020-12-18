@@ -12,20 +12,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
 public class UserEventDetailsViewController extends ViewController {
 
 
-    private ViewHandler viewHandler;
-    private UserEventDetailsViewModel viewModel;
+    private final ViewHandler viewHandler;
+    private final UserEventDetailsViewModel viewModel;
 
     @FXML
     private Label eventName;
@@ -72,17 +70,15 @@ public class UserEventDetailsViewController extends ViewController {
     TODO positioning of the buttons looks bad with them only being visible or invisible.
 
   */
-    public UserEventDetailsViewController()
-    {
+    public UserEventDetailsViewController() {
         viewHandler = ViewHandler.getInstance();
         viewModel = ViewModelFactory.getInstance().getUserEventDetailsViewModel();
         viewModel.addListener(UserAction.EVENT_JOIN.toString(), this::addUserToList);
-        viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(),this::userListUpdated);
-        viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(),this::userListUpdated);
+        viewModel.addListener(UserAction.EVENT_JOIN_SUCCESS.toString(), this::userListUpdated);
+        viewModel.addListener(UserAction.EVENT_LEAVE_SUCCESS.toString(), this::userListUpdated);
     }
 
-    public void init()
-    {
+    public void init() {
         viewModel.getUserList();
         viewModel.initView();
         eventName.textProperty().bind(viewModel.eventNameProperty());
@@ -101,7 +97,7 @@ public class UserEventDetailsViewController extends ViewController {
     }
 
     private void userListUpdated(PropertyChangeEvent event) {
-        Platform.runLater(() ->{
+        Platform.runLater(() -> {
             userListVBox.getChildren().clear();
             viewModel.getUserList();
         });
@@ -129,8 +125,7 @@ public class UserEventDetailsViewController extends ViewController {
         }
     }
 
-    public HBox createUserHBox(User user)
-    {
+    public HBox createUserHBox(User user) {
         HBox hBox = new HBox();
 
         return hBox;

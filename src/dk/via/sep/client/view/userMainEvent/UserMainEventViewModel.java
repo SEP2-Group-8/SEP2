@@ -13,11 +13,10 @@ import java.util.ArrayList;
 
 public class UserMainEventViewModel implements Subject {
 
-    private EventModel eventModel;
-    private PropertyChangeSupport support;
+    private final EventModel eventModel;
+    private final PropertyChangeSupport support;
 
-    public UserMainEventViewModel()
-    {
+    public UserMainEventViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
         support = new PropertyChangeSupport(this);
         eventModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::onReceiveRequest);
@@ -40,8 +39,8 @@ public class UserMainEventViewModel implements Subject {
         support.removePropertyChangeListener(eventName, listener);
     }
 
-    public void getEventList(){
+    public void getEventList() {
         ArrayList<Event> events = eventModel.getEventList();
-            support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, events);
+        support.firePropertyChange(UserAction.EVENT_CREATE.toString(), null, events);
     }
 }

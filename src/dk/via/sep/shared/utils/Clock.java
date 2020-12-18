@@ -6,18 +6,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Clock implements Runnable, Subject {
-    private DateTimeFormatter dateTimeFormatter;
+    private final DateTimeFormatter dateTimeFormatter;
     private LocalDateTime localDateTime;
-    private PropertyChangeSupport support;
+    private final PropertyChangeSupport support;
 
-    public Clock(){
+    public Clock() {
         dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         support = new PropertyChangeSupport(this);
     }
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             localDateTime = LocalDateTime.now();
             support.firePropertyChange("Clock", null, dateTimeFormatter.format(localDateTime));
             try {

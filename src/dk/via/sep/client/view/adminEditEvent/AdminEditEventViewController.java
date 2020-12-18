@@ -7,8 +7,6 @@ import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
 import dk.via.sep.client.view.ViewController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class AdminEditEventViewController extends ViewController {
@@ -38,15 +36,15 @@ public class AdminEditEventViewController extends ViewController {
     @FXML
     private AnchorPane currentPane;
 
-    private ViewHandler viewHandler;
-    private AdminEditEventViewModel adminEditEventViewModel;
+    private final ViewHandler viewHandler;
+    private final AdminEditEventViewModel adminEditEventViewModel;
 
-    public AdminEditEventViewController(){
+    public AdminEditEventViewController() {
         viewHandler = ViewHandler.getInstance();
         adminEditEventViewModel = ViewModelFactory.getInstance().getAdminEditEventViewModel();
     }
 
-    public void init(){
+    public void init() {
         eventLocation.textProperty().bindBidirectional(adminEditEventViewModel.eventLocationProperty());
         eventName.textProperty().bindBidirectional(adminEditEventViewModel.eventNameProperty());
         eventDate.valueProperty().bindBidirectional(adminEditEventViewModel.eventDateProperty());
@@ -60,20 +58,20 @@ public class AdminEditEventViewController extends ViewController {
         busSeats.textProperty().bindBidirectional(adminEditEventViewModel.busSeatsProperty());
     }
 
-    public void saveChanges(){
+    public void saveChanges() {
         adminEditEventViewModel.saveEventChanges();
         viewHandler.openMainView();
     }
 
-    public void goBack(){
+    public void goBack() {
         viewHandler.openAdminEventDetailsView(null);
     }
 
-    public void minimize(){
+    public void minimize() {
         viewHandler.minimize();
     }
 
-    public void exit(){
+    public void exit() {
         System.exit(0);
     }
 

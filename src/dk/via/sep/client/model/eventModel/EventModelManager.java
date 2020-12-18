@@ -58,18 +58,18 @@ public class EventModelManager implements EventModel {
         User user = LoggedUser.getInstance().getUser();
         Event event = LoggedUser.getInstance().getSelectedEvent();
         System.out.println("I got here -> model");
-        boolean success = eventClient.joinEvent(user,event, b);
-        if(success) support.firePropertyChange(UserAction.EVENT_JOIN_SUCCESS.toString(),event,user);
-        else support.firePropertyChange(UserAction.EVENT_JOIN_FAILED.toString(),null,null);
+        boolean success = eventClient.joinEvent(user, event, b);
+        if (success) support.firePropertyChange(UserAction.EVENT_JOIN_SUCCESS.toString(), event, user);
+        else support.firePropertyChange(UserAction.EVENT_JOIN_FAILED.toString(), null, null);
     }
 
     @Override
     public void leaveEvent() {
         User user = LoggedUser.getInstance().getUser();
         Event event = LoggedUser.getInstance().getSelectedEvent();
-        boolean success = eventClient.leaveEvent(user,event);
-        if(success) support.firePropertyChange(UserAction.EVENT_LEAVE_SUCCESS.toString(),event,user);
-        else support.firePropertyChange(UserAction.EVENT_LEAVE_FAILED.toString(),null,null);
+        boolean success = eventClient.leaveEvent(user, event);
+        if (success) support.firePropertyChange(UserAction.EVENT_LEAVE_SUCCESS.toString(), event, user);
+        else support.firePropertyChange(UserAction.EVENT_LEAVE_FAILED.toString(), null, null);
 
     }
 

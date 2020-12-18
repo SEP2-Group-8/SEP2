@@ -2,7 +2,6 @@ package dk.via.sep.client.view.profile;
 
 import dk.via.sep.client.core.ViewHandler;
 import dk.via.sep.client.core.ViewModelFactory;
-import dk.via.sep.client.model.user.LoggedUser;
 import dk.via.sep.client.view.ViewController;
 import dk.via.sep.shared.utils.Clock;
 import javafx.application.Platform;
@@ -53,20 +52,20 @@ public class ProfileViewController extends ViewController {
         });
     }
 
-    public void deleteAccount(){
+    public void deleteAccount() {
         int reply = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to delete your account? This action cannot be undone",
                 "Delete account",
                 JOptionPane.YES_NO_OPTION);
-        if(reply == JOptionPane.YES_OPTION){
+        if (reply == JOptionPane.YES_OPTION) {
             viewModel.deleteAccount();
             viewHandler.openLoginView();
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Operation aborted");
         }
     }
 
-    public void editAccount(){
+    public void editAccount() {
         viewHandler.openProfileEditView(null);
     }
 

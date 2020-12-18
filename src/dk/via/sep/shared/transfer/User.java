@@ -2,7 +2,6 @@ package dk.via.sep.shared.transfer;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 public class User implements Serializable {
 

@@ -1,6 +1,5 @@
 package dk.via.sep.client.view.adminCreateEvent;
 
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
@@ -10,20 +9,13 @@ import dk.via.sep.client.view.ViewController;
 import dk.via.sep.shared.utils.UserAction;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
 public class AdminCreateEventViewController extends ViewController {
-    private ViewHandler viewHandler;
-    private AdminCreateEventViewModel adminCreateEventViewModel;
+    private final ViewHandler viewHandler;
+    private final AdminCreateEventViewModel adminCreateEventViewModel;
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -50,12 +42,7 @@ public class AdminCreateEventViewController extends ViewController {
     public AdminCreateEventViewController() {
         viewHandler = ViewHandler.getInstance();
         adminCreateEventViewModel = ViewModelFactory.getInstance().getAdminCreateEventViewModel();
-        adminCreateEventViewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(),this::createEventSuccess);
-        adminCreateEventViewModel.addListener(UserAction.EVENT_CREATE_FAILED.toString(),this::createEventFailed);
-    }
-
-    private void createEventFailed(PropertyChangeEvent propertyChangeEvent) {
-
+        adminCreateEventViewModel.addListener(UserAction.EVENT_CREATE_SUCCESS.toString(), this::createEventSuccess);
     }
 
     private void createEventSuccess(PropertyChangeEvent propertyChangeEvent) {
@@ -87,11 +74,11 @@ public class AdminCreateEventViewController extends ViewController {
         viewHandler.openMainView();
     }
 
-    public void minimize(){
+    public void minimize() {
         viewHandler.minimize();
     }
 
-    public void exit(){
+    public void exit() {
         System.exit(0);
     }
 }

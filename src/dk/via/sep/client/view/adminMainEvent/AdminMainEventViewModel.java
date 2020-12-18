@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 
 public class AdminMainEventViewModel implements Subject {
-    private EventModel eventModel;
-    private PropertyChangeSupport support;
+    private final EventModel eventModel;
+    private final PropertyChangeSupport support;
 
     public AdminMainEventViewModel() {
         eventModel = ModelFactory.getInstance().getEventModel();
@@ -31,10 +31,10 @@ public class AdminMainEventViewModel implements Subject {
         support.firePropertyChange(event);
     }
 
-    public void getEventList(){
+    public void getEventList() {
         ArrayList<Event> events = eventModel.getEventList();
-        if(events != null) {
-            for (Event event: events) {
+        if (events != null) {
+            for (Event event : events) {
                 support.firePropertyChange(UserAction.EVENT_CREATE_SUCCESS.toString(), null, event);
             }
         }

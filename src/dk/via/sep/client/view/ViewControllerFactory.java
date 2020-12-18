@@ -29,12 +29,6 @@ public class ViewControllerFactory {
                 case REGISTER:
                     viewController = createNewViewController("register/RegisterView.fxml");
                     break;
-                case CHAT_MAIN:
-                    viewController = createNewViewController("path3");
-                    break;
-                case USER_MAIN:
-                    System.out.println("");
-                    break;
                 case ADMIN_MAIN:
                     viewController = createNewViewController("adminMain/AdminMainView.fxml");
                     break;
@@ -67,6 +61,10 @@ public class ViewControllerFactory {
                     break;
                 case PROFILE_EDIT:
                     viewController = createNewViewController("profileEdit/ProfileEditView.fxml");
+                    break;
+                case USER_MAIN:
+                    viewController = createNewViewController("path7");
+                    break;
             }
             viewControllers.put(id, viewController);
         }

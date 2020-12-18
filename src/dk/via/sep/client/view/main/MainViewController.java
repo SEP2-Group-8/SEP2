@@ -13,7 +13,7 @@ public class MainViewController extends ViewController {
     @FXML
     private AnchorPane currentPane;
 
-    public MainViewController(){
+    public MainViewController() {
         viewHandler = ViewHandler.getInstance();
     }
 
@@ -22,35 +22,35 @@ public class MainViewController extends ViewController {
         this.viewHandler = ViewHandler.getInstance();
     }
 
-    public void logOut(){
+    public void logOut() {
         mainViewModel.logOut();
         viewHandler.openLoginView();
     }
 
-    public void openHomeView(){
+    public void openHomeView() {
         viewHandler.openMainView();
     }
 
-    public void exit(){
+    public void exit() {
         mainViewModel.logOut();
         System.exit(0);
     }
 
-    public void minimize(){
+    public void minimize() {
         viewHandler.minimize();
     }
 
-    public void openProfileView(){
+    public void openProfileView() {
         viewHandler.openProfileView(currentPane);
     }
 
-    public void openEventsView(){
-        if(LoggedUser.getInstance().getUser().getAdminCon())
-        viewHandler.openAdminEventView(currentPane);
+    public void openEventsView() {
+        if (LoggedUser.getInstance().getUser().getAdminCon())
+            viewHandler.openAdminEventView(currentPane);
         else viewHandler.openUserEventView(currentPane);
     }
 
-    public void openChatView(){
-
+    public void openChatView() {
+        // :(
     }
 }
